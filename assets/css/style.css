@@ -580,21 +580,78 @@ p.lead { color: var(--text-soft); font-size: 1.05rem; }
 @media (max-width: 860px) {
   .nav__links { display: none; }
   .burger { display: grid; }
-  .section { padding: 68px 0; }
+  .section { padding: 60px 0; }
+  .section-head { margin-bottom: 34px; }
+  .hero { padding: calc(var(--nav-h) + 50px) 0 64px; }
   .grid-3 { grid-template-columns: 1fr; }
   .grid-2 { grid-template-columns: 1fr; }
   .ai-panel, .newsletter { padding: 32px 22px; }
 }
 @media (max-width: 640px) {
+  :root { --nav-h: 66px; --radius: 16px; }
+
+  /* الحاوية: هوامش جانبية مريحة */
+  .container { padding-inline: 18px; }
+
   .aud-grid { grid-template-columns: 1fr; }
   .posts-grid { grid-template-columns: 1fr; }
-  .footer__grid { grid-template-columns: 1fr; }
-  .hero__stats { gap: 24px; }
+  .footer__grid { grid-template-columns: 1fr; gap: 26px; }
   .newsletter__form { flex-direction: column; }
   .newsletter__form .btn { width: 100%; }
   .grid-4 { grid-template-columns: 1fr; }
-  h1 { font-size: 2rem; }
+  h1 { font-size: 1.95rem; }
+
+  /* الأزرار الرئيسية بعرض كامل لسهولة اللمس */
+  .hero__cta { flex-direction: column; align-items: stretch; gap: 10px; margin-bottom: 32px; }
+  .hero__cta .btn { width: 100%; }
+
+  /* الإحصائيات: شبكة منتظمة بدل التكسير العشوائي */
+  .hero__stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 12px; }
+  .stat b { font-size: 1.5rem; }
+
+  /* المسافات الرأسية */
+  .section { padding: 52px 0; }
+  .section--tight { padding: 40px 0; }
+  .hero { padding: calc(var(--nav-h) + 42px) 0 56px; }
+  .hero__inner { gap: 34px; }
+  .hero__desc { font-size: 1rem; line-height: 1.85; margin-bottom: 26px; }
+  .section-head { margin-bottom: 30px; }
+
+  /* الشريط العلوي: إخفاء زر الاشتراك النصي وإبقاء الشعار + الأدوات */
+  .nav__inner { gap: 10px; }
+  .nav__actions { gap: 8px; margin-inline-start: auto; }
+  .nav__actions .btn { display: none; }
+  .icon-btn { width: 38px; height: 38px; }
+  .logo { font-size: 1rem; gap: 8px; }
+  .logo__mark { width: 34px; height: 34px; }
+
+  /* القائمة المنسدلة: سهلة القراءة واللمس */
+  .drawer a { font-size: 1.2rem; padding: 12px 22px; }
+
+  /* البطاقات: حشوة أصغر وشكل أنظف */
+  .card, .aud-card { padding: 20px 18px; }
+  .post-card__body { padding: 16px 16px 18px; }
+  .post-card h3 { font-size: 1rem; }
+  .newsletter { padding: 28px 18px; border-radius: 20px; }
+  .newsletter__form { margin-top: 20px; }
+
+  /* المقالات: قراءة سلسة بلا تمرير أفقي */
+  .article-wrap { gap: 26px; }
+  .prose { font-size: 1rem; line-height: 1.9; }
+  .prose h2 { font-size: 1.32rem; margin-top: 34px; }
+  .prose h3 { font-size: 1.12rem; margin-top: 26px; }
+  .prose pre { padding: 14px; font-size: .8rem; border-radius: 10px; }
+  .prose table { display: block; overflow-x: auto; white-space: nowrap; font-size: .84rem; }
+  .prose th, .prose td { padding: 9px 11px; }
+  .toc { padding: 16px; }
+
+  .footer { padding: 44px 0 26px; }
 }
+
+/* منع التمرير الأفقي الناتج عن الجداول والأكواد الطويلة */
+html, body { max-width: 100%; overflow-x: hidden; }
+.article-wrap, .prose, .prose > * { min-width: 0; max-width: 100%; }
+.prose pre, .prose table, .prose img, .codewin { max-width: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
