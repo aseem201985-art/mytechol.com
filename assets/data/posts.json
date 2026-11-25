@@ -1,5 +1,81 @@
 [
   {
+    "id": "html-css-basics",
+    "title": "HTML و CSS من الصفر: ابنِ صفحتك الأولى في ساعة",
+    "excerpt": "درس عملي للمبتدئين: بنية صفحة HTML، العناصر الدلالية، صناديق CSS، تنسيق النصوص، Flexbox، وتصميم متجاوب — بمشروع كامل في النهاية.",
+    "category": "درس",
+    "tags": [
+      "HTML",
+      "CSS",
+      "Flexbox",
+      "مبتدئ"
+    ],
+    "level": "مبتدئ",
+    "read": "12 دقيقة",
+    "url": "tutorials/html-css-basics.html",
+    "glyph": "</>",
+    "tagline": "HTML & CSS",
+    "date": "2025-11-25",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "javascript-basics",
+    "title": "JavaScript للمبتدئين: المتغيرات، الدوال، و DOM",
+    "excerpt": "من أول سطر إلى تطبيق قائمة مهام يعمل فعلاً — بلا مكتبات ولا أدوات بناء. جافاسكربت خام، مفهومة سطراً بسطر.",
+    "category": "درس",
+    "tags": [
+      "JavaScript",
+      "DOM",
+      "الأساسيات",
+      "مبتدئ"
+    ],
+    "level": "مبتدئ",
+    "read": "14 دقيقة",
+    "url": "tutorials/javascript-basics.html",
+    "glyph": "JS",
+    "tagline": "JavaScript",
+    "date": "2025-11-24",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "git-workflow",
+    "title": "Git و GitHub من البداية: سير عمل آمن لفريق",
+    "excerpt": "لا أوامر محفوظة بلا فهم. نبني المستودع، ننشئ فروعاً، نحل تعارضاً مقصوداً، ثم نمرّر أول Pull Request كما في عمل حقيقي.",
+    "category": "درس",
+    "tags": [
+      "Git",
+      "GitHub",
+      "سير العمل",
+      "تعاون"
+    ],
+    "level": "متوسط",
+    "read": "13 دقيقة",
+    "url": "tutorials/git-workflow.html",
+    "glyph": "git",
+    "tagline": "Git & GitHub",
+    "date": "2025-11-23",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "nodejs-api",
+    "title": "بناء API احترافي بـ Node.js و Express خطوة بخطوة",
+    "excerpt": "REST API كامل: التوجيه، التحقق من المدخلات بـ Zod، معالجة أخطاء موحّدة، مصادقة بـ JWT، وبنية مجلدات تتحمل النمو.",
+    "category": "درس",
+    "tags": [
+      "Node.js",
+      "Express",
+      "JWT",
+      "Backend"
+    ],
+    "level": "متوسط",
+    "read": "16 دقيقة",
+    "url": "tutorials/nodejs-api.html",
+    "glyph": "API",
+    "tagline": "Node.js",
+    "date": "2025-11-22",
+    "author": "فريق MyTechol"
+  },
+  {
     "id": "llm-production",
     "title": "تشغيل نماذج LLM في الإنتاج: التكلفة، الكمون، والموثوقية",
     "excerpt": "ما ينجح في العرض التوضيحي يفشل تحت الحمل. التخزين المؤقت، البثّ، توجيه النماذج، احتواء الأخطاء، ومراقبة ما يفعله نموذجك فعلاً.",

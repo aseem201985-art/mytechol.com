@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git و GitHub من البداية: سير عمل آمن لفريق — MyTechol</title>
+<meta name="description" content="درس عملي: المستودع، commit، branch، merge، وحل التعارضات، ثم سير عمل كامل على GitHub مع Pull Request — بخطوات قابلة للتطبيق فوراً.">
+<meta property="og:title" content="Git و GitHub من البداية: سير عمل آمن لفريق">
+<meta property="og:description" content="درس عملي: المستودع، commit، branch، merge، وحل التعارضات، ثم سير عمل كامل على GitHub.">
+<meta property="article:published_time" content="2025-11-23">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(255,77,141,.34), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(0,212,255,.3), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../tutorials.html">الدروس</a><span>/</span>
+      <span>Git و GitHub من البداية</span>
+    </div>
+    <span class="eyebrow">مسار المتوسط</span>
+    <h1 class="reveal">Git و GitHub من البداية: سير عمل آمن لفريق</h1>
+    <p class="lead" style="max-width:760px">لا أوامر محفوظة بلا فهم. سنبني المستودع، ننشئ فروعاً، نحل تعارضاً مقصوداً، ثم نمرّر أول Pull Request كما تفعل في عمل حقيقي.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">أ</span><span>فريق MyTechol</span></div>
+      <span class="sep">·</span>
+      <span>2025-11-23</span>
+      <span class="sep">·</span>
+      <span>13 دقيقة قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--inter">متوسط</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">git</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+
+<p>Git ليس أداة اختيارية. هو الشيء الذي يمنعك من فقدان يوم كامل من العمل، ويسمح لثلاثة أشخاص بتعديل الملف نفسه دون فوضى. من لا يفهمه يخافه، ومن يفهمه لا يعمل بدونه.</p>
+<p>سنمشي بترتيب معيّن: الفكرة أولاً، ثم الأوامر، ثم السير العمل كاملاً.</p>
+
+<h2 id="model">1. الفكرة قبل الأوامر</h2>
+<p>تخيّل Git كسلسلة صور لحظية للمشروع. كل صورة تسمى <code>commit</code> وتحتوي على حالة كل الملفات في لحظة معيّنة، مع سبب التغيير. تستطيع العودة لأي صورة في أي وقت.</p>
+<p>ثلاث مناطق تفهمها مرة واحدة:</p>
+<table>
+  <thead><tr><th>المنطقة</th><th>معناها</th><th>الأمر</th></tr></thead>
+  <tbody>
+    <tr><td>Working Directory</td><td>ملفاتك كما تراها الآن</td><td>تحرّر هنا</td></tr>
+    <tr><td>Staging Area</td><td>ما اخترته للصورة القادمة</td><td><code>git add</code></td></tr>
+    <tr><td>Repository</td><td>الصور المحفوظة</td><td><code>git commit</code></td></tr>
+  </tbody>
+</table>
+<p>لماذا الـ staging موجودة أصلاً؟ لأنها تمكّنك من تقسيم عملك: عدّلت 5 ملفات لكنك تريد حفظ إصلاح الخطأ وحده في commit منفصل. هذه النظافة هي الفرق بين سجل تاريخي مفيد وسجل عشوائي.</p>
+
+<h2 id="setup">2. الإعداد الأولي</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># مرة واحدة على جهازك
+git config --global user.name "اسمك"
+git config --global user.email "you@example.com"
+
+# اجعل الفرع الافتراضي main (المعيار الحالي)
+git config --global init.defaultBranch main</code></pre></div>
+<p>هذه الإعدادات تُطبَع داخل كل commit، فتصبح قادراً على معرفة من عدّل ماذا.</p>
+
+<h2 id="basic">3. المستودع الأول</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>mkdir my-project
+cd my-project
+git init                    # ابدأ مستودعاً جديداً
+
+# ملف .gitignore — أهم ملف في المشروع
+echo "node_modules/" &gt;&gt; .gitignore
+echo ".env"          &gt;&gt; .gitignore
+echo "*.log"         &gt;&gt; .gitignore</code></pre></div>
+<blockquote><strong>حرج:</strong> أضف ملف <code>.gitignore</code> قبل أول commit. إذا رفعت ملف <code>.env</code> أو مفتاحاً سرياً مرة واحدة، فسيبقى في تاريخ المشروع للأبد حتى لو حذفته لاحقاً — والحل الوحيد هو إبطال المفتاح من مصدره.</blockquote>
+<p>ثم الدورة اليومية:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>git status                 # ماذا تغيّر؟
+git diff                   # ماذا في التغييرات فعلاً؟
+git add index.html         # حدّد ملفاً
+git add .                  # أو كل شيء
+git commit -m "إضافة الصفحة الرئيسية"</code></pre></div>
+<p>افحص قبل كل commit أمرين: <code>git status</code> لتعرف ما سيدخل، و<code>git diff</code> لتعرف ماذا تغيّر فعلاً. هذان الأمران وحدهما يمنعان معظم أخطاء الرفع.</p>
+
+<h2 id="commit">4. كيف تكتب commit يفيدك بعد ستة أشهر</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>❌ git commit -m "update"
+❌ git commit -m "fix"
+❌ git commit -m "تعديلات"
+
+✅ git commit -m "fix: منع تكرار إرسال النموذج عند النقر المزدوج"
+✅ git commit -m "feat: إضافة فلترة المقالات حسب القسم"
+✅ git commit -m "refactor: فصل منطق المصادقة عن مكوّن العرض"</code></pre></div>
+<p>اتفاقية شائعة ومفيدة:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>feat:      ميزة جديدة
+fix:       إصلاح خطأ
+refactor:  تحسين بلا تغيير سلوك
+docs:      توثيق
+style:     تنسيق فقط
+test:      اختبارات
+chore:     صيانة وأدوات</code></pre></div>
+
+<h2 id="branch">5. الفروع: تجربة بلا خوف</h2>
+<p>الفرع نسخة منفصلة تعمل عليها. تعديلك لا يمسّ <code>main</code> حتى تدمجه. هذه هي الطريقة الوحيدة للعمل بأمان.</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>git branch                       # قائمة الفروع
+git switch -c feature/login      # أنشئ فرعاً وانتقل إليه
+
+# اعمل، أضف، ثم حدّث
+git add .
+git commit -m "feat: صفحة تسجيل الدخول"
+
+git switch main                  # عد إلى الفرع الرئيسي
+git merge feature/login          # ادمج</code></pre></div>
+<p>لتحديث فرعك بما استجد على <code>main</code> قبل الدمج (الطريقة الآمنة):</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>git switch main
+git pull origin main
+git switch feature/login
+git rebase main            # أعِد تطبيق تعديلاتك فوق آخر نسخة</code></pre></div>
+
+<h2 id="conflict">6. حل التعارض — بلا رعب</h2>
+<p>التعارض ليس خطأ. هو مجرد حالة عدّل فيها شخصان السطر نفسه، وGit لا يعرف أيهما تريد.</p>
+<p>عند التعارض يضع Git علامات في الملف:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+const URL = "https://api.example.com/v1";
+=======
+const URL = "https://api.example.com/v2";
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/login</code></pre></div>
+<p>ما فوق <code>=======</code> هو نسختك، وما تحته نسخة الفرع الآخر. الحل بثلاث خطوات:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>1. احذف علامات &lt;&lt;&lt;&lt;&lt;&lt;&lt; و ======= و &gt;&gt;&gt;&gt;&gt;&gt;&gt;
+2. اترك الكود الصحيح فقط (واحدة أو دمج الاثنتين)
+3. git add الملف المحلول
+4. git commit          ← يُنهي العملية
+
+# تراجعت؟ عد لحالة ما قبل الدمج
+git merge --abort</code></pre></div>
+<p>قاعدة عملية: قبل كتابة أي كود جديد في اليوم، نفّذ <code>git pull</code>. هذا يقلل التعارضات أكثر من أي تقنية أخرى.</p>
+
+<h2 id="github">7. GitHub: العمل عن بُعد</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># اربط مستودعك المحلي بمستودع GitHub
+git remote add origin https://github.com/USERNAME/REPO.git
+
+# أول رفع
+git push -u origin main
+
+# بعد ذلك، لكل تعديل
+git add . &amp;&amp; git commit -m "feat: ..." &amp;&amp; git push</code></pre></div>
+<p>وتوثيق الرفع يُفضَّل بـ SSH بدلاً من كلمة المرور:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>ssh-keygen -t ed25519 -C "you@example.com"
+cat ~/.ssh/id_ed25519.pub     # انسخ الناتج
+# الصقه في GitHub → Settings → SSH and GPG keys → New SSH key</code></pre></div>
+
+<h2 id="pr">8. سير العمل الحقيقي: Pull Request</h2>
+<p>هكذا يعمل الفريق فعلاً — حتى لو كنت وحدك، اتبع هذه الدورة:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>1. git switch -c feature/new-navbar
+2. اعمل واختبر
+3. git add . &amp;&amp; git commit -m "feat: شريط تنقل جديد"
+4. git push -u origin feature/new-navbar
+5. على GitHub: افتح Pull Request
+6. راجع، اطلب تعديلات، أو ادمج
+7. git switch main &amp;&amp; git pull
+8. git branch -d feature/new-navbar    # نظّف</code></pre></div>
+<p>لماذا PR وليس دمجاً مباشراً؟ لأنه يخلق نقطة مراجعة واضحة: ماذا تغيّر، لماذا، وهل يمرر الاختبارات. هو أيضاً سجل مكتوب لقرارات المشروع.</p>
+
+<h2 id="rescue">9. أوامر الإنقاذ</h2>
+<p>ستحتاجها — والذعر ليس حلاً:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># تراجع عن تعديل ملف قبل الإضافة
+git restore file.js
+
+# تراجع عن git add
+git restore --staged file.js
+
+# عدّل آخر commit (الرسالة أو المحتوى)
+git commit --amend
+
+# ألغِ commit مع الحفاظ على التعديلات
+git reset --soft HEAD~1
+
+# احفظ عملك مؤقتاً لتنتقل لشيء آخر
+git stash
+git stash pop
+
+# عرض تاريخ مختصر مرتّب
+git log --oneline --graph -15
+
+# من عدّل هذا السطر؟
+git blame file.js</code></pre></div>
+<blockquote><strong>قاعدة ذهبية:</strong> لا تستخدم <code>git push --force</code> على فرع مشترك. قد تمحو عمل زملائك بصمت. إذا احتجت إجبار الرفع على فرعك الشخصي فقط، استخدم <code>--force-with-lease</code>.</blockquote>
+
+<blockquote><strong>الخطوة التالية:</strong> أنشئ مستودعاً وهمياً الآن، أنشئ فرعين وعدّل السطر نفسه في كل واحد، ثم ادمجهما وشاهد التعارض بعينك. حلّ تعارضاً واحداً بنفسك يعادل حفظ عشرين أمراً.</blockquote>
+
+        <div class="tags-row">
+          <span class="chip">Git</span>
+<span class="chip">GitHub</span>
+<span class="chip">سير العمل</span>
+<span class="chip">تعاون</span>
+        </div>
+
+        <div class="card" style="margin-top:44px; display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between; background:linear-gradient(135deg, rgba(109,94,252,.12), transparent)">
+          <div>
+            <h3 style="margin-bottom:6px; font-size:1.05rem">أعجبك الشرح؟</h3>
+            <p style="font-size:.87rem; color:var(--text-soft); margin:0">درس عملي واحد كل أسبوع على بريدك — بلا حشو.</p>
+          </div>
+          <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="toc">
+          <h5>محتويات الدرس</h5>
+          <a href="#model">1. الفكرة قبل الأوامر</a>
+<a href="#setup">2. الإعداد الأولي</a>
+<a href="#basic">3. المستودع الأول</a>
+<a href="#commit">4. كتابة commit</a>
+<a href="#branch">5. الفروع</a>
+<a href="#conflict">6. حل التعارض</a>
+<a href="#github">7. GitHub</a>
+<a href="#pr">8. سير عمل PR</a>
+<a href="#rescue">9. أوامر الإنقاذ</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</article>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal"><h2 style="font-size:1.6rem">اقرأ أيضاً</h2></div>
+    <div class="related">
+      <a href="git-advanced.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>درس</span><span class="sep"></span><span>13 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">Git المتقدم: rebase، cherry-pick، واستعادة ما فقدته</h3></a>
+      <a href="linux-cli.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>أدوات</span><span class="sep"></span><span>9 دقائق</span></div><h3 style="font-size:.98rem; line-height:1.5">صندوق أدوات سطر الأوامر: 30 أمراً مختصراً</h3></a>
+      <a href="../posts/clean-code.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>شرح</span><span class="sep"></span><span>10 دقائق</span></div><h3 style="font-size:.98rem; line-height:1.5">الكود النظيف: قواعد المراجعة السريعة</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="../index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

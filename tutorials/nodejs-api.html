@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بناء API احترافي بـ Node.js و Express خطوة بخطوة — MyTechol</title>
+<meta name="description" content="درس عملي: إنشاء REST API كامل مع Node.js و Express — التوجيه، التحقق من المدخلات، معالجة الأخطاء، المصادقة بـ JWT، وبنية مجلدات قابلة للتوسّع.">
+<meta property="og:title" content="بناء API احترافي بـ Node.js و Express خطوة بخطوة">
+<meta property="og:description" content="درس عملي: REST API كامل مع Node.js و Express — التوجيه، التحقق، معالجة الأخطاء، المصادقة بـ JWT، وبنية مجلدات.">
+<meta property="article:published_time" content="2025-11-22">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(40,200,100,.28), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(109,94,252,.34), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../tutorials.html">الدروس</a><span>/</span>
+      <span>بناء API بـ Node.js</span>
+    </div>
+    <span class="eyebrow">مسار المتوسط</span>
+    <h1 class="reveal">بناء API احترافي بـ Node.js و Express خطوة بخطوة</h1>
+    <p class="lead" style="max-width:760px">سنبني واجهة برمجية كاملة للمهام: توجيه، تحقق من المدخلات، معالجة أخطاء موحّدة، ومصادقة بـ JWT — ببنية مجلدات تتحمل النمو.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">أ</span><span>فريق MyTechol</span></div>
+      <span class="sep">·</span>
+      <span>2025-11-22</span>
+      <span class="sep">·</span>
+      <span>16 دقيقة قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--inter">متوسط</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">API</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+
+<p>معظم دروس Express تتوقف عند «مرحباً بالعالم». هذا الدرس يبدأ من حيث تتوقف تلك الدروس: كيف تكتب API يمكن نشره فعلاً — مع أخطاء مفهومة، مدخلات موثوقة، ورمز ينمو دون أن ينهار.</p>
+
+<h2 id="setup">1. التهيئة</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>mkdir task-api &amp;&amp; cd task-api
+npm init -y
+npm i express zod jsonwebtoken bcryptjs dotenv
+npm i -D nodemon
+
+# package.json → أضف
+"scripts": {
+  "dev": "nodemon src/server.js",
+  "start": "node src/server.js"
+}</code></pre></div>
+<p>استخدامات الحزم واضحة من أسمائها: <code>express</code> للخادم، <code>zod</code> للتحقق من المدخلات، <code>jsonwebtoken</code> و<code>bcryptjs</code> للمصادقة، <code>dotenv</code> للمتغيرات السرية.</p>
+
+<h2 id="structure">2. بنية المجلدات — القرار الأهم</h2>
+<p>يمكنك كتابة كل شيء في ملف واحد، وسيصبح غير قابل للصيانة بعد أسبوع. افصل من البداية:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>src/
+├── server.js          نقطة التشغيل
+├── app.js             إعداد Express
+├── routes/            تعريف المسارات
+│   ├── auth.routes.js
+│   └── tasks.routes.js
+├── controllers/       منطق كل مسار
+│   ├── auth.controller.js
+│   └── tasks.controller.js
+├── middleware/        طبقات مشتركة
+│   ├── auth.js
+│   └── error.js
+└── utils/
+    └── ApiError.js</code></pre></div>
+<p>الفصل ليس تنظيمياً فقط: كل طبقة تعرف مهمتها الواحدة. المسار يعرف العنوان، المتحكم يعرف المنطق، الوسيط يعرف ما يحدث قبل أو بعد الكل.</p>
+
+<h2 id="app">3. إعداد التطبيق</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>// src/app.js
+import express from "express";
+import authRoutes from "./routes/auth.routes.js";
+import taskRoutes from "./routes/tasks.routes.js";
+import { errorHandler } from "./middleware/error.js";
+
+const app = express();
+
+app.use(express.json({ limit: "1mb" }));
+
+app.get("/health", (req, res) =&gt; res.json({ ok: true }));
+
+app.use("/api/auth",  authRoutes);
+app.use("/api/tasks", taskRoutes);
+
+// يجب أن يكون آخر وسيط — بعده لا شيء
+app.use(errorHandler);
+
+export default app;</code></pre></div>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>// src/server.js
+import "dotenv/config";
+import app from "./app.js";
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () =&gt; console.log(`API on :${PORT}`));</code></pre></div>
+<p>لاحظ مسار <code>/health</code>: نقطة فحص صغيرة يستخدمها أي نظام نشر ليعرف أن الخدمة حيّة. أضفها في كل مشروع من اليوم الأول.</p>
+
+<h2 id="error">4. معالجة أخطاء موحّدة</h2>
+<p>هذا الجزء يتجاهله معظم الدروس، وهو أكثر ما يفرّق بين API هاوٍ وآخر احترافي. أولاً، نوع خطأ خاص:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>// src/utils/ApiError.js
+export class ApiError extends Error {
+  constructor(status, message, details = null) {
+    super(message);
+    this.status = status;
+    this.details = details;
+  }
+}</code></pre></div>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>// src/middleware/error.js
+import { ApiError } from "../utils/ApiError.js";
+
+export function errorHandler(err, req, res, next) {
+  const status = err instanceof ApiError ? err.status : 500;
+
+  // الأخطاء غير المتوقعة: سجّلها كاملة، ولا تكشف تفاصيلها للعميل
+  if (status === 500) console.error("[unhandled]", err);
+
+  res.status(status).json({
+    error: {
+      message: status === 500 ? "خطأ في الخادم" : err.message,
+      details: err.details ?? undefined
+    }
+  });
+}</code></pre></div>
+<p>النتيجة: كل استجابة خطأ في التطبيق لها الشكل نفسه. عميلك (أو واجهتك) يعرف دائماً أين يقرأ الرسالة.</p>
+<blockquote><strong>قاعدة أمنية:</strong> لا تكشف رسالة الخطأ الحقيقية في حالة <code>500</code>. قد تحتوي على مسار ملف أو استعلام قاعدة بيانات أو مفتاح. سجّلها في الخادم واعرض رسالة عامة للعميل.</blockquote>
+
+<h2 id="validate">5. التحقق من المدخلات بـ Zod</h2>
+<p>لا تثق بأي بيانات قادمة من الخارج. التحقق في أول سطر من المتحكم هو خط الدفاع:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>// src/routes/tasks.routes.js
+import { Router } from "express";
+import { z } from "zod";
+import { requireAuth } from "../middleware/auth.js";
+import { createTask, listTasks } from "../controllers/tasks.controller.js";
+import { ApiError } from "../utils/ApiError.js";
+
+const router = Router();
+
+const taskSchema = z.object({
+  title: z.string().min(3, "العنوان قصير جداً").max(200),
+  priority: z.enum(["low", "normal", "high"]).default("normal")
+});
+
+router.use(requireAuth);   // كل مسارات الملف تحتاج تسجيل دخول
+
+router.get("/", listTasks);
+
+router.post("/", (req, res, next) =&gt; {
+  const result = taskSchema.safeParse(req.body);
+
+  if (!result.success) {
+    return next(new ApiError(400, "بيانات غير صحيحة", result.error.flatten()));
+  }
+
+  req.validated = result.data;   // البيانات الآن موثوقة
+  next();
+}, createTask);
+
+export default router;</code></pre></div>
+<p>لاحظ <code>req.validated</code>: نضع البيانات المنقّاة في مكان منفصل، فلا يستخدم المتحكم <code>req.body</code> الخام أبداً. هذا يمنع تمرير حقول لم تتحقق منها عمداً أو سهواً.</p>
+
+<h2 id="auth">6. المصادقة بـ JWT</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>// src/controllers/auth.controller.js
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { ApiError } from "../utils/ApiError.js";
+
+// نفّذها بقاعدة بيانات حقيقية — مصفوفة للتوضيح فقط
+const users = [];
+
+export async function register(req, res, next) {
+  const { email, password } = req.body;
+
+  if (users.some(u =&gt; u.email === email)) {
+    return next(new ApiError(409, "البريد مسجّل مسبقاً"));
+  }
+
+  const hash = await bcrypt.hash(password, 12);
+  users.push({ id: Date.now(), email, password: hash });
+
+  res.status(201).json({ message: "تم إنشاء الحساب" });
+}
+
+export async function login(req, res, next) {
+  const { email, password } = req.body;
+  const user = users.find(u =&gt; u.email === email);
+
+  // نفس الرسالة لحالتَي «غير موجود» و«كلمة خاطئة»
+  // لعدم تسريب أي بريد مسجّل
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return next(new ApiError(401, "بيانات الدخول غير صحيحة"));
+  }
+
+  const token = jwt.sign(
+    { sub: user.id },
+    process.env.JWT_SECRET,
+    { expiresIn: "7d" }
+  );
+
+  res.json({ token });
+}</code></pre></div>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>// src/middleware/auth.js
+import jwt from "jsonwebtoken";
+import { ApiError } from "../utils/ApiError.js";
+
+export function requireAuth(req, res, next) {
+  const header = req.headers.authorization || "";
+  const token = header.startsWith("Bearer ") ? header.slice(7) : null;
+
+  if (!token) return next(new ApiError(401, "مطلوب تسجيل الدخول"));
+
+  try {
+    req.user = jwt.verify(token, process.env.JWT_SECRET);
+    next();
+  } catch {
+    next(new ApiError(401, "الرمز منتهي أو غير صالح"));
+  }
+}</code></pre></div>
+<p>ثلاث قواعد لا تتنازل عنها:</p>
+<ul style="padding-inline-start:22px; display:grid; gap:8px">
+  <li><strong>كلمة المرور تُشفّر دائماً</strong> بـ <code>bcrypt</code>، ولا تُخزَّن نصاً صريحاً أبداً.</li>
+  <li><strong><code>JWT_SECRET</code> في <code>.env</code></strong> فقط، وليس في الكود ولا في Git.</li>
+  <li><strong>نفس رسالة الخطأ</strong> لبريد غير مسجّل أو كلمة مرور خاطئة — وإلا صار API أداة لمعرفة من لديه حساب.</li>
+</ul>
+
+<h2 id="codes">7. رموز الحالة: اتفق عليها وثبّتها</h2>
+<table>
+  <thead><tr><th>الرمز</th><th>المعنى</th><th>متى تستخدمه</th></tr></thead>
+  <tbody>
+    <tr><td><code>200</code></td><td>نجاح</td><td>GET أو تحديث ناجح</td></tr>
+    <tr><td><code>201</code></td><td>أُنشئ</td><td>بعد POST ينشئ مورداً</td></tr>
+    <tr><td><code>204</code></td><td>نجاح بلا محتوى</td><td>بعد DELETE</td></tr>
+    <tr><td><code>400</code></td><td>طلب خاطئ</td><td>بيانات لم تمر التحقق</td></tr>
+    <tr><td><code>401</code></td><td>غير مُصادَق</td><td>لا رمز أو رمز منتهٍ</td></tr>
+    <tr><td><code>403</code></td><td>ممنوع</td><td>مُصادَق لكن بلا صلاحية</td></tr>
+    <tr><td><code>404</code></td><td>غير موجود</td><td>المورد غير موجود</td></tr>
+    <tr><td><code>500</code></td><td>خطأ خادم</td><td>استثناء غير متوقع</td></tr>
+  </tbody>
+</table>
+<blockquote><strong>الفرق بين 401 و403 يُخطئ فيه كثيرون:</strong> <code>401</code> تعني «لا أعرف من أنت» — سجّل الدخول. <code>403</code> تعني «أعرف من أنت، لكنك لا تملك الصلاحية» — لا فائدة من إعادة تسجيل الدخول.</blockquote>
+
+<h2 id="test">8. جرّبه الآن</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>npm run dev
+
+# 1. أنشئ حساباً
+curl -X POST localhost:3000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email":"a@b.com","password":"secret123"}'
+
+# 2. سجّل الدخول واحصل على الرمز
+curl -X POST localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"a@b.com","password":"secret123"}'
+
+# 3. استخدم الرمز
+curl localhost:3000/api/tasks \
+  -H "Authorization: Bearer ضع_الرمز_هنا"
+
+# 4. اختبر رفض البيانات السيئة
+curl -X POST localhost:3000/api/tasks \
+  -H "Authorization: Bearer الرمز" \
+  -H "Content-Type: application/json" \
+  -d '{"title":"ا"}'   # أقصر من 3 أحرف → 400</code></pre></div>
+<p>الاختبار الأخير هو الأهم: تأكد أن API يرفض الخطأ برسالة واضحة، لا أن يعمل فقط عندما تكون المدخلات مثالية. هذا الفرق بين كود تجريبي وكود إنتاج.</p>
+
+<h2 id="next">9. الخطوات التالية المنطقية</h2>
+<ul style="padding-inline-start:22px; display:grid; gap:10px">
+  <li><strong>قاعدة بيانات حقيقية</strong> — <a href="../programs/postgres-tuning.html">PostgreSQL</a> مع <code>prisma</code> أو <code>drizzle</code> بدل المصفوفة.</li>
+  <li><strong>اختبارات</strong> — <code>vitest</code> + <code>supertest</code> لتغطية المسارات الحرجة قبل كل نشر.</li>
+  <li><strong>حد للطلبات</strong> — <code>express-rate-limit</code> على مسار تسجيل الدخول تحديداً.</li>
+  <li><strong>توثيق تلقائي</strong> — ملف OpenAPI من مخططات Zod التي كتبتها بالفعل.</li>
+</ul>
+
+<blockquote><strong>الخطوة التالية:</strong> أضف مسار <code>PATCH /api/tasks/:id</code> يحقّق شرطين: أن المهمة موجودة، وأنها تخصّ المستخدم الحالي (<code>req.user.sub</code>). هذا التمرين يعلّمك فحص الصلاحيات — أكثر ثغرة شيوعاً في واجهات API.</blockquote>
+
+        <div class="tags-row">
+          <span class="chip">Node.js</span>
+<span class="chip">Express</span>
+<span class="chip">JWT</span>
+<span class="chip">Backend</span>
+        </div>
+
+        <div class="card" style="margin-top:44px; display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between; background:linear-gradient(135deg, rgba(109,94,252,.12), transparent)">
+          <div>
+            <h3 style="margin-bottom:6px; font-size:1.05rem">أعجبك الشرح؟</h3>
+            <p style="font-size:.87rem; color:var(--text-soft); margin:0">درس عملي واحد كل أسبوع على بريدك — بلا حشو.</p>
+          </div>
+          <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="toc">
+          <h5>محتويات الدرس</h5>
+          <a href="#setup">1. التهيئة</a>
+<a href="#structure">2. بنية المجلدات</a>
+<a href="#app">3. إعداد التطبيق</a>
+<a href="#error">4. معالجة الأخطاء</a>
+<a href="#validate">5. التحقق بـ Zod</a>
+<a href="#auth">6. المصادقة</a>
+<a href="#codes">7. رموز الحالة</a>
+<a href="#test">8. الجرّب</a>
+<a href="#next">9. الخطوات التالية</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</article>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal"><h2 style="font-size:1.6rem">اقرأ أيضاً</h2></div>
+    <div class="related">
+      <a href="../programs/docker-basics.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>برامج</span><span class="sep"></span><span>11 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">Docker: من أول Dockerfile إلى نشر حقيقي</h3></a>
+      <a href="../posts/app-security.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>برمجة</span><span class="sep"></span><span>13 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">أمان تطبيقات الويب: الثغرات العشر</h3></a>
+      <a href="sql-mastery.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>درس</span><span class="sep"></span><span>15 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">SQL من SELECT إلى Window Functions</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="../index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>
