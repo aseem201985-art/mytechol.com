@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الصفحة غير موجودة (404) — MyTechol</title>
+<meta name="description" content="الصفحة التي تبحث عنها غير موجودة. عد إلى الرئيسية أو ابحث في أرشيف مقالات ودروس MyTechol.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .err { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 120px 0 80px; position: relative; overflow: hidden; }
+  .err__code { font-family: var(--mono); font-size: clamp(5rem, 18vw, 11rem); font-weight: 700; line-height: 1; background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -.04em; }
+  .err h1 { font-size: clamp(1.3rem, 3vw, 2rem); margin: 10px 0 14px; }
+  .err p { color: var(--text-soft); max-width: 520px; margin: 0 auto 30px; line-height: 1.85; }
+  .err__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .err__links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 42px; }
+  .err__links a { font-size: .84rem; font-weight: 700; padding: 9px 16px; border-radius: 99px; border: 1px solid var(--border-strong); color: var(--text-soft); }
+  .err__links a:hover { border-color: var(--brand-2); color: var(--brand-2); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="/index.html" class="logo">
+      <span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span>
+      <span>My<span class="grad-text">Techol</span></span>
+    </a>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <a href="/index.html" class="btn btn--primary btn--sm">الرئيسية</a>
+    </div>
+  </div>
+</header>
+
+<section class="err">
+  <div class="grid-bg" style="opacity:.35"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="err__code">404</div>
+    <h1>هذه الصفحة غير موجودة</h1>
+    <p>الرابط قديم، أو حدث خطأ في الكتابة، أو أن الصفحة نُقلت إلى مكان آخر. لا مشكلة — إليك أقرب طريق للعودة.</p>
+    <div class="err__actions">
+      <a href="/index.html" class="btn btn--primary">العودة للرئيسية</a>
+      <a href="/posts.html" class="btn btn--ghost">تصفّح المقالات</a>
+    </div>
+    <div class="err__links">
+      <a href="/tutorials.html">الدروس</a>
+      <a href="/programs.html">البرامج</a>
+      <a href="/ai.html">الذكاء الاصطناعي</a>
+      <a href="/about.html">عني</a>
+    </div>
+  </div>
+</section>
+
+<script src="/assets/js/app.js"></script>
+</body>
+</html>

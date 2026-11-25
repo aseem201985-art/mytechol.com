@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWS للمطورين: EC2، S3، RDS، وLambda في مشروع واحد — MyTechol</title>
+<meta name="description" content="غمض المفاهيم السحابية بمثال عملي: رفع ملفات، تشغيل خادم، قاعدة بيانات، ودوال serverless.">
+<meta property="og:title" content="AWS للمطورين: EC2، S3، RDS، وLambda في مشروع واحد">
+<meta property="og:description" content="غمض المفاهيم السحابية بمثال عملي: رفع ملفات، تشغيل خادم، قاعدة بيانات، ودوال serverless.">
+<meta property="article:published_time" content="2025-11-16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(109,94,252,.42), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(0,212,255,.3), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+
+<link rel="canonical" href="https://mytechol.com/tutorials/aws-basics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="MyTechol">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:url" content="https://mytechol.com/tutorials/aws-basics.html">
+<meta property="og:image" content="https://mytechol.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AWS للمطورين: EC2، S3، RDS، وLambda في مشروع واحد — MyTechol">
+<meta name="twitter:description" content="غمض المفاهيم السحابية بمثال عملي: رفع ملفات، تشغيل خادم، قاعدة بيانات، ودوال serverless.">
+<meta name="twitter:image" content="https://mytechol.com/assets/img/og.png">
+<meta name="theme-color" content="#07080f">
+<meta name="author" content="فريق MyTechol">
+<link rel="alternate" type="application/rss+xml" title="MyTechol" href="https://mytechol.com/feed.xml">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"صندوق أدوات سطر الأوامر: 30 أمراً تختصر ساعات عملك — MyTechol","description":"من grep و find إلى awk و sed و tmux — مجموعة أوامر مصنّفة حسب الاستخدام اليومي للمبرمج والمهندس.","inLanguage":"ar","author":{"@type":"Organization","name":"MyTechol"},"publisher":{"@type":"Organization","name":"MyTechol","logo":{"@type":"ImageObject","url":"https://mytechol.com/assets/img/og.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mytechol.com/tutorials/linux-cli.html"}}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../posts.html">أدوات</a><span>/</span>
+      <span>صندوق أدوات سطر الأوامر: 30 أمراً تختص…</span>
+    </div>
+    <span class="eyebrow">AWS</span>
+    <h1 class="reveal">AWS للمطورين: EC2، S3، RDS، وLambda في مشروع واحد</h1>
+    <p class="lead" style="max-width:760px">غمض المفاهيم السحابية بمثال عملي: رفع ملفات، تشغيل خادم، قاعدة بيانات، ودوال serverless.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">أ</span><span>أحمد</span></div>
+      <span class="sep">·</span>
+      <span>2025-11-16</span>
+      <span class="sep">·</span>
+      <span>9 دقائق قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--inter">متوسط</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">AWS</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+<p>السحابة تبدو معقّدة بسبب المصطلحات الكثيرة. سنبني مشروعاً صغيراً يستخدم أهم خدمات AWS لنفهم كيف تتكامل.</p>
+
+<h2 id="ec2">EC2: الخوادم الافتراضية</h2>
+<p>EC2 يعطيك خادماً افتراضياً تتحكم فيه. ابدأ بـ t3.micro للتجربة، واستخدم Security Groups للتحكم بالمنافذ.</p>
+
+<h2 id="s3">S3: التخزين</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>aws s3 cp file.zip s3://my-bucket/uploads/
+aws s3 ls s3://my-bucket/uploads/</code></pre></div>
+
+<h2 id="rds">RDS: قواعد البيانات</h2>
+<p>RDS تُدير النسخ الاحتياطي والتحديثات والمراقبة عنك. اختر PostgreSQL أو MySQL حسب تطبيقك.</p>
+
+<h2 id="lambda">Lambda: دون خادم</h2>
+<p>مع Lambda تكتب دالة وتترك AWS تدير البنية. مثالية للمعالجة المؤقتة أو Webhooks.</p>
+
+<h2 id="project">مشروع: رفع ومعالجة ملفات</h2>
+<p>المستخدم يرفع ملفاً إلى S3 → يُشغّل حدث Lambda → تُقرأ البيانات وتُخزّن في RDS. هذا النمط شائع جداً في التطبيقات السحابية.</p>
+<div class="tags-row"><span class="chip">AWS</span><span class="chip">Cloud</span><span class="chip">DevOps</span></div>
+      </div>
+
+        <div class="card" style="margin-top:44px

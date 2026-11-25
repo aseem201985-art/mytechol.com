@@ -1,5 +1,199 @@
 [
   {
+    "id": "api-design",
+    "title": "تصميم APIs RESTful بشكل احترافي",
+    "excerpt": "أسماء الموارد، رموز الحالة، الإصدار، التوثيق، والأخطاء. كيف تبني API يُحبّه المطورون الذين يستخدمونه؟",
+    "category": "برمجة",
+    "tags": [
+      "API",
+      "Backend",
+      "REST"
+    ],
+    "level": "متوسط",
+    "read": "12 دقيقة",
+    "url": "posts/api-design.html",
+    "glyph": "API",
+    "tagline": "API",
+    "date": "2025-11-10",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "vscode-productivity",
+    "title": "VS Code: إعدادات وملحقات تضاعف إنتاجيتك",
+    "excerpt": "ملحقات لا غنى عنها، اختصارات قليلة الاستخدام لكنها قوية، وإعدادات تحسّن تجربة الكتابة والتنقل.",
+    "category": "أدوات",
+    "tags": [
+      "VS Code",
+      "Productivity",
+      "Frontend"
+    ],
+    "level": "مبتدئ",
+    "read": "8 دقائق",
+    "url": "posts/vscode-productivity.html",
+    "glyph": "VS",
+    "tagline": "VS Code",
+    "date": "2025-11-11",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "figma-developer",
+    "title": "Figma للمطورين: لا تصمّم، لكن افهم التصميم",
+    "excerpt": "كيف تقرأ Auto Layout، Constraints، Variants، والتصميم المتجاوب لتقليل سوء الفهم بين المصمّم والمطور.",
+    "category": "أدوات",
+    "tags": [
+      "Figma",
+      "UI",
+      "Frontend"
+    ],
+    "level": "مبتدئ",
+    "read": "9 دقائق",
+    "url": "posts/figma-developer.html",
+    "glyph": "Fig",
+    "tagline": "Figma",
+    "date": "2025-11-12",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "nextjs-15",
+    "title": "Next.js 15: ما الجديد وما الذي يجب أن تنتبه له؟",
+    "excerpt": "App Router أصبح افتراضياً، وCaching تغيّر. نظرة عملية على التغييرات التي تؤثر على مشاريعك الحالية.",
+    "category": "برمجة",
+    "tags": [
+      "Next.js",
+      "React",
+      "Frontend"
+    ],
+    "level": "متوسط",
+    "read": "10 دقيقة",
+    "url": "posts/nextjs-15.html",
+    "glyph": "Nxt",
+    "tagline": "Next.js",
+    "date": "2025-11-13",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "system-design-interview",
+    "title": "System Design Interview: كيف تفكّر أمام المهندس؟",
+    "excerpt": "خطة 45 دقيقة لحل أي سؤال تصميم نظام: فهم المتطلبات، الحسابات التقريبية، API، قاعدة البيانات، التخزين المؤقت، والتوسع.",
+    "category": "برمجة",
+    "tags": [
+      "System Design",
+      "Backend",
+      "Interview"
+    ],
+    "level": "متقدم",
+    "read": "14 دقيقة",
+    "url": "posts/system-design-interview.html",
+    "glyph": "SD",
+    "tagline": "System Design",
+    "date": "2025-11-14",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "microservices-vs-monolith",
+    "title": "Microservices أم Monolith: متى تختار كليهما؟",
+    "excerpt": "قصة الخيار ليست تقنية بحتة. نراجع التكلفة المخفية، سرعة الفرق، ومتى يقتل Microservices مشروعك بدلاً من أن ينجزه.",
+    "category": "برمجة",
+    "tags": [
+      "Architecture",
+      "Backend",
+      "System Design"
+    ],
+    "level": "متوسط",
+    "read": "11 دقيقة",
+    "url": "posts/microservices-vs-monolith.html",
+    "glyph": "Arc",
+    "tagline": "Architecture",
+    "date": "2025-11-15",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "aws-basics",
+    "url": "tutorials/aws-basics.html",
+    "category": "درس",
+    "tags": [
+      "AWS",
+      "Cloud",
+      "DevOps"
+    ],
+    "level": "متوسط",
+    "read": "15 دقيقة",
+    "date": "2025-11-16",
+    "tagline": "AWS",
+    "glyph": "AWS",
+    "title": "AWS للمطورين: EC2، S3، RDS، وLambda في مشروع واحد",
+    "excerpt": "غمض المفاهيم السحابية بمثال عملي: رفع ملفات، تشغيل خادم، قاعدة بيانات، ودوال serverless."
+  },
+  {
+    "id": "cybersecurity-basics",
+    "url": "tutorials/cybersecurity-basics.html",
+    "category": "درس",
+    "tags": [
+      "أمن",
+      "شبكات",
+      "مبتدئ"
+    ],
+    "level": "مبتدئ",
+    "read": "11 دقيقة",
+    "date": "2025-11-17",
+    "tagline": "Security",
+    "glyph": "Sec",
+    "title": "أساسيات الأمن السيبراني: من المبتدئ إلى الوعي الأول",
+    "excerpt": "تعرّف على التهديدات الشائعة، تشفير البيانات، كلمات المرور، HTTPS، وكيف تحمي تطبيقك من الثغرات الأساسية."
+  },
+  {
+    "id": "sql-advanced",
+    "url": "tutorials/sql-advanced.html",
+    "category": "درس",
+    "tags": [
+      "SQL",
+      "Database",
+      "متقدم"
+    ],
+    "level": "متقدم",
+    "read": "14 دقيقة",
+    "date": "2025-11-18",
+    "tagline": "SQL",
+    "glyph": "SQL",
+    "title": "SQL المتقدم: Window Functions، CTEs، وتحسين الأداء",
+    "excerpt": "تخطّى SELECT البسيط: استخدم CTEs، Window Functions، الفهارس، EXPLAIN ANALYZE، واستعلامات قابلة للصيانة."
+  },
+  {
+    "id": "react-basics",
+    "url": "tutorials/react-basics.html",
+    "category": "درس",
+    "tags": [
+      "React",
+      "JavaScript",
+      "Frontend",
+      "مبتدئ"
+    ],
+    "level": "مبتدئ",
+    "read": "15 دقيقة",
+    "date": "2025-11-20",
+    "tagline": "React",
+    "glyph": "Rx",
+    "title": "React للمبتدئين: المكوّنات، الحالة، وHooks",
+    "excerpt": "ابنِ واجهات تفاعلية خطوة بخطوة: JSX، المكوّنات، props، useState، useEffect، وقائمة مهام React كاملة."
+  },
+  {
+    "id": "python-basics",
+    "url": "tutorials/python-basics.html",
+    "category": "درس",
+    "tags": [
+      "Python",
+      "Backend",
+      "مبتدئ"
+    ],
+    "level": "مبتدئ",
+    "read": "13 دقيقة",
+    "date": "2025-11-21",
+    "tagline": "Python",
+    "glyph": "Py",
+    "title": "Python للمبتدئين: المتغيرات، القوائم، والملفات",
+    "excerpt": "أول خطوة في Python بلا تعقيد: متغيرات، أنواع بيانات، شروط، حلقات، قوائم، دوال، وقراءة/كتابة ملفات — مع تمرين حقيقي."
+  },
+  {
     "id": "html-css-basics",
     "title": "HTML و CSS من الصفر: ابنِ صفحتك الأولى في ساعة",
     "excerpt": "درس عملي للمبتدئين: بنية صفحة HTML، العناصر الدلالية، صناديق CSS، تنسيق النصوص، Flexbox، وتصميم متجاوب — بمشروع كامل في النهاية.",

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>MyTechol</title>
+  <link>https://mytechol.com</link>
+  <description>أكواد، برامج، دروس وذكاء اصطناعي للمبرمج العربي.</description>
+  <language>ar</language>
+  <lastBuildDate>Wed, 25 Nov 2026 08:57:16 +0000</lastBuildDate>
+  <atom:link href="https://mytechol.com/feed.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>HTML و CSS من الصفر: ابنِ صفحتك الأولى في ساعة</title>
+    <link>https://mytechol.com/tutorials/html-css-basics.html</link>
+    <guid>https://mytechol.com/tutorials/html-css-basics.html</guid>
+    <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>
+    <description>درس عملي للمبتدئين: بنية صفحة HTML، العناصر الدلالية، صناديق CSS، تنسيق النصوص، Flexbox، وتصميم متجاوب — بمشروع كامل في النهاية.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>تشغيل نماذج LLM في الإنتاج: التكلفة، الكمون، والموثوقية</title>
+    <link>https://mytechol.com/ai/llm-production.html</link>
+    <guid>https://mytechol.com/ai/llm-production.html</guid>
+    <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>
+    <description>ما ينجح في العرض التوضيحي يفشل تحت الحمل. التخزين المؤقت، البثّ، توجيه النماذج، احتواء الأخطاء، ومراقبة ما يفعله نموذجك فعلاً.</description>
+    <category>ذكاء اصطناعي</category>
+  </item>
+  <item>
+    <title>JavaScript للمبتدئين: المتغيرات، الدوال، و DOM</title>
+    <link>https://mytechol.com/tutorials/javascript-basics.html</link>
+    <guid>https://mytechol.com/tutorials/javascript-basics.html</guid>
+    <pubDate>Mon, 24 Nov 2025 00:00:00 +0000</pubDate>
+    <description>من أول سطر إلى تطبيق قائمة مهام يعمل فعلاً — بلا مكتبات ولا أدوات بناء. جافاسكربت خام، مفهومة سطراً بسطر.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>بناء نظام RAG عربي دقيق: من التقطيع إلى قياس الجودة</title>
+    <link>https://mytechol.com/ai/rag-arabic.html</link>
+    <guid>https://mytechol.com/ai/rag-arabic.html</guid>
+    <pubDate>Mon, 24 Nov 2025 00:00:00 +0000</pubDate>
+    <description>معظم أنظمة RAG تفشل لا لأن النموذج ضعيف، بل لأن التقطيع والاسترجاع سيئان. دليل هندسي كامل: تقطيع عربي واعٍ، بحث هجين، إعادة ترتيب، وقياس الجودة.</description>
+    <category>ذكاء اصطناعي</category>
+  </item>
+  <item>
+    <title>Git و GitHub من البداية: سير عمل آمن لفريق</title>
+    <link>https://mytechol.com/tutorials/git-workflow.html</link>
+    <guid>https://mytechol.com/tutorials/git-workflow.html</guid>
+    <pubDate>Sun, 23 Nov 2025 00:00:00 +0000</pubDate>
+    <description>لا أوامر محفوظة بلا فهم. نبني المستودع، ننشئ فروعاً، نحل تعارضاً مقصوداً، ثم نمرّر أول Pull Request كما في عمل حقيقي.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>أمان تطبيقات الويب: الثغرات العشر التي تُخترق بها المواقع فعلاً</title>
+    <link>https://mytechol.com/posts/app-security.html</link>
+    <guid>https://mytechol.com/posts/app-security.html</guid>
+    <pubDate>Sun, 23 Nov 2025 00:00:00 +0000</pubDate>
+    <description>ليست قائمة نظرية — بل الثغرات المتكررة في تقارير الاختبار الحقيقية: SQLi، XSS، IDOR، رفع الملفات، والأسرار المكشوفة. مع الكود الصحيح لكل واحدة.</description>
+    <category>برمجة</category>
+  </item>
+  <item>
+    <title>بناء API احترافي بـ Node.js و Express خطوة بخطوة</title>
+    <link>https://mytechol.com/tutorials/nodejs-api.html</link>
+    <guid>https://mytechol.com/tutorials/nodejs-api.html</guid>
+    <pubDate>Sat, 22 Nov 2025 00:00:00 +0000</pubDate>
+    <description>REST API كامل: التوجيه، التحقق من المدخلات بـ Zod، معالجة أخطاء موحّدة، مصادقة بـ JWT، وبنية مجلدات تتحمل النمو.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>PostgreSQL: 12 إعداداً تفرّق بين قاعدة بطيئة وأخرى فائقة</title>
+    <link>https://mytechol.com/programs/postgres-tuning.html</link>
+    <guid>https://mytechol.com/programs/postgres-tuning.html</guid>
+    <pubDate>Sat, 22 Nov 2025 00:00:00 +0000</pubDate>
+    <description>القيم الافتراضية تكفي للتجربة لا للإنتاج. دليل عملي لضبط الذاكرة والمخططات والاستعلامات، مع طريقة قراءة EXPLAIN ANALYZE كما يفعل المحترفون.</description>
+    <category>برامج</category>
+  </item>
+  <item>
+    <title>Python للمبتدئين: المتغيرات، القوائم، والملفات</title>
+    <link>https://mytechol.com/tutorials/python-basics.html</link>
+    <guid>https://mytechol.com/tutorials/python-basics.html</guid>
+    <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
+    <description>أول خطوة في Python بلا تعقيد: متغيرات، أنواع بيانات، شروط، حلقات، قوائم، دوال، وقراءة/كتابة ملفات — مع تمرين حقيقي.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>React للمبتدئين: المكوّنات، الحالة، وHooks</title>
+    <link>https://mytechol.com/tutorials/react-basics.html</link>
+    <guid>https://mytechol.com/tutorials/react-basics.html</guid>
+    <pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate>
+    <description>ابنِ واجهات تفاعلية خطوة بخطوة: JSX، المكوّنات، props، useState، useEffect، وقائمة مهام React كاملة.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>أداء الويب 2025: خطة Core Web Vitals من 4 ثوانٍ إلى ما دون ثانية</title>
+    <link>https://mytechol.com/posts/web-performance.html</link>
+    <guid>https://mytechol.com/posts/web-performance.html</guid>
+    <pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate>
+    <description>INP حلّ محلّ FID، وLCP يتطلب استراتيجية تحميل مختلفة. دليل عملي بالأرقام: ترتيب الأولويات، الحلول الفعلية، وطريقة قياس لا تكذب عليك.</description>
+    <category>برمجة</category>
+  </item>
+  <item>
+    <title>SQL المتقدم: Window Functions، CTEs، وتحسين الأداء</title>
+    <link>https://mytechol.com/tutorials/sql-advanced.html</link>
+    <guid>https://mytechol.com/tutorials/sql-advanced.html</guid>
+    <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
+    <description>تخطّى SELECT البسيط: استخدم CTEs، Window Functions، الفهارس، EXPLAIN ANALYZE، واستعلامات قابلة للصيانة.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>Git للمحترفين: إعادة كتابة التاريخ بأمان وبدون كوارث</title>
+    <link>https://mytechol.com/tutorials/git-advanced.html</link>
+    <guid>https://mytechol.com/tutorials/git-advanced.html</guid>
+    <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
+    <description>rebase، cherry-pick، bisect، reflog، و autosquash — متى تستخدم كلاً منها وكيف تتراجع إذا حدث الأسوأ. مع سيناريوهات حقيقية وحلولها.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>أساسيات الأمن السيبراني: من المبتدئ إلى الوعي الأول</title>
+    <link>https://mytechol.com/tutorials/cybersecurity-basics.html</link>
+    <guid>https://mytechol.com/tutorials/cybersecurity-basics.html</guid>
+    <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
+    <description>تعرّف على التهديدات الشائعة، تشفير البيانات، كلمات المرور، HTTPS، وكيف تحمي تطبيقك من الثغرات الأساسية.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>AWS للمطورين: EC2، S3، RDS، وLambda في مشروع واحد</title>
+    <link>https://mytechol.com/tutorials/aws-basics.html</link>
+    <guid>https://mytechol.com/tutorials/aws-basics.html</guid>
+    <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
+    <description>غمض المفاهيم السحابية بمثال عملي: رفع ملفات، تشغيل خادم، قاعدة بيانات، ودوال serverless.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>SQL للطلاب: من SELECT إلى Window Functions بمثال واحد متصل</title>
+    <link>https://mytechol.com/tutorials/sql-mastery.html</link>
+    <guid>https://mytechol.com/tutorials/sql-mastery.html</guid>
+    <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
+    <description>مسار متصل بمتجر إلكتروني واحد: تجميع، ربط، مجموعات فرعية، ثم دوال النوافذ التي تفصل المبتدئ عن المحترف — مع تمارين بعد كل خطوة.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>Microservices أم Monolith: متى تختار كليهما؟</title>
+    <link>https://mytechol.com/posts/microservices-vs-monolith.html</link>
+    <guid>https://mytechol.com/posts/microservices-vs-monolith.html</guid>
+    <pubDate>Sat, 15 Nov 2025 00:00:00 +0000</pubDate>
+    <description>قصة الخيار ليست تقنية بحتة. نراجع التكلفة المخفية، سرعة الفرق، ومتى يقتل Microservices مشروعك بدلاً من أن ينجزه.</description>
+    <category>برمجة</category>
+  </item>
+  <item>
+    <title>System Design Interview: كيف تفكّر أمام المهندس؟</title>
+    <link>https://mytechol.com/posts/system-design-interview.html</link>
+    <guid>https://mytechol.com/posts/system-design-interview.html</guid>
+    <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+    <description>خطة 45 دقيقة لحل أي سؤال تصميم نظام: فهم المتطلبات، الحسابات التقريبية، API، قاعدة البيانات، التخزين المؤقت، والتوسع.</description>
+    <category>برمجة</category>
+  </item>
+  <item>
+    <title>TypeScript: 9 أنماط تحوّل أنواعك من عبء إلى توثيق حيّ</title>
+    <link>https://mytechol.com/posts/typescript-patterns.html</link>
+    <guid>https://mytechol.com/posts/typescript-patterns.html</guid>
+    <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+    <description>الأنواع الجيدة تمنع الأخطاء قبل التشغيل وتشرح الكود بلا تعليقات. أنماط عملية: الأصناف المميّزة، الأنواع الشرطية، Generics، وأنواع النتائج الصريحة.</description>
+    <category>شرح</category>
+  </item>
+  <item>
+    <title>Next.js 15: ما الجديد وما الذي يجب أن تنتبه له؟</title>
+    <link>https://mytechol.com/posts/nextjs-15.html</link>
+    <guid>https://mytechol.com/posts/nextjs-15.html</guid>
+    <pubDate>Thu, 13 Nov 2025 00:00:00 +0000</pubDate>
+    <description>App Router أصبح افتراضياً، وCaching تغيّر. نظرة عملية على التغييرات التي تؤثر على مشاريعك الحالية.</description>
+    <category>برمجة</category>
+  </item>
+  <item>
+    <title>Figma للمطورين: لا تصمّم، لكن افهم التصميم</title>
+    <link>https://mytechol.com/posts/figma-developer.html</link>
+    <guid>https://mytechol.com/posts/figma-developer.html</guid>
+    <pubDate>Wed, 12 Nov 2025 00:00:00 +0000</pubDate>
+    <description>كيف تقرأ Auto Layout، Constraints، Variants، والتصميم المتجاوب لتقليل سوء الفهم بين المصمّم والمطور.</description>
+    <category>أدوات</category>
+  </item>
+  <item>
+    <title>Obsidian: ابنِ «دماغاً ثانياً» عربياً يربط معرفتك بدل أن يدفنها</title>
+    <link>https://mytechol.com/programs/obsidian-pkm.html</link>
+    <guid>https://mytechol.com/programs/obsidian-pkm.html</guid>
+    <pubDate>Wed, 12 Nov 2025 00:00:00 +0000</pubDate>
+    <description>ملاحظات كثيرة بلا نظام تعني معرفة صفر. طريقة عمل كاملة: بنية مجلدات، وسوم، ملاحظات ذرّية، مراجعة أسبوعية، ونسخ احتياطي — بالعربية ودعم RTL.</description>
+    <category>برامج</category>
+  </item>
+  <item>
+    <title>VS Code: إعدادات وملحقات تضاعف إنتاجيتك</title>
+    <link>https://mytechol.com/posts/vscode-productivity.html</link>
+    <guid>https://mytechol.com/posts/vscode-productivity.html</guid>
+    <pubDate>Tue, 11 Nov 2025 00:00:00 +0000</pubDate>
+    <description>ملحقات لا غنى عنها، اختصارات قليلة الاستخدام لكنها قوية، وإعدادات تحسّن تجربة الكتابة والتنقل.</description>
+    <category>أدوات</category>
+  </item>
+  <item>
+    <title>تصميم APIs RESTful بشكل احترافي</title>
+    <link>https://mytechol.com/posts/api-design.html</link>
+    <guid>https://mytechol.com/posts/api-design.html</guid>
+    <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+    <description>أسماء الموارد، رموز الحالة، الإصدار، التوثيق، والأخطاء. كيف تبني API يُحبّه المطورون الذين يستخدمونه؟</description>
+    <category>برمجة</category>
+  </item>
+  <item>
+    <title>فهم Async/Await في بايثون من الصفر حتى الإنتاج</title>
+    <link>https://mytechol.com/tutorials/python-async.html</link>
+    <guid>https://mytechol.com/tutorials/python-async.html</guid>
+    <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
+    <description>شرح عملي لكيفية عمل حلقة الأحداث (Event Loop) والـ Coroutines، مع أمثلة على بناء خدمة سريعة تجمع بين I/O المتزامن وغير المتزامن.</description>
+    <category>درس</category>
+  </item>
+  <item>
+    <title>React 19: ما الذي يتغير فعلياً في طريقة كتابة الكومبوننتس؟</title>
+    <link>https://mytechol.com/posts/react-19.html</link>
+    <guid>https://mytechol.com/posts/react-19.html</guid>
+    <pubDate>Tue, 11 Feb 2025 00:00:00 +0000</pubDate>
+    <description>نظرة معمّقة على Actions و useOptimistic و Server Components، ومتى تستخدم كل واحدة منها في مشروع حقيقي.</description>
+    <category>شرح</category>
+  </item>
+  <item>
+    <title>بناء وكيل ذكاء اصطناعي (AI Agent) يفهم أدواتك ويستخدمها</title>
+    <link>https://mytechol.com/ai/ai-agents.html</link>
+    <guid>https://mytechol.com/ai/ai-agents.html</guid>
+    <pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate>
+    <description>من Function Calling إلى RAG إلى التخطيط الذاتي: خريطة طريق لبناء وكيل عملي يربط بين النماذج اللغوية وبيانات شركتك.</description>
+    <category>ذكاء اصطناعي</category>
+  </item>
+  <item>
+    <title>صندوق أدوات سطر الأوامر: 30 أمراً تختصر ساعات عملك</title>
+    <link>https://mytechol.com/tutorials/linux-cli.html</link>
+    <guid>https://mytechol.com/tutorials/linux-cli.html</guid>
+    <pubDate>Wed, 29 Jan 2025 00:00:00 +0000</pubDate>
+    <description>من grep و find إلى awk و sed و tmux — مجموعة أوامر مصنّفة حسب الاستخدام اليومي للمبرمج والمهندس.</description>
+    <category>أدوات</category>
+  </item>
+  <item>
+    <title>الكود النظيف: 12 قاعدة تجعل مراجعة الكود أسرع مرتين</title>
+    <link>https://mytechol.com/posts/clean-code.html</link>
+    <guid>https://mytechol.com/posts/clean-code.html</guid>
+    <pubDate>Wed, 22 Jan 2025 00:00:00 +0000</pubDate>
+    <description>قواعد عملية مستخلصة من مراجعة آلاف الأسطر: التسمية، حدود الدوال، التعليقات المفيدة، وهيكلة الـ Modules.</description>
+    <category>برمجة</category>
+  </item>
+  <item>
+    <title>تصميم واجهات عربية جميلة مع Tailwind CSS و RTL</title>
+    <link>https://mytechol.com/posts/tailwind-ui.html</link>
+    <guid>https://mytechol.com/posts/tailwind-ui.html</guid>
+    <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
+    <description>دليل شامل لضبط RTL، الخطوط العربية، والمسافات المنطقية (logical properties) لبناء واجهة متوازنة بصرياً.</description>
+    <category>شرح</category>
+  </item>
+  <item>
+    <title>هندسة الأوامر (Prompt Engineering) للمبرمجين: 20 قالباً جاهزاً</title>
+    <link>https://mytechol.com/ai/chatgpt-prompts.html</link>
+    <guid>https://mytechol.com/ai/chatgpt-prompts.html</guid>
+    <pubDate>Thu, 09 Jan 2025 00:00:00 +0000</pubDate>
+    <description>قوالب أوامر مجرّبة لمراجعة الكود، توليد الاختبارات، كتابة التوثيق، وتحليل الأخطاء — مع شرح لماذا يعمل كل قالب.</description>
+    <category>ذكاء اصطناعي</category>
+  </item>
+  <item>
+    <title>Docker من الفكرة إلى النشر: صورة واحدة تنقل مشروعك أينما ذهبت</title>
+    <link>https://mytechol.com/programs/docker-basics.html</link>
+    <guid>https://mytechol.com/programs/docker-basics.html</guid>
+    <pubDate>Fri, 03 Jan 2025 00:00:00 +0000</pubDate>
+    <description>Dockerfile نظيف، طبقات مخزّنة، docker compose لبيئة تطوير كاملة، وأخطاء شائعة ترفع حجم الصورة 10 أضعاف.</description>
+    <category>برامج</category>
+  </item>
+  <item>
+    <title>الخوارزميات للطلاب: من Big-O إلى الشجرة الثنائية بأمثلة بصرية</title>
+    <link>https://mytechol.com/tutorials/algorithms-101.html</link>
+    <guid>https://mytechol.com/tutorials/algorithms-101.html</guid>
+    <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
+    <description>مسار مبسّط لمن يبدأ من الصفر: كيف تقيس التعقيد الزمني وتختار البنية المناسبة قبل أن تكتب سطراً واحداً.</description>
+    <category>درس</category>
+  </item>
+</channel>
+</rss>
