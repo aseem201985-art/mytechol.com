@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بناء نظام RAG عربي دقيق: من التقطيع إلى قياس الجودة — MyTechol</title>
+<meta name="description" content="معظم أنظمة RAG تفشل لا لأن النموذج ضعيف، بل لأن التقطيع والاسترجاع سيئان. دليل هندسي كامل: تقطيع عربي واعٍ، بحث هجين، إعادة ترتيب، وقياس بالمقاييس الحقيقية.">
+<meta property="og:title" content="بناء نظام RAG عربي دقيق: من التقطيع إلى قياس الجودة">
+<meta property="og:description" content="معظم أنظمة RAG تفشل لا لأن النموذج ضعيف، بل لأن التقطيع والاسترجاع سيئان. دليل هندسي كامل: تقطيع عربي واعٍ، بحث هجين، إعادة ترتيب، وقياس بالمقاييس الحقيقية.">
+<meta property="article:published_time" content="2025-11-24">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(109,94,252,.42), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(0,212,255,.3), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+<style>
+  .code-cap { font-family: var(--mono); font-size:.72rem; font-weight:700; letter-spacing:.08em;
+    color: var(--text-dim); margin: 18px 0 -8px; direction: ltr; text-align: left; }
+  .prose table { width:100%; border-collapse: collapse; font-size:.88rem; margin: 18px 0; }
+  .prose th { background: var(--surface-2); font-weight:800; }
+  .prose th, .prose td { border:1px solid var(--border); padding:10px 12px; text-align: start; }
+  .prose td.num { font-family: var(--mono); font-size:.82rem; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../ai.html">ذكاء اصطناعي</a><span>/</span>
+      <span>بناء نظام RAG عربي</span>
+    </div>
+    <span class="eyebrow">ذكاء اصطناعي</span>
+    <h1 class="reveal">بناء نظام RAG عربي دقيق: من التقطيع إلى قياس الجودة</h1>
+    <p class="lead" style="max-width:760px">معظم أنظمة RAG تفشل لا لأن النموذج ضعيف، بل لأن التقطيع والاسترجاع سيئان. دليل هندسي كامل: تقطيع عربي واعٍ، بحث هجين، إعادة ترتيب، وقياس بالمقاييس الحقيقية.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">م</span><span>فريق MyTechol</span></div>
+      <span class="sep">·</span>
+      <span>2025-11-24</span>
+      <span class="sep">·</span>
+      <span>16 دقيقة قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--advanced">متقدم</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">RAG</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+
+<p>أغلب من يبني نظام RAG لأول مرة يظن أن المشكلة في النموذج. ثم يجرب نموذجاً أكبر،
+فتتحسن النتيجة قليلاً — ثم تعود الأخطاء. السبب الحقيقي في الغالب: <strong>المقاطع التي
+تُرسل للنموذج لا تحتوي الجواب أصلاً</strong>. لا نموذج في العالم يستطيع الإجابة من نصٍّ غائب.</p>
+
+<h2 id="why">لماذا تفشل أنظمة RAG؟</h2>
+<p>عند تحليل مئات الحالات الفاشلة، تتكرر خمسة أسباب بهذا الترتيب:</p>
+<table>
+<tr><th>السبب</th><th>نسبة الحالات</th><th>العلاج</th></tr>
+<tr><td>تقطيع يقطع الجملة عن سياقها</td><td class="num">~40%</td><td>تقطيع حسب البنية + تداخل</td></tr>
+<tr><td>استرجاع يفوّت المقاطع الصحيحة</td><td class="num">~25%</td><td>بحث هجين (كلمات + متجهات)</td></tr>
+<tr><td>مقاطع طويلة تُضعف التركيز</td><td class="num">~15%</td><td>إعادة ترتيب + ضغط السياق</td></tr>
+<tr><td>غياب المصادر في الجواب</td><td class="num">~10%</td><td>إلزام النموذج بالاقتباس</td></tr>
+<tr><td>نموذج فعلاً ضعيف في العربية</td><td class="num">~10%</td><td>استبدال النموذج</td></tr>
+</table>
+<blockquote><strong>القاعدة:</strong> حسّن الاسترجاع قبل أن تلمس النموذج. كل نقطة تحسين في
+<em>Recall</em> تساوي عشر نقاط في جودة الجواب النهائي.</blockquote>
+
+<h2 id="chunk">التقطيع العربي: ما لا يخبرك به أحد</h2>
+<p>التقطيع الأعمى كل 500 حرف يقطع الجمل العربية في منتصفها، ويفصل الضمير عن مرجعه،
+ويخلط بين فقرة المقدمة وفقرة الاستنتاج. النتيجة: مقطع يقول «وهو ما يجعلها أسرع بثلاثة أضعاف»
+بدون أن نعرف ما هي «هي».</p>
+<ul>
+  <li><strong>قسّم على البنية لا على العدد:</strong> رؤوس العناوين <code>h2/h3</code>، الفقرات، صفوف الجداول.</li>
+  <li><strong>حافظ على المسار الهرمي:</strong> أضف لكل مقطع عنوان القسم الأعلى كتمهيد — هذا يضاعف دقة البحث.</li>
+  <li><strong>تداخل 15–20%:</strong> الجملة التي تبدأ مقطعاً تحتاج نهايته.</li>
+  <li><strong>لا تخلط اللغتين:</strong> النص التقني العربي مليء بمصطلحات إنجليزية؛ أبقِها كما هي ولا تترجم.</li>
+</ul>
+{{<div class="code-cap">chunker.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>def chunk_document(md: str, max_chars=900, overlap=150):
+    # تقطيع واعٍ بالبنية: يحتفظ بالعنوان الأب كتمهيد لكل مقطع.
+    chunks, parent, buf = [], "", ""
+    for block in md.split("\\n\\n"):
+        line = block.strip()
+        if line.startswith("#"):
+            parent = line.lstrip("# ").strip()
+            continue
+        if len(buf) + len(line) &gt; max_chars and buf:
+            chunks.append({{"text": f"[{{parent}}]\\n{{buf}}", "parent": parent}})
+            buf = buf[-overlap:]          # تداخل يمنع قطع السياق
+        buf += "\\n" + line
+    if buf.strip():
+        chunks.append({{"text": f"[{{parent}}]\\n{{buf}}", "parent": parent}})
+    return chunks</code></pre></div>}}
+
+<h2 id="embed">التضمين والفهرسة</h2>
+<p>النماذج متعددة اللغات تعمل بالعربية، لكن أداءها يتفاوت كثيراً. اختبر قبل أن تلتزم:</p>
+<table>
+<tr><th>النموذج</th><th>عربي</th><th>الأبعاد</th><th>ملاحظة</th></tr>
+<tr><td>multilingual-e5-large</td><td>جيد جداً</td><td class="num">1024</td><td>أفضل توازن جودة/حجم</td></tr>
+<tr><td>bge-m3</td><td>ممتاز</td><td class="num">1024</td><td>يدعم نصوصاً طويلة</td></tr>
+<tr><td>arabert / arabert-v2</td><td>ممتاز (نص)</td><td class="num">768</td><td>متخصص، يحتاج تخصيصاً للمهمة</td></tr>
+</table>
+{{<div class="code-cap">embed.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>import numpy as np
+
+def embed_chunks(chunks, model, batch=32):
+    # تضمين دفعات مقصوصة — الذاكرة تبقى ثابتة مهما كبر المستند.
+    out = []
+    for i in range(0, len(chunks), batch):
+        batch_txt = [c["text"] for c in chunks[i:i + batch]]
+        vecs = model.encode(batch_txt, normalize_embeddings=True)
+        out.extend(vecs.astype(np.float32))
+    return np.vstack(out)</code></pre></div>}}
+<blockquote>قاعدة عملية: طبّع المتجهات (normalize) عند الحفظ واستخدم <strong>cosine</strong>
+حتى لو كانت المكتبة تتحدث عن الضرب النقطي — الاثنان يتطابقان بعد التطبيع.</blockquote>
+
+<h2 id="hybrid">البحث الهجين: سرّ الفرق بين نظام «مقبول» و«ممتاز»</h2>
+<p>البحث المتجهي ممتاز في المعنى، لكنه يخفق في الأسماء الدقيقة: أسماء الدوال، أرقام
+الإصدارات، المصطلحات التقنية النادرة. البحث الكلمي (BM25) يفعل العكس تماماً.
+الدمج بينهما يحل المشكلتين.</p>
+{{<div class="code-cap">hybrid.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>def hybrid_search(query, k=10, alpha=0.6):
+    # alpha يحدد وزن البحث المتجهي مقابل الكلمي.
+    dense = vector_index.search(embed(query), k=k * 3)
+    sparse = bm25_index.search(tokenize(query), k=k * 3)
+
+    scores = {{}}
+    for rank, (doc_id, _) in enumerate(dense):
+        scores[doc_id] = scores.get(doc_id, 0) + alpha / (rank + 60)
+    for rank, (doc_id, _) in enumerate(sparse):
+        scores[doc_id] = scores.get(doc_id, 0) + (1 - alpha) / (rank + 60)
+
+    return sorted(scores, key=scores.get, reverse=True)[:k]</code></pre></div>}}
+<p>ثابت <code>60</code> مأخوذ من خوارزمية <strong>Reciprocal Rank Fusion</strong>: يعمل جيداً
+دون ضبط، ويوزّع الوزن على الترتيب لا على القيمة المطلقة — وهذا مهم لأن درجات المتجهات
+ومعايير BM25 غير قابلة للمقارنة أصلاً.</p>
+
+<h2 id="rerank">إعادة الترتيب (Reranking)</h2>
+<p>الاسترجاع الأول يبحث في ملايين المقاطع بسرعة. إعادة الترتيب تأخذ أفضل 30 نتيجة
+وتعيد تقييمها بنموذج أدق وأبطأ. التكلفة صغيرة، والفرق كبير.</p>
+{{<div class="code-cap">rerank.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>from sentence_transformers import CrossEncoder
+
+reranker = CrossEncoder("BAAI/bge-reranker-v2-m3")
+
+def rerank(query, candidates, top_n=5):
+    pairs = [(query, c["text"]) for c in candidates]
+    scores = reranker.predict(pairs)
+    ranked = sorted(zip(candidates, scores), key=lambda x: -x[1])
+    return [c for c, _ in ranked[:top_n]]</code></pre></div>}}
+
+<h2 id="eval">قياس الجودة: لا تُحسّن ما لا تقيسه</h2>
+<p>أنشئ 50 سؤالاً حقيقياً من مستخدميك مع الجواب الصحيح في مستند معروف. ثم قِس:</p>
+<table>
+<tr><th>المقياس</th><th>السؤال</th><th>الهدف</th></tr>
+<tr><td>Recall@k</td><td>هل المقطع الصحيح ضمن أفضل k؟</td><td class="num">&gt; 0.9</td></tr>
+<tr><td>MRR</td><td>في أي مرتبة ظهر أول مقطع صحيح؟</td><td class="num">&gt; 0.75</td></tr>
+<tr><td>Faithfulness</td><td>هل كل جملة في الجواب مدعومة بالمصدر؟</td><td class="num">&gt; 0.95</td></tr>
+<tr><td>Answer Relevance</td><td>هل يجيب فعلاً عن السؤال المطروح؟</td><td class="num">&gt; 0.85</td></tr>
+</table>
+{{<div class="code-cap">eval.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>def recall_at_k(retrieved, gold_ids, k=5):
+    # نسبة الأسئلة التي ظهر جوابها الصحيح في أعلى k نتائج.
+    return sum(any(d in gold_ids for d in retrieved[:k]) for _ in [0]) / len(gold_ids)
+
+# ملاحظة: طبّق على مجموعة أسئلة كاملة، لا على سؤال واحد.</code></pre></div>}}
+
+<h2 id="prod">قائمة الإنتاج</h2>
+<ol>
+  <li><strong>ألزم النموذج بالاقتباس</strong>: كل جملة تنتهي بمرجع <code>[3]</code>.</li>
+  <li><strong>علّم النموذج أن يقول «لا أعرف»</strong> — الجواب الصادق أفضل من تخمين مقنع.</li>
+  <li><strong>حدّد مهلة زمنية</strong> للاسترجاع: مستخدم لا ينتظر 8 ثوانٍ.</li>
+  <li><strong>خزّن الأسئلة بلا جواب</strong> — هي خارطة طريقك لأهم مستندات ناقصة.</li>
+  <li><strong>أعد الفهرسة</strong> عند كل تحديث للمستندات، واحفظ نسخة من كل إصدار.</li>
+</ol>
+<blockquote><strong>الخطوة التالية:</strong> خذ 10 أسئلة فعلية من مستخدميك، وشغّل عليها نظامك
+الحالي، واحسب <code>Recall@5</code> يدوياً. هذا الرقم وحده سيخبرك أين تكمن المشكلة.</blockquote>
+
+        <div class="tags-row"><span class="chip">RAG</span><span class="chip">Vector DB</span><span class="chip">LLM</span><span class="chip">بحث دلالي</span></div>
+
+        <div class="card" style="margin-top:44px; display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between; background:linear-gradient(135deg, rgba(109,94,252,.12), transparent)">
+          <div>
+            <h3 style="margin-bottom:6px; font-size:1.05rem">أعجبك المقال؟</h3>
+            <p style="font-size:.87rem; color:var(--text-soft); margin:0">مقالة تقنية عميقة واحدة كل أسبوع على بريدك — بلا حشو.</p>
+          </div>
+          <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="toc">
+          <h5>محتويات المقال</h5>
+          <a href="#why">لماذا تفشل أنظمة RAG؟</a><a href="#chunk">التقطيع العربي</a><a href="#embed">التضمين والفهرسة</a><a href="#hybrid">البحث الهجين</a><a href="#rerank">إعادة الترتيب</a><a href="#eval">قياس الجودة</a><a href="#prod">قائمة الإنتاج</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</article>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal"><h2 style="font-size:1.6rem">اقرأ أيضاً</h2></div>
+    <div class="related">
+      <a href="../ai/ai-agents.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>ذكاء اصطناعي</span><span class="sep"></span><span>18 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">بناء وكيل ذكاء اصطناعي يفهم أدواتك</h3></a><a href="../ai/chatgpt-prompts.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>ذكاء اصطناعي</span><span class="sep"></span><span>8 دقائق</span></div><h3 style="font-size:.98rem; line-height:1.5">هندسة الأوامر: 20 قالباً للمبرمجين</h3></a><a href="../tutorials/python-async.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>ذكاء اصطناعي</span><span class="sep"></span><span>14 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">فهم Async/Await في بايثون</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="../index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

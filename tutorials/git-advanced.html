@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git للمحترفين: إعادة كتابة التاريخ بأمان وبدون كوارث — MyTechol</title>
+<meta name="description" content="rebase، cherry-pick، bisect، reflog، و autosquash — متى تستخدم كلاً منها وكيف تتراجع إذا حدث الأسوأ. مع سيناريوهات حقيقية وحلولها.">
+<meta property="og:title" content="Git للمحترفين: إعادة كتابة التاريخ بأمان وبدون كوارث">
+<meta property="og:description" content="rebase، cherry-pick، bisect، reflog، و autosquash — متى تستخدم كلاً منها وكيف تتراجع إذا حدث الأسوأ. مع سيناريوهات حقيقية وحلولها.">
+<meta property="article:published_time" content="2025-11-18">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(109,94,252,.42), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(0,212,255,.3), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+<style>
+  .code-cap { font-family: var(--mono); font-size:.72rem; font-weight:700; letter-spacing:.08em;
+    color: var(--text-dim); margin: 18px 0 -8px; direction: ltr; text-align: left; }
+  .prose table { width:100%; border-collapse: collapse; font-size:.88rem; margin: 18px 0; }
+  .prose th { background: var(--surface-2); font-weight:800; }
+  .prose th, .prose td { border:1px solid var(--border); padding:10px 12px; text-align: start; }
+  .prose td.num { font-family: var(--mono); font-size:.82rem; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../tutorials.html">درس</a><span>/</span>
+      <span>Git للمحترفين</span>
+    </div>
+    <span class="eyebrow">درس</span>
+    <h1 class="reveal">Git للمحترفين: إعادة كتابة التاريخ بأمان وبدون كوارث</h1>
+    <p class="lead" style="max-width:760px">rebase، cherry-pick، bisect، reflog، و autosquash — متى تستخدم كلاً منها وكيف تتراجع إذا حدث الأسوأ. مع سيناريوهات حقيقية وحلولها.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">م</span><span>فريق MyTechol</span></div>
+      <span class="sep">·</span>
+      <span>2025-11-18</span>
+      <span class="sep">·</span>
+      <span>15 دقيقة قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--advanced">متقدم</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">git</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+
+<p>معظم المطورين يستخدمون 8 أوامر من أصل مئات، ثم يخافون من الباقي. النتيجة: تاريخ
+مستودع مليء بـ «fix» و«update» و«final-final»، ومراجعات كود تعذّب الفريق.</p>
+<p>هذا الدرس لا يعلّمك أوامر، بل <strong>نموذجاً ذهنياً</strong> يجعل Git واضحاً.</p>
+
+<h2 id="model">الفهم الذي يغيّر كل شيء</h2>
+<p>Git ليس «مجلداً بسجل تغييرات». Git هو <strong>رسم بياني موجّه من الـ commits</strong>.
+كل commit هو لقطة كاملة، ويعرف آباءه. الفروع مجرد <em>مؤشرات</em> إلى عقدة في هذا الرسم
+— وهذا سبب أن إنشاء فرع فوري ومجاني.</p>
+{{<div class="code-cap">git log</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>git log --graph --oneline --all --decorate
+# * 91ab3f2 (HEAD -&gt; main, origin/main) feat: add rate limiting
+# * 4d2c8e1 fix: handle empty payload
+# *   a8f9321 Merge branch 'feature/search'
+# |\\
+# | * 2b7e1c9 feat: search index warmup
+# | * 1a0d4b3 feat: search endpoint
+# |/
+# * 7f3c211 chore: bump deps  &lt;-- القاعدة المشتركة</code></pre></div>}}
+<blockquote>ثلاث مناطق يجب التمييز بينها دائماً: <strong>Working Directory</strong> (ملفاتك)،
+<strong>Index/Staging</strong> (ما سيُضمَّن في الـ commit التالي)، و<strong>HEAD</strong>
+(آخر commit). 90% من الحيرة تنتهي حين تفصل بينها بوضوح.</blockquote>
+
+<h2 id="rebase">Rebase بلا خوف</h2>
+<p><strong>القاعدة الذهبية:</strong> rebase على فروعك الخاصة، ولا rebase على فرع مشترك
+دفع إليه غيرك.</p>
+{{<div class="code-cap">rebase</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># اسحب آخر تغييرات main وأعد بناء فرعك فوقها
+git fetch origin
+git rebase origin/main
+
+# أثناء التعارض:
+git status                 # الملفات المتعارضة
+# ... عدّل الملفات ...
+git add &lt;file&gt;
+git rebase --continue      # أو --skip أو --abort</code></pre></div>}}
+<p><strong>المقارنة العملية:</strong></p>
+<table>
+<tr><th></th><th>merge</th><th>rebase</th></tr>
+<tr><td>التاريخ</td><td>يحفظ الواقع كما حدث</td><td>تاريخ خطّي نظيف</td></tr>
+<tr><td>الاستخدام</td><td>فرع مشترك / main</td><td>فرع شخصي قبل الدمج</td></tr>
+<tr><td>الخطورة</td><td>منخفضة</td><td>عالية على فرع عام</td></tr>
+</table>
+
+<h2 id="interactive">Interactive Rebase: نظّف قبل أن تطلب مراجعة</h2>
+{{<div class="code-cap">rebase -i</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>git rebase -i HEAD~5
+
+# pick   4d2c8e1 feat: add validation
+# squash 9a1f2b3 fix typo              &lt;- ادمجه في السابق
+# reword 2c7b9a4 feat: add logging     &lt;- عدّل الرسالة
+# drop   1b8e3f7 wip                   &lt;- احذفه نهائياً
+# edit   a1c2d3e feat: partial         &lt;- عدّل المحتوى</code></pre></div>}}
+<p>حيلة تُوفّر وقتاً: اجعل Git يدمج إصلاحاتك تلقائياً في الـ commit الأصلي:</p>
+{{<div class="code-cap">autosquash</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># أثناء العمل، أنشئ fixup بدلاً من commit عادي
+git commit --fixup=&lt;sha-of-original&gt;
+
+# لاحقاً، دمج تلقائي بلا فتح محرّر
+GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash origin/main</code></pre></div>}}
+
+<h2 id="bisect">bisect: العثور على الخطأ بين 500 commit</h2>
+<p>عندما يكسر شيء ما الموقع ولا تعرف أين، لا تقرأ الـ commits واحداً واحداً. استخدم
+<strong>البحث الثنائي</strong> — يجد الجاني في 9 خطوات من أصل 500 commit.</p>
+{{<div class="code-cap">bisect</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>git bisect start
+git bisect bad                 # الحالة الحالية مكسورة
+git bisect good v1.4.0         # هذه النسخة كانت سليمة
+
+# Git يودّعك على commit وسطي: اختبره ثم:
+git bisect good   # أو git bisect bad
+# ... كرّر حتى: "&lt;sha&gt; is the first bad commit"
+
+git bisect reset               # عُد إلى ما كنت عليه</code></pre></div>}}
+<p>وللأتمتة الكاملة:</p>
+{{<div class="code-cap">bisect run</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>git bisect run npm test
+# Git يشغّل الاختبارات على كل نقطة ويخبرك بالـ commit الأول الفاشل</code></pre></div>}}
+
+<h2 id="reflog">reflog: شبكة الأمان التي تُنقذك</h2>
+<p>كل عملية تُحرّك HEAD تُسجَّل في reflog لمدة 90 يوماً افتراضياً. حتى لو حذفت فرعاً
+أو أفسدت rebase، يمكنك العودة.</p>
+{{<div class="code-cap">reflog</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>git reflog
+# 91ab3f2 HEAD@{{0}}: rebase (finish): returning to refs/heads/main
+# 4d2c8e1 HEAD@{{1}}: rebase (start): checkout origin/main
+# a8f9321 HEAD@{{2}}: commit: feat: add rate limiting
+
+git reset --hard HEAD@{{2}}      # عُد بالضبط لما قبل الـ rebase
+git branch rescue 4d2c8e1      # أو أنشئ فرعاً من commit مفقود</code></pre></div>}}
+<blockquote>قاعدة ذهبية: <strong>لا تُشغّل <code>git reset --hard</code></strong> قبل أن تنظر
+في <code>git reflog</code> وتكتب الـ SHA الذي تريد العودة إليه. الـ reflog هو ما يفرّق بين
+«أخطأت» و«دمّرت يوم عملي».</blockquote>
+
+<h2 id="rules">قواعد الفريق التي تمنع الكوارث</h2>
+<ol>
+  <li><strong>فعّل الحماية على <code>main</code></strong>: لا دفع مباشر، مراجعة إلزامية.</li>
+  <li><strong>اربط الفروع بالمهام</strong>: <code>feat/PROJ-142-rate-limit</code>.</li>
+  <li><strong>رسائل واضحة</strong>: <code>type(scope): subject</code> — feat, fix, refactor, docs, chore.</li>
+  <li><strong>commit صغير ومتماسك</strong>: commit واحد = فكرة واحدة قابلة للتراجع عنها.</li>
+  <li><strong>فعّل Husky + lint-staged</strong> ليمنع الـ commit المكسور قبل أن يصل.</li>
+</ol>
+{{<div class="code-cap">git config</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># اضبط سلوك السحب الافتراضي لتجنّب merge commits غير مقصودة
+git config --global pull.rebase true
+git config --global fetch.prune true
+git config --global rerere.enabled true   # يتذكّر حلول التعارض</code></pre></div>}}
+<blockquote><strong>الخطوة التالية:</strong> نفّذ <code>git reflog</code> الآن في مستودعك،
+وأعد commitاً حذفته سابقاً في فرع تجريبي. تمرين 30 ثانية يمنحك ثقة تدوم.</blockquote>
+
+        <div class="tags-row"><span class="chip">Git</span><span class="chip">DevOps</span><span class="chip">سطر الأوامر</span><span class="chip">تعاون</span></div>
+
+        <div class="card" style="margin-top:44px; display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between; background:linear-gradient(135deg, rgba(109,94,252,.12), transparent)">
+          <div>
+            <h3 style="margin-bottom:6px; font-size:1.05rem">أعجبك المقال؟</h3>
+            <p style="font-size:.87rem; color:var(--text-soft); margin:0">مقالة تقنية عميقة واحدة كل أسبوع على بريدك — بلا حشو.</p>
+          </div>
+          <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="toc">
+          <h5>محتويات المقال</h5>
+          <a href="#model">الفهم الذي يغيّر كل شيء</a><a href="#rebase">Rebase بلا خوف</a><a href="#interactive">Interactive Rebase</a><a href="#bisect">bisect: العثور على الخطأ</a><a href="#reflog">reflog: شبكة الأمان</a><a href="#rules">قواعد الفريق</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</article>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal"><h2 style="font-size:1.6rem">اقرأ أيضاً</h2></div>
+    <div class="related">
+      <a href="../tutorials/linux-cli.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>درس</span><span class="sep"></span><span>9 دقائق</span></div><h3 style="font-size:.98rem; line-height:1.5">30 أمراً تختصر ساعات عملك</h3></a><a href="../programs/docker-basics.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>درس</span><span class="sep"></span><span>12 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">Docker من الفكرة إلى النشر</h3></a><a href="../posts/clean-code.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>درس</span><span class="sep"></span><span>13 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">الكود النظيف: 12 قاعدة</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="../index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

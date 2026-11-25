@@ -353,7 +353,7 @@
     .then(r => r.json())
     .then(posts => {
       const grid = document.getElementById('home-posts');
-      grid.innerHTML = posts.slice(0, 6).map(p => `
+      grid.innerHTML = posts.slice(0, 9).map(p => `
         <article class="post-card reveal" data-cat="${p.category} ${p.tags.join(' ')}">
           <a href="${p.url}" class="post-card__thumb">
             <span class="post-card__tagline">${p.tagline}</span>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تشغيل نماذج LLM في الإنتاج: التكلفة، الكمون، والموثوقية — MyTechol</title>
+<meta name="description" content="ما ينجح في العرض التوضيحي يفشل تحت الحمل. دليل هندسي: التخزين المؤقت، البثّ، التوجيه بين النماذج، احتواء الأخطاء، ومراقبة ما يفعله نموذجك فعلاً.">
+<meta property="og:title" content="تشغيل نماذج LLM في الإنتاج: التكلفة، الكمون، والموثوقية">
+<meta property="og:description" content="ما ينجح في العرض التوضيحي يفشل تحت الحمل. دليل هندسي: التخزين المؤقت، البثّ، التوجيه بين النماذج، احتواء الأخطاء، ومراقبة ما يفعله نموذجك فعلاً.">
+<meta property="article:published_time" content="2025-11-25">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(109,94,252,.42), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(0,212,255,.3), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+<style>
+  .code-cap { font-family: var(--mono); font-size:.72rem; font-weight:700; letter-spacing:.08em;
+    color: var(--text-dim); margin: 18px 0 -8px; direction: ltr; text-align: left; }
+  .prose table { width:100%; border-collapse: collapse; font-size:.88rem; margin: 18px 0; }
+  .prose th { background: var(--surface-2); font-weight:800; }
+  .prose th, .prose td { border:1px solid var(--border); padding:10px 12px; text-align: start; }
+  .prose td.num { font-family: var(--mono); font-size:.82rem; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../ai.html">ذكاء اصطناعي</a><span>/</span>
+      <span>LLM في الإنتاج</span>
+    </div>
+    <span class="eyebrow">ذكاء اصطناعي</span>
+    <h1 class="reveal">تشغيل نماذج LLM في الإنتاج: التكلفة، الكمون، والموثوقية</h1>
+    <p class="lead" style="max-width:760px">ما ينجح في العرض التوضيحي يفشل تحت الحمل. دليل هندسي: التخزين المؤقت، البثّ، التوجيه بين النماذج، احتواء الأخطاء، ومراقبة ما يفعله نموذجك فعلاً.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">م</span><span>فريق MyTechol</span></div>
+      <span class="sep">·</span>
+      <span>2025-11-25</span>
+      <span class="sep">·</span>
+      <span>15 دقيقة قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--advanced">متقدم</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">LLM</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+
+<p>تحويل نموذج لغوي من تجربة إلى منتج يواجه ثلاث جدران حقيقية: الفاتورة، الكمون،
+والثقة. هذه المقالة تعالج الثلاثة بأمثلة كود قابلة للتطبيق اليوم.</p>
+
+<h2 id="cost">كيف تُحسب التكلفة فعلاً</h2>
+<p>الفاتورة = (رموز الإدخال × سعر الإدخال) + (رموز الإخراج × سعر الإخراج). المفاجأة أن
+<strong>الإخراج أغلى بثلاثة إلى أربعة أضعاف</strong>، والسياق الطويل يُعاد دفعه في كل طلب.</p>
+<table>
+<tr><th>المصدر</th><th>السبب</th><th>التخفيض النموذجي</th></tr>
+<tr><td>سياق متضخّم</td><td>إعادة إرسال نفس التعليمات كل مرة</td><td class="num">30–50%</td></tr>
+<tr><td>بدون تخزين مؤقت</td><td>طلبات متكررة تُعيد الحساب</td><td class="num">20–40%</td></tr>
+<tr><td>نموذج أكبر من اللازم</td><td>مهام بسيطة على نموذج ضخم</td><td class="num">50–80%</td></tr>
+<tr><td>إخراج مطوّل بلا داعٍ</td><td>غياب حدّ أقصى للرموز</td><td class="num">15–25%</td></tr>
+</table>
+
+<h2 id="cache">التخزين المؤقت الذكي</h2>
+<p>ثلاث طبقات تُطبَّق بالترتيب من الأرخص إلى الأغلى:</p>
+{{<div class="code-cap">cache.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>import hashlib, json
+
+def make_key(model: str, messages: list, temperature: float) -&gt; str:
+    # مفتاح دقيق يتضمن كل ما يؤثر في الناتج.
+    payload = json.dumps(
+        {{"m": model, "t": temperature,
+         "msg": [(m["role"], m["content"]) for m in messages]}},
+        ensure_ascii=False, sort_keys=True
+    )
+    return "llm:" + hashlib.sha256(payload.encode()).hexdigest()[:32]
+
+async def cached_completion(model, messages, temperature=0.2, ttl=3600):
+    key = make_key(model, messages, temperature)
+    if (hit := await redis.get(key)):
+        return json.loads(hit)                    # طبقة 1: نتيجة مطابقة
+
+    resp = await client.chat.completions.create(
+        model=model, messages=messages,
+        temperature=temperature, max_tokens=800   # سقف يمنع الإطالة
+    )
+    await redis.setex(key, ttl, json.dumps(resp.model_dump()))
+    return resp.model_dump()</code></pre></div>}}
+<blockquote>لا تخزّن مؤقتاً عندما تكون <code>temperature &gt; 0</code> وتحتاج تنويعاً — أو
+اجعل الـ TTL قصيراً جداً. المفتاح يجب أن يتضمن درجة الحرارة وإصدار تعليمات النظام،
+وإلا حصلت على نتائج قديمة تُربك المستخدم.</blockquote>
+
+<h3>الطبقة الثانية: البادئة المشتركة</h3>
+{{<div class="code-cap">prefix.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># ضع التعليمات الثابتة أولاً — كثير من المزوّدين يوفّرون
+# خصماً 50-90% على البادئات المتطابقة (prompt caching)
+messages = [
+    {{"role": "system", "content": LONG_STABLE_GUIDE}},   # ✅ ثابت
+    {{"role": "system", "content": user_profile}},        # متغيّر
+    {{"role": "user",   "content": question}},            # متغيّر
+]</code></pre></div>}}
+
+<h2 id="stream">البثّ: الكمون المدرك للمستخدم</h2>
+<p>الكمون الفعلي لم ينقص، لكن <strong>الكمون المُدرَك</strong> ينخفض 5–8 أضعاف لأن
+المستخدم يرى الحروف تتوالى. مع البثّ، اعرض التوكن الأول في أقل من 500ms.</p>
+{{<div class="code-cap">stream.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
+
+app = FastAPI()
+
+@app.post("/chat")
+async def chat(body: ChatIn):
+    async def gen():
+        stream = await client.chat.completions.create(
+            model="gpt-4o-mini", messages=body.messages,
+            stream=True, max_tokens=600
+        )
+        async for chunk in stream:
+            if (t := chunk.choices[0].delta.content):
+                yield f"data: {{json.dumps({{'d': t}}, ensure_ascii=False)}}\\n\\n"
+        yield "data: [DONE]\\n\\n"
+
+    return StreamingResponse(gen(), media_type="text/event-stream")</code></pre></div>}}
+<p><strong>إسقاط العميل ليس إلغاءً للفاتورة.</strong> إذا أغلق المستخدم الصفحة، توقف أنت
+عن السحب عبر:</p>
+{{<div class="code-cap">cancel.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>async def gen(request: Request):
+    stream = await client.chat.completions.create(..., stream=True)
+    async for chunk in stream:
+        if await request.is_disconnected():
+            await stream.close()      # وفّر الرموز المتبقية
+            break
+        yield ...</code></pre></div>}}
+
+<h2 id="route">توجيه النماذج: أرخص نموذج يكفي</h2>
+<p>معظم الطلبات بسيطة. صنّف أولاً ثم وجّه:</p>
+{{<div class="code-cap">router.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>RULES = {{
+    "classify": "gpt-4o-mini",     # تصنيف واستخراج
+    "summarize": "gpt-4o-mini",
+    "reason": "gpt-4o",            # استدلال معقّد
+    "code": "claude-sonnet",       # كتابة كود
+}}
+
+def pick_model(task: str, tokens: int) -&gt; str:
+    if tokens &gt; 60_000:            # سياق ضخم -&gt; نموذج طويل المدى
+        return "gemini-flash"
+    return RULES.get(task, "gpt-4o-mini")</code></pre></div>}}
+<blockquote>ابدأ بأصغر نموذج ممكن، وارفع المستوى فقط عندما يفشل في تقييمك. الفرق في
+التكلفة بين نموذج صغير وكبير قد يبلغ <strong>20 ضعفاً</strong> مقابل 3–5% فرق في الجودة
+على المهام البسيطة.</blockquote>
+
+<h2 id="fail">الموثوقية: افترض أن كل شيء سيفشل</h2>
+{{<div class="code-cap">resilience.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>import asyncio, random
+
+async def resilient_call(fn, *, retries=3, base=0.6):
+    for attempt in range(retries):
+        try:
+            return await asyncio.wait_for(fn(), timeout=25)
+        except (TimeoutError, RateLimitError) as e:
+            if attempt == retries - 1:
+                raise
+            # انحدار أسّي مع jitter — يمنع موجات إعادة محاولة متزامنة
+            delay = base * (2 ** attempt) + random.uniform(0, 0.4)
+            await asyncio.sleep(delay)</code></pre></div>}}
+<ol>
+  <li><strong>مزوّدان على الأقل</strong> — واجهة موحّدة تسمح بالتبديل عند سقوط أحدهما.</li>
+  <li><strong>قاطع دائرة (Circuit Breaker)</strong>: بعد 5 أخطاء متتالية، توقّف 30 ثانية.</li>
+  <li><strong>مهلة إلزامية</strong> في كل استدعاء — بلا استثناء.</li>
+  <li><strong>مسار احتياطي ثابت</strong>: ردّ مُعد مسبقاً أفضل من شاشة خطأ.</li>
+  <li><strong>تحقّق من المخرجات</strong>: JSON غير صالح أو حقول ناقصة يجب ألا تصل للمستخدم.</li>
+</ol>
+
+<h2 id="obs">المراقبة: ماذا تفعل نماذجك فعلاً؟</h2>
+<p>سجّل لكل طلب: النموذج، عدد رموز الإدخال والإخراج، الكمون، التكلفة، وهل نجح التحقق.</p>
+{{<div class="code-cap">metrics.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>def log_call(model, usage, latency_ms, ok: bool):
+    metrics.histogram("llm.latency", latency_ms, tags={{"model": model}})
+    metrics.increment("llm.tokens.input", usage.prompt_tokens)
+    metrics.increment("llm.tokens.output", usage.completion_tokens)
+    metrics.increment("llm.cost_usd", estimate_cost(model, usage))
+    if not ok:
+        metrics.increment("llm.validation_failed", tags={{"model": model}})</code></pre></div>}}
+<blockquote><strong>الخطوة التالية:</strong> أضف حدّاً أقصى لرموز الإخراج (
+<code>max_tokens</code>) في كل استدعاء اليوم. هذه أغلب مكسب فوري يمكنك تحقيقه
+بتعديل سطر واحد.</blockquote>
+
+        <div class="tags-row"><span class="chip">LLM</span><span class="chip">AI</span><span class="chip">Backend</span><span class="chip">تكلفة</span></div>
+
+        <div class="card" style="margin-top:44px; display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between; background:linear-gradient(135deg, rgba(109,94,252,.12), transparent)">
+          <div>
+            <h3 style="margin-bottom:6px; font-size:1.05rem">أعجبك المقال؟</h3>
+            <p style="font-size:.87rem; color:var(--text-soft); margin:0">مقالة تقنية عميقة واحدة كل أسبوع على بريدك — بلا حشو.</p>
+          </div>
+          <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="toc">
+          <h5>محتويات المقال</h5>
+          <a href="#cost">كيف تُحسب التكلفة فعلاً</a><a href="#cache">التخزين المؤقت الذكي</a><a href="#stream">البثّ والكمون المدرك</a><a href="#route">توجيه النماذج</a><a href="#fail">الموثوقية والاحتياط</a><a href="#obs">المراقبة</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</article>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal"><h2 style="font-size:1.6rem">اقرأ أيضاً</h2></div>
+    <div class="related">
+      <a href="../ai/rag-arabic.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>ذكاء اصطناعي</span><span class="sep"></span><span>16 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">بناء نظام RAG عربي دقيق</h3></a><a href="../ai/ai-agents.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>ذكاء اصطناعي</span><span class="sep"></span><span>18 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">بناء وكيل ذكاء اصطناعي</h3></a><a href="../tutorials/python-async.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>ذكاء اصطناعي</span><span class="sep"></span><span>14 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">فهم Async/Await في بايثون</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="../index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

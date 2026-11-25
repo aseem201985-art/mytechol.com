@@ -1,10 +1,186 @@
 [
   {
+    "id": "llm-production",
+    "title": "تشغيل نماذج LLM في الإنتاج: التكلفة، الكمون، والموثوقية",
+    "excerpt": "ما ينجح في العرض التوضيحي يفشل تحت الحمل. التخزين المؤقت، البثّ، توجيه النماذج، احتواء الأخطاء، ومراقبة ما يفعله نموذجك فعلاً.",
+    "category": "ذكاء اصطناعي",
+    "tags": [
+      "LLM",
+      "AI",
+      "Backend",
+      "تكلفة"
+    ],
+    "level": "متقدم",
+    "read": "15 دقيقة",
+    "url": "ai/llm-production.html",
+    "glyph": "LLM",
+    "tagline": "LLM Ops",
+    "date": "2025-11-25",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "rag-arabic",
+    "title": "بناء نظام RAG عربي دقيق: من التقطيع إلى قياس الجودة",
+    "excerpt": "معظم أنظمة RAG تفشل لا لأن النموذج ضعيف، بل لأن التقطيع والاسترجاع سيئان. دليل هندسي كامل: تقطيع عربي واعٍ، بحث هجين، إعادة ترتيب، وقياس الجودة.",
+    "category": "ذكاء اصطناعي",
+    "tags": [
+      "RAG",
+      "Vector DB",
+      "LLM",
+      "بحث دلالي"
+    ],
+    "level": "متقدم",
+    "read": "16 دقيقة",
+    "url": "ai/rag-arabic.html",
+    "glyph": "RAG",
+    "tagline": "RAG",
+    "date": "2025-11-24",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "app-security",
+    "title": "أمان تطبيقات الويب: الثغرات العشر التي تُخترق بها المواقع فعلاً",
+    "excerpt": "ليست قائمة نظرية — بل الثغرات المتكررة في تقارير الاختبار الحقيقية: SQLi، XSS، IDOR، رفع الملفات، والأسرار المكشوفة. مع الكود الصحيح لكل واحدة.",
+    "category": "برمجة",
+    "tags": [
+      "Security",
+      "Backend",
+      "أمان",
+      "Web"
+    ],
+    "level": "متوسط",
+    "read": "16 دقيقة",
+    "url": "posts/app-security.html",
+    "glyph": "SEC",
+    "tagline": "Security",
+    "date": "2025-11-23",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "postgres-tuning",
+    "title": "PostgreSQL: 12 إعداداً تفرّق بين قاعدة بطيئة وأخرى فائقة",
+    "excerpt": "القيم الافتراضية تكفي للتجربة لا للإنتاج. دليل عملي لضبط الذاكرة والمخططات والاستعلامات، مع طريقة قراءة EXPLAIN ANALYZE كما يفعل المحترفون.",
+    "category": "برامج",
+    "tags": [
+      "PostgreSQL",
+      "Database",
+      "أداء",
+      "Backend"
+    ],
+    "level": "متوسط",
+    "read": "14 دقيقة",
+    "url": "programs/postgres-tuning.html",
+    "glyph": "PGSQL",
+    "tagline": "PostgreSQL",
+    "date": "2025-11-22",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "web-performance",
+    "title": "أداء الويب 2025: خطة Core Web Vitals من 4 ثوانٍ إلى ما دون ثانية",
+    "excerpt": "INP حلّ محلّ FID، وLCP يتطلب استراتيجية تحميل مختلفة. دليل عملي بالأرقام: ترتيب الأولويات، الحلول الفعلية، وطريقة قياس لا تكذب عليك.",
+    "category": "برمجة",
+    "tags": [
+      "Performance",
+      "Web Vitals",
+      "Frontend",
+      "أداء"
+    ],
+    "level": "متوسط",
+    "read": "13 دقيقة",
+    "url": "posts/web-performance.html",
+    "glyph": "CWV",
+    "tagline": "Performance",
+    "date": "2025-11-20",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "git-advanced",
+    "title": "Git للمحترفين: إعادة كتابة التاريخ بأمان وبدون كوارث",
+    "excerpt": "rebase، cherry-pick، bisect، reflog، و autosquash — متى تستخدم كلاً منها وكيف تتراجع إذا حدث الأسوأ. مع سيناريوهات حقيقية وحلولها.",
+    "category": "درس",
+    "tags": [
+      "Git",
+      "DevOps",
+      "سطر الأوامر",
+      "تعاون"
+    ],
+    "level": "متقدم",
+    "read": "15 دقيقة",
+    "url": "tutorials/git-advanced.html",
+    "glyph": "git",
+    "tagline": "Git Pro",
+    "date": "2025-11-18",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "sql-mastery",
+    "title": "SQL للطلاب: من SELECT إلى Window Functions بمثال واحد متصل",
+    "excerpt": "مسار متصل بمتجر إلكتروني واحد: تجميع، ربط، مجموعات فرعية، ثم دوال النوافذ التي تفصل المبتدئ عن المحترف — مع تمارين بعد كل خطوة.",
+    "category": "درس",
+    "tags": [
+      "SQL",
+      "Database",
+      "تعليم",
+      "Backend"
+    ],
+    "level": "مبتدئ",
+    "read": "17 دقيقة",
+    "url": "tutorials/sql-mastery.html",
+    "glyph": "SQL",
+    "tagline": "SQL",
+    "date": "2025-11-16",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "typescript-patterns",
+    "title": "TypeScript: 9 أنماط تحوّل أنواعك من عبء إلى توثيق حيّ",
+    "excerpt": "الأنواع الجيدة تمنع الأخطاء قبل التشغيل وتشرح الكود بلا تعليقات. أنماط عملية: الأصناف المميّزة، الأنواع الشرطية، Generics، وأنواع النتائج الصريحة.",
+    "category": "شرح",
+    "tags": [
+      "TypeScript",
+      "Frontend",
+      "Backend",
+      "بنية كود"
+    ],
+    "level": "متوسط",
+    "read": "12 دقيقة",
+    "url": "posts/typescript-patterns.html",
+    "glyph": "TS",
+    "tagline": "TypeScript",
+    "date": "2025-11-14",
+    "author": "فريق MyTechol"
+  },
+  {
+    "id": "obsidian-pkm",
+    "title": "Obsidian: ابنِ «دماغاً ثانياً» عربياً يربط معرفتك بدل أن يدفنها",
+    "excerpt": "ملاحظات كثيرة بلا نظام تعني معرفة صفر. طريقة عمل كاملة: بنية مجلدات، وسوم، ملاحظات ذرّية، مراجعة أسبوعية، ونسخ احتياطي — بالعربية ودعم RTL.",
+    "category": "برامج",
+    "tags": [
+      "Obsidian",
+      "إنتاجية",
+      "PKM",
+      "Markdown"
+    ],
+    "level": "مبتدئ",
+    "read": "11 دقيقة",
+    "url": "programs/obsidian-pkm.html",
+    "glyph": "PKM",
+    "tagline": "Obsidian",
+    "date": "2025-11-12",
+    "author": "فريق MyTechol"
+  },
+  {
     "id": "python-async",
     "title": "فهم Async/Await في بايثون من الصفر حتى الإنتاج",
     "excerpt": "شرح عملي لكيفية عمل حلقة الأحداث (Event Loop) والـ Coroutines، مع أمثلة على بناء خدمة سريعة تجمع بين I/O المتزامن وغير المتزامن.",
     "category": "درس",
-    "tags": ["Python", "Async", "Backend", "أداء"],
+    "tags": [
+      "Python",
+      "Async",
+      "Backend",
+      "أداء"
+    ],
     "level": "متوسط",
     "read": "14 دقيقة",
     "url": "tutorials/python-async.html",
@@ -18,7 +194,11 @@
     "title": "React 19: ما الذي يتغير فعلياً في طريقة كتابة الكومبوننتس؟",
     "excerpt": "نظرة معمّقة على Actions و useOptimistic و Server Components، ومتى تستخدم كل واحدة منها في مشروع حقيقي.",
     "category": "شرح",
-    "tags": ["React", "Frontend", "JavaScript"],
+    "tags": [
+      "React",
+      "Frontend",
+      "JavaScript"
+    ],
     "level": "متقدم",
     "read": "11 دقيقة",
     "url": "posts/react-19.html",
@@ -32,7 +212,12 @@
     "title": "بناء وكيل ذكاء اصطناعي (AI Agent) يفهم أدواتك ويستخدمها",
     "excerpt": "من Function Calling إلى RAG إلى التخطيط الذاتي: خريطة طريق لبناء وكيل عملي يربط بين النماذج اللغوية وبيانات شركتك.",
     "category": "ذكاء اصطناعي",
-    "tags": ["AI", "LLM", "RAG", "Agents"],
+    "tags": [
+      "AI",
+      "LLM",
+      "RAG",
+      "Agents"
+    ],
     "level": "متقدم",
     "read": "18 دقيقة",
     "url": "ai/ai-agents.html",
@@ -46,7 +231,11 @@
     "title": "صندوق أدوات سطر الأوامر: 30 أمراً تختصر ساعات عملك",
     "excerpt": "من grep و find إلى awk و sed و tmux — مجموعة أوامر مصنّفة حسب الاستخدام اليومي للمبرمج والمهندس.",
     "category": "أدوات",
-    "tags": ["Linux", "CLI", "DevOps"],
+    "tags": [
+      "Linux",
+      "CLI",
+      "DevOps"
+    ],
     "level": "مبتدئ",
     "read": "9 دقائق",
     "url": "tutorials/linux-cli.html",
@@ -60,7 +249,11 @@
     "title": "الكود النظيف: 12 قاعدة تجعل مراجعة الكود أسرع مرتين",
     "excerpt": "قواعد عملية مستخلصة من مراجعة آلاف الأسطر: التسمية، حدود الدوال، التعليقات المفيدة، وهيكلة الـ Modules.",
     "category": "برمجة",
-    "tags": ["Clean Code", "Architecture", "Reviews"],
+    "tags": [
+      "Clean Code",
+      "Architecture",
+      "Reviews"
+    ],
     "level": "متوسط",
     "read": "12 دقيقة",
     "url": "posts/clean-code.html",
@@ -74,7 +267,12 @@
     "title": "تصميم واجهات عربية جميلة مع Tailwind CSS و RTL",
     "excerpt": "دليل شامل لضبط RTL، الخطوط العربية، والمسافات المنطقية (logical properties) لبناء واجهة متوازنة بصرياً.",
     "category": "شرح",
-    "tags": ["Tailwind", "CSS", "RTL", "UI"],
+    "tags": [
+      "Tailwind",
+      "CSS",
+      "RTL",
+      "UI"
+    ],
     "level": "متوسط",
     "read": "10 دقائق",
     "url": "posts/tailwind-ui.html",
@@ -88,7 +286,11 @@
     "title": "هندسة الأوامر (Prompt Engineering) للمبرمجين: 20 قالباً جاهزاً",
     "excerpt": "قوالب أوامر مجرّبة لمراجعة الكود، توليد الاختبارات، كتابة التوثيق، وتحليل الأخطاء — مع شرح لماذا يعمل كل قالب.",
     "category": "ذكاء اصطناعي",
-    "tags": ["AI", "Prompts", "Productivity"],
+    "tags": [
+      "AI",
+      "Prompts",
+      "Productivity"
+    ],
     "level": "مبتدئ",
     "read": "8 دقائق",
     "url": "ai/chatgpt-prompts.html",
@@ -102,7 +304,11 @@
     "title": "Docker من الفكرة إلى النشر: صورة واحدة تنقل مشروعك أينما ذهبت",
     "excerpt": "Dockerfile نظيف، طبقات مخزّنة، docker compose لبيئة تطوير كاملة، وأخطاء شائعة ترفع حجم الصورة 10 أضعاف.",
     "category": "برامج",
-    "tags": ["Docker", "DevOps", "Deploy"],
+    "tags": [
+      "Docker",
+      "DevOps",
+      "Deploy"
+    ],
     "level": "متوسط",
     "read": "13 دقيقة",
     "url": "programs/docker-basics.html",
@@ -116,7 +322,11 @@
     "title": "الخوارزميات للطلاب: من Big-O إلى الشجرة الثنائية بأمثلة بصرية",
     "excerpt": "مسار مبسّط لمن يبدأ من الصفر: كيف تقيس التعقيد الزمني وتختار البنية المناسبة قبل أن تكتب سطراً واحداً.",
     "category": "درس",
-    "tags": ["Algorithms", "Data Structures", "CS"],
+    "tags": [
+      "Algorithms",
+      "Data Structures",
+      "CS"
+    ],
     "level": "مبتدئ",
     "read": "16 دقيقة",
     "url": "tutorials/algorithms-101.html",

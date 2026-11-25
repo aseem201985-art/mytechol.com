@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Obsidian: ابنِ «دماغاً ثانياً» عربياً يربط معرفتك بدل أن يدفنها — MyTechol</title>
+<meta name="description" content="ملاحظات كثيرة بلا نظام تعني معرفة صفر. طريقة عمل كاملة: بنية مجلدات، وسوم، ملاحظات ذرّية، مراجعة أسبوعية، ونسخ احتياطي — بالعربية ودعم RTL.">
+<meta property="og:title" content="Obsidian: ابنِ «دماغاً ثانياً» عربياً يربط معرفتك بدل أن يدفنها">
+<meta property="og:description" content="ملاحظات كثيرة بلا نظام تعني معرفة صفر. طريقة عمل كاملة: بنية مجلدات، وسوم، ملاحظات ذرّية، مراجعة أسبوعية، ونسخ احتياطي — بالعربية ودعم RTL.">
+<meta property="article:published_time" content="2025-11-12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(109,94,252,.42), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(0,212,255,.3), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+<style>
+  .code-cap { font-family: var(--mono); font-size:.72rem; font-weight:700; letter-spacing:.08em;
+    color: var(--text-dim); margin: 18px 0 -8px; direction: ltr; text-align: left; }
+  .prose table { width:100%; border-collapse: collapse; font-size:.88rem; margin: 18px 0; }
+  .prose th { background: var(--surface-2); font-weight:800; }
+  .prose th, .prose td { border:1px solid var(--border); padding:10px 12px; text-align: start; }
+  .prose td.num { font-family: var(--mono); font-size:.82rem; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../programs.html">برامج</a><span>/</span>
+      <span>Obsidian: دماغ ثانٍ</span>
+    </div>
+    <span class="eyebrow">برامج</span>
+    <h1 class="reveal">Obsidian: ابنِ «دماغاً ثانياً» عربياً يربط معرفتك بدل أن يدفنها</h1>
+    <p class="lead" style="max-width:760px">ملاحظات كثيرة بلا نظام تعني معرفة صفر. طريقة عمل كاملة: بنية مجلدات، وسوم، ملاحظات ذرّية، مراجعة أسبوعية، ونسخ احتياطي — بالعربية ودعم RTL.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">م</span><span>فريق MyTechol</span></div>
+      <span class="sep">·</span>
+      <span>2025-11-12</span>
+      <span class="sep">·</span>
+      <span>11 دقيقة قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--beginner">مبتدئ</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">PKM</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+
+<p>كلنا نكتب ملاحظات. القليل منّا يستطيع استرجاعها عند الحاجة. السبب ليس الذاكرة، بل
+<strong>غياب بنية تسمح للمعلومة الجديدة بالاتصال بالقديمة</strong>.</p>
+
+<h2 id="why">لماذا ملاحظاتك لا تفيدك؟</h2>
+<table>
+<tr><th>المشكلة</th><th>النتيجة</th><th>الحل</th></tr>
+<tr><td>مجلدات عميقة ومتشابكة</td><td>لا تعرف أين تُحفظ الملاحظة</td><td>بنية مسطّحة + روابط</td></tr>
+<tr><td>ملاحظة عملاقة لكل موضوع</td><td>غير قابلة لإعادة الاستخدام</td><td>ملاحظات ذرّية</td></tr>
+<tr><td>لا مراجعة</td><td>تراكم بلا رسوخ</td><td>مراجعة أسبوعية 20 دقيقة</td></tr>
+<tr><td>بحث فقط بلا ربط</td><td>تفقد الصلة بين الأفكار</td><td>روابط <code>[[...]]</code> ووسوم</td></tr>
+</table>
+
+<h2 id="setup">الإعداد العربي الصحيح</h2>
+<ol>
+  <li><strong>الإصدار</strong>: نزّل آخر نسخة من <a href="https://obsidian.md" target="_blank" rel="noopener">obsidian.md</a> — مجاني للاستخدام الشخصي.</li>
+  <li><strong>الخط</strong>: الإعدادات ← المظهر ← الخط → اختر خطاً عربياً جيداً (Cairo, IBM Plex Sans Arabic).</li>
+  <li><strong>RTL</strong>: فعّل إضافة <em>RTL Support</em> من الإضافات المجتمعية لضبط اتجاه المحرّر.</li>
+  <li><strong>المحرّر</strong>: فعّل <em>Live Preview</em> لترى التنسيق أثناء الكتابة.</li>
+  <li><strong>المظهر</strong>: جرّب ثيم <em>Minimal</em> — نظيف ويحترم العربية.</li>
+</ol>
+<blockquote>نصيحة تقنية: أبقِ الحفظ التلقائي مفعّلاً (افتراضي) واحفظ المستودع في مجلد
+تزامن (OneDrive / iCloud / Syncthing) بدل الاعتماد على المزامنة المدفوعة.</blockquote>
+
+<h2 id="structure">بنية المجلدات: بسيطة تنتصر</h2>
+{{<div class="code-cap">vault-structure</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>vault/
+├── 00_Inbox/         # كل شيء جديد يذهب هنا أولاً
+├── 10_Notes/         # ملاحظات دائمة، ذرّية
+├── 20_Sources/       # ملخّصات كتب ومقالات وفيديوهات
+├── 30_Projects/      # مشاريع نشطة فقط
+├── 40_Areas/         # مسؤوليات مستمرة (صحة، عمل، مال)
+└── 90_Archive/       # كل ما انتهى</code></pre></div>}}
+<p>الأرقام في البداية تُثبّت الترتيب، وهذا يمنع إعادة تنظيم لا نهائية.</p>
+
+<h2 id="atomic">الملاحظات الذرّية: الوحدة الأساسية</h2>
+<p><strong>ملاحظة واحدة = فكرة واحدة</strong>. العنوان جملة كاملة، والمحتوى 3–7 أسطر.</p>
+{{<div class="code-cap">atomic-note.md</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># الفرق بين الحمل والتزامن لا يُعنى بالسرعة
+
+السرعة المشتركة شيء، والتصميم المشترك شيء آخر.
+
+الحمل: عدد الطلبات في نفس اللحظة.
+التزامن: عدد الطلبات التي تُعالَج فعلاً في نفس اللحظة.
+
+#أداء #أنظمة #مفاهيم
+
+المصدر: [[ملخّص كتاب Designing Data-Intensive Applications]]
+يرتبط بـ: [[قائمة انتظار الرسائل]] · [[حدّ التزامن]]</code></pre></div>}}
+<p>لاحظ البنية: فكرة + تعريفات + وسوم + روابط + مصدر. كل ملاحظة تحمل هذا الهيكل تصبح
+قابلة للبحث والربط وإعادة الاستخدام.</p>
+
+<h2 id="links">الربط والوسوم: الفرق الذي يحسم الأمر</h2>
+<table>
+<tr><th></th><th>الرابط <code>[[...]]</code></th><th>الوسم <code>#...</code></th></tr>
+<tr><td>يستخدم لـ</td><td>علاقة معنوية بين فكرتين</td><td>تصنيف عريض أو حالة</td></tr>
+<tr><td>مثال</td><td><code>[[الفهرس المقلوب]]</code></td><td><code>#قيد-المراجعة</code></td></tr>
+<tr><td>العدد الأمثل</td><td>3–5 روابط لكل ملاحظة</td><td>أقل من 30 وسماً إجمالاً</td></tr>
+</table>
+<p><strong>الفرق التقني:</strong> الملاحظات تكبر وتصبح مجموعة (Graph)، والوسوم تُستخدم
+للبحث والفلترة. لا تستخدم وسماً حيث تحتاج رابطاً، ولا رابطاً حيث يكفي وسم.</p>
+
+<h2 id="review">المراجعة الأسبوعية: 20 دقيقة تُنقذ النظام</h2>
+<ol>
+  <li><strong>أفرغ الـ Inbox</strong> — كل ملاحظة إمّا تُحوَّل للأرشيف أو تُحوَّل لملاحظة ذرّية.</li>
+  <li><strong>اربط الجديد</strong> — كل ملاحظة تحتاج رابطاً واحداً على الأقل.</li>
+  <li><strong>راجع المشاريع</strong> — هل هناك مشروع توقّف؟ انقله للأرشيف بشفافية.</li>
+  <li><strong>اقرأ ملاحظة قديمة</strong> — ابحث عن كلمة عشوائية، واقرأ أول نتيجة.</li>
+</ol>
+<blockquote>المراجعة هي ما يفرّق بين «مقبرة ملاحظات» و«دماغ ثانٍ». بدونها، كل النظام
+يتحوّل إلى أرشيف أنيق لا تقرأه.</blockquote>
+
+<h2 id="backup">النسخ الاحتياطي: انسَ المزامنة، فكّر بالنسخة</h2>
+<p>المزامنة ليست نسخاً احتياطياً — لو حُذف ملف عن طريق الخطأ، فسيُحذف في كل الأجهزة.</p>
+{{<div class="code-cap">backup.sh</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># نسخة أسبوعية مضغوطة مؤرّخة
+cd ~/Documents &amp;&amp; tar -czf "vault-$(date +%F).tar.gz" vault/
+
+# احتفظ بآخر 8 نسخ فقط
+ls -1t vault-*.tar.gz | tail -n +9 | xargs -r rm --
+
+# الأفضل: نسخة خارج الجهاز (Git للمستودعات النصية)
+cd ~/Documents/vault
+git add -A &amp;&amp; git commit -m "weekly snapshot $(date +%F)"
+git push</code></pre></div>}}
+<blockquote><strong>الخطوة التالية:</strong> أنشئ مجلد <code>00_Inbox</code> الآن، واكتب
+فيه 5 ملاحظات من هذا الأسبوع ببنية الملاحظة الذرّية. ابدأ صغيراً — النظام الذي تكبره تدريجياً
+يبقى حياً.</blockquote>
+
+        <div class="tags-row"><span class="chip">Obsidian</span><span class="chip">إنتاجية</span><span class="chip">PKM</span><span class="chip">Markdown</span></div>
+
+        <div class="card" style="margin-top:44px; display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between; background:linear-gradient(135deg, rgba(109,94,252,.12), transparent)">
+          <div>
+            <h3 style="margin-bottom:6px; font-size:1.05rem">أعجبك المقال؟</h3>
+            <p style="font-size:.87rem; color:var(--text-soft); margin:0">مقالة تقنية عميقة واحدة كل أسبوع على بريدك — بلا حشو.</p>
+          </div>
+          <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="toc">
+          <h5>محتويات المقال</h5>
+          <a href="#why">لماذا ملاحظاتك لا تفيدك؟</a><a href="#setup">الإعداد العربي الصحيح</a><a href="#structure">بنية المجلدات</a><a href="#atomic">الملاحظات الذرّية</a><a href="#links">الربط والوسوم</a><a href="#review">المراجعة الأسبوعية</a><a href="#backup">النسخ الاحتياطي</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</article>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal"><h2 style="font-size:1.6rem">اقرأ أيضاً</h2></div>
+    <div class="related">
+      <a href="../tutorials/linux-cli.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>برامج</span><span class="sep"></span><span>9 دقائق</span></div><h3 style="font-size:.98rem; line-height:1.5">30 أمراً تختصر ساعات عملك</h3></a><a href="../posts/clean-code.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>برامج</span><span class="sep"></span><span>13 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">الكود النظيف: 12 قاعدة</h3></a><a href="../ai/chatgpt-prompts.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>برامج</span><span class="sep"></span><span>8 دقائق</span></div><h3 style="font-size:.98rem; line-height:1.5">هندسة الأوامر: 20 قالباً</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="../index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

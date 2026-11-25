@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أمان تطبيقات الويب: الثغرات العشر التي تُخترق بها المواقع فعلاً — MyTechol</title>
+<meta name="description" content="ليست قائمة نظرية — بل الثغرات المتكررة في تقارير الاختبار الحقيقية: SQLi، XSS، IDOR، رفع الملفات، والأسرار المكشوفة. مع الكود الصحيح لكل واحدة.">
+<meta property="og:title" content="أمان تطبيقات الويب: الثغرات العشر التي تُخترق بها المواقع فعلاً">
+<meta property="og:description" content="ليست قائمة نظرية — بل الثغرات المتكررة في تقارير الاختبار الحقيقية: SQLi، XSS، IDOR، رفع الملفات، والأسرار المكشوفة. مع الكود الصحيح لكل واحدة.">
+<meta property="article:published_time" content="2025-11-23">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(109,94,252,.42), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(0,212,255,.3), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+<style>
+  .code-cap { font-family: var(--mono); font-size:.72rem; font-weight:700; letter-spacing:.08em;
+    color: var(--text-dim); margin: 18px 0 -8px; direction: ltr; text-align: left; }
+  .prose table { width:100%; border-collapse: collapse; font-size:.88rem; margin: 18px 0; }
+  .prose th { background: var(--surface-2); font-weight:800; }
+  .prose th, .prose td { border:1px solid var(--border); padding:10px 12px; text-align: start; }
+  .prose td.num { font-family: var(--mono); font-size:.82rem; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../posts.html">برمجة</a><span>/</span>
+      <span>أمان تطبيقات الويب</span>
+    </div>
+    <span class="eyebrow">برمجة</span>
+    <h1 class="reveal">أمان تطبيقات الويب: الثغرات العشر التي تُخترق بها المواقع فعلاً</h1>
+    <p class="lead" style="max-width:760px">ليست قائمة نظرية — بل الثغرات المتكررة في تقارير الاختبار الحقيقية: SQLi، XSS، IDOR، رفع الملفات، والأسرار المكشوفة. مع الكود الصحيح لكل واحدة.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">م</span><span>فريق MyTechol</span></div>
+      <span class="sep">·</span>
+      <span>2025-11-23</span>
+      <span class="sep">·</span>
+      <span>16 دقيقة قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--inter">متوسط</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">SEC</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+
+<p>الاختراقات الحقيقية نادراً ما تكون عمليات معقّدة. في معظم تقارير الحوادث، نقطة الدخول
+بسيطة: استعلام واحد غير مُعامل، أو معرّف لم يُتحقَّق من ملكيته، أو مفتاح API في مستودع عام.</p>
+
+<h2 id="why">لماذا تُخترق المواقع؟</h2>
+<p>لأن الأمان يُعتبر «مرحلة لاحقة». لكن التكلفة الحقيقية ليست إضافة طبقة أمان — بل
+<strong>كتابة الكود بطريقة صحيحة من البداية</strong>، وهي غالباً لا تكلّف أسطراً إضافية.</p>
+
+<h2 id="sqli">1. حقن SQL: لا يزال حياً</h2>
+<p>رغم كل التحذيرات، لا يزال في المرتبة الأولى في تقارير كثيرة.</p>
+{{<div class="code-cap">sqli.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># ✗ كارثة: النص يدخل مباشرة إلى الاستعلام
+cur.execute(f"SELECT * FROM users WHERE email = '{{email}}'")
+# المدخل: ' OR '1'='1' --   =&gt; إرجاع كل المستخدمين
+
+# ✓ معاملات (parameterized): القاعدة تتعامل مع القيمة كبيانات لا ككود
+cur.execute("SELECT id, name FROM users WHERE email = %s", (email,))
+row = cur.fetchone()</code></pre></div>}}
+<p><strong>الحالات التي يخطئ فيها الناس:</strong></p>
+<ul>
+  <li>أسماء الجداول والأعمدة <em>لا يمكن</em> تعقيدها كمعاملات — استخدم قائمة بيضاء صريحة.</li>
+  <li><code>ORDER BY</code> و<code>LIMIT</code> تحتاج تحققاً يدوياً.</li>
+  <li>ORMs ليست مناعة تلقائية: <code>raw()</code> و<code>extra()</code> تعيد الثغرة.</li>
+</ul>
+{{<div class="code-cap">sqli-safe.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>SORTABLE = {{"created_at", "name", "score"}}   # قائمة بيضاء
+
+def list_users(sort: str, limit: int = 20):
+    col = sort if sort in SORTABLE else "created_at"
+    limit = max(1, min(limit, 100))          # حدّ صريح يمنع الإفراغ
+    cur.execute(f"SELECT id, name FROM users ORDER BY {{col}} LIMIT %s", (limit,))</code></pre></div>}}
+
+<h2 id="xss">2. XSS: تصاعد في ثلاث طبقات دفاع</h2>
+{{<div class="code-cap">xss.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># طبقة 1: الترميز عند العرض — الدفاع الأساسي
+from markupsafe import escape
+template = f"&lt;h2&gt;مرحباً {{escape(user_name)}}&lt;/h2&gt;"
+
+# طبقة 2: Content Security Policy — يمنع تنفيذ سكربتات غير مصرّح بها
+# Header: Content-Security-Policy:
+#   default-src 'self'; script-src 'self'; object-src 'none';
+
+# طبقة 3: كوكيز HttpOnly تمنع سرقة الجلسة عبر JS
+response.set_cookie("sid", token,
+    httponly=True, secure=True, samesite="Lax", max_age=86400)</code></pre></div>}}
+<blockquote>لا تستخدم <code>innerHTML</code> مع مدخلات مستخدم أبداً. استخدم
+<code>textContent</code>، وإن احتجت HTML فاستخدم مُطهّراً جيداً (DOMPurify) وليس تعبيراً نمطياً.</blockquote>
+{{<div class="code-cap">xss.js</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>// ✗
+el.innerHTML = `&lt;span&gt;${{userInput}}&lt;/span&gt;`;
+
+// ✓
+el.textContent = userInput;
+
+// ✓ عند الحاجة لـ HTML فعلاً
+import DOMPurify from "dompurify";
+el.innerHTML = DOMPurify.sanitize(userHtml, {{ ALLOWED_TAGS: ["b", "i", "a"] }});</code></pre></div>}}
+
+<h2 id="idor">3. IDOR: الثغرة المنطقية الأشهر</h2>
+<p>لا علاقة لها بـ SQL أو XSS. ببساطة: المستخدم يغيّر رقماً في الرابط ويصل لبيانات غيره.</p>
+{{<div class="code-cap">idor.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># ✗ التحقق من تسجيل الدخول فقط
+@app.get("/api/orders/{{order_id}}")
+def get_order(order_id: int, user=Depends(current_user)):
+    return db.orders.find_one({{"_id": order_id}})   # أي مستخدم يرى أي طلب!
+
+# ✓ التحقق من الملكية في كل استعلام — ليس فلترة لاحقة
+@app.get("/api/orders/{{order_id}}")
+def get_order(order_id: int, user=Depends(current_user)):
+    order = db.orders.find_one({{"_id": order_id, "user_id": user.id}})
+    if not order:
+        raise HTTPException(404)     # 404 لا 403 — لا تؤكد الوجود
+    return order</code></pre></div>}}
+<blockquote>مبدأ مهم: <strong>أعد 404 لا 403</strong> عند محاولة الوصول لمورد لا تملكه.
+الـ 403 يؤكد وجود المورد — وهذه معلومة يستغلها المهاجم.</blockquote>
+
+<h2 id="auth">4. المصادقة: تفاصيل تُهمَل</h2>
+<ol>
+  <li><strong>كلمات المرور</strong>: استخدم <code>argon2id</code> أو <code>bcrypt</code> (cost ≥ 12). لا MD5/SHA أبداً.</li>
+  <li><strong>حدّ المحاولات</strong>: 5 محاولات/دقيقة/حساب + تأخير متزايد.</li>
+  <li><strong>رسائل خطأ موحّدة</strong>: «البريد أو كلمة المرور غير صحيحة» — لا تكشف أيّهما.</li>
+  <li><strong>الجلسات</strong>: جدّد المعرّف عند تسجيل الدخول (يمنع Session Fixation).</li>
+  <li><strong>2FA</strong>: أضفها للحسابات الإدارية كحدّ أدنى.</li>
+</ol>
+{{<div class="code-cap">auth.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>from argon2 import PasswordHasher
+from argon2.exceptions import VerifyMismatchError
+
+ph = PasswordHasher(time_cost=3, memory_cost=65536, parallelism=4)
+
+def hash_password(pw: str) -&gt; str:
+    return ph.hash(pw)            # يحتوي الملح تلقائياً
+
+def verify(pw: str, stored: str) -&gt; bool:
+    try:
+        ph.verify(stored, pw)
+        return True
+    except VerifyMismatchError:
+        return False</code></pre></div>}}
+
+<h2 id="upload">5. رفع الملفات: مساحة هجوم كاملة</h2>
+<ul>
+  <li><strong>لا تثق بالامتداد</strong>: تحقّق من النوع الفعلي (magic bytes).</li>
+  <li><strong>لا تخزّن في جذر الموقع</strong>: استخدم مخزناً خارجياً أو مجلداً غير قابل للتنفيذ.</li>
+  <li><strong>حدّد الحجم</strong> قبل القراءة، لا بعدها (منع استنزاف القرص).</li>
+  <li><strong>أعد تسمية الملف</strong> بمعرّف عشوائي — لا تحتفظ بالاسم الأصلي في المسار.</li>
+</ul>
+{{<div class="code-cap">upload.py</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>ALLOWED = {{"image/jpeg", "image/png", "image/webp"}}
+MAX_BYTES = 5 * 1024 * 1024
+
+async def save_upload(file: UploadFile):
+    head = await file.read(512)                    # اقرأ البداية فقط للفحص
+    mime = magic.from_buffer(head, mime=True)
+    if mime not in ALLOWED:
+        raise HTTPException(415, "نوع الملف غير مدعوم")
+
+    name = f"{{uuid4().hex}}.{{mime.split('/')[1]}}"   # اسم مولَّد، لا اسم المستخدم
+    dest = UPLOAD_DIR / name
+    size = 0
+    with dest.open("wb") as f:
+        while chunk := await file.read(65536):
+            size += len(chunk)
+            if size &gt; MAX_BYTES:
+                f.close(); dest.unlink(missing_ok=True)
+                raise HTTPException(413, "الملف كبير جداً")
+            f.write(chunk)
+    return name</code></pre></div>}}
+
+<h2 id="secrets">6. الأسرار المكشوفة: صامتة ومدمّرة</h2>
+<p>مفاتيح API في مستودع عام = مخترق في دقائق. حتى في مستودع خاص، فهي تبقى في تاريخ Git للأبد.</p>
+{{<div class="code-cap">secrets.sh</div><div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># افحص قبل كل دفع
+git secrets --scan
+# أو
+gitleaks detect --source . --verbose
+
+# لا تضع أبداً .env في Git
+echo ".env*" &gt;&gt; .gitignore
+
+# للأسرار في CI
+gh secret set DATABASE_URL</code></pre></div>}}
+<blockquote>إذا كشفت سرّاً عن طريق الخطأ: <strong>أبطِله فوراً</strong>. حذف الـ commit غير
+كافٍ — يبقى في reflog وفي مرايا الأطراف الثالثة.</blockquote>
+
+<h3>7–10. سريعاً</h3>
+<table>
+<tr><th>#</th><th>الثغرة</th><th>العلاج في سطر</th></tr>
+<tr><td>7</td><td>CSRF</td><td>SameSite=Lax + توكن لكل نموذج</td></tr>
+<tr><td>8</td><td>SSRF</td><td>قائمة بيضاء للنطاقات المسموحة، ومنع IPs الداخلية</td></tr>
+<tr><td>9</td><td>إساءة استغلال التزامن</td><td>Rate limit على كل مسار حسّاس</td></tr>
+<tr><td>10</td><td>تسريب معلومات</td><td>لا تُظهر stack traces في الإنتاج</td></tr>
+</table>
+
+<h2 id="check">قائمة تحقّق قبل النشر</h2>
+<ol>
+  <li>كل استعلام SQL معامَلي (parameterized).</li>
+  <li>ترميز كل مخرجات المستخدم + CSP مفعّل.</li>
+  <li>تحقّق من الملكية في كل مسار يصل لمورد.</li>
+  <li>Argon2/bcrypt + حدّ محاولات + رسائل موحّدة.</li>
+  <li>رفع ملفات: نوع فعلي + حجم + اسم مولَّد.</li>
+  <li>لا أسرار في Git — فحص تلقائي في CI.</li>
+  <li>HTTPS إلزامي + HSTS + كوكيز <code>Secure; HttpOnly</code>.</li>
+  <li>نسخ احتياطي مشفّر ومُختبَر استعادته.</li>
+</ol>
+<blockquote><strong>الخطوة التالية:</strong> ابحث في مشروعك عن
+<code>f"SELECT</code> و<code>innerHTML</code>. أي نتيجة هي نقطة بدء فورية —
+إصلاحها يستغرق 10 دقائق، ويمنع أخطر ثغرتين.</blockquote>
+
+        <div class="tags-row"><span class="chip">Security</span><span class="chip">Backend</span><span class="chip">أمان</span><span class="chip">Web</span></div>
+
+        <div class="card" style="margin-top:44px; display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between; background:linear-gradient(135deg, rgba(109,94,252,.12), transparent)">
+          <div>
+            <h3 style="margin-bottom:6px; font-size:1.05rem">أعجبك المقال؟</h3>
+            <p style="font-size:.87rem; color:var(--text-soft); margin:0">مقالة تقنية عميقة واحدة كل أسبوع على بريدك — بلا حشو.</p>
+          </div>
+          <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="toc">
+          <h5>محتويات المقال</h5>
+          <a href="#why">لماذا تُخترق المواقع؟</a><a href="#sqli">حقن SQL</a><a href="#xss">XSS</a><a href="#idor">IDOR: أشهر ثغرة منطقية</a><a href="#auth">المصادقة والجلسات</a><a href="#upload">رفع الملفات</a><a href="#secrets">الأسرار المكشوفة</a><a href="#check">قائمة تحقّق</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</article>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal"><h2 style="font-size:1.6rem">اقرأ أيضاً</h2></div>
+    <div class="related">
+      <a href="../posts/clean-code.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>برمجة</span><span class="sep"></span><span>13 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">الكود النظيف: 12 قاعدة</h3></a><a href="../programs/postgres-tuning.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>برمجة</span><span class="sep"></span><span>14 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">ضبط PostgreSQL</h3></a><a href="../posts/typescript-patterns.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>برمجة</span><span class="sep"></span><span>12 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">أنماط TypeScript</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="../index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>
