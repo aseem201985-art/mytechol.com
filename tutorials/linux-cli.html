@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صندوق أدوات سطر الأوامر: 30 أمراً تختصر ساعات عملك — MyTechol</title>
+<meta name="description" content="من grep و find إلى awk و sed و tmux — مجموعة أوامر مصنّفة حسب الاستخدام اليومي للمبرمج والمهندس.">
+<meta property="og:title" content="صندوق أدوات سطر الأوامر: 30 أمراً تختصر ساعات عملك">
+<meta property="og:description" content="من grep و find إلى awk و sed و tmux — مجموعة أوامر مصنّفة حسب الاستخدام اليومي للمبرمج والمهندس.">
+<meta property="article:published_time" content="2025-01-29">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(109,94,252,.42), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(0,212,255,.3), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../posts.html">أدوات</a><span>/</span>
+      <span>صندوق أدوات سطر الأوامر: 30 أمراً تختص…</span>
+    </div>
+    <span class="eyebrow">أدوات</span>
+    <h1 class="reveal">صندوق أدوات سطر الأوامر: 30 أمراً تختصر ساعات عملك</h1>
+    <p class="lead" style="max-width:760px">من grep و find إلى awk و sed و tmux — مجموعة أوامر مصنّفة حسب الاستخدام اليومي للمبرمج والمهندس.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">أ</span><span>أحمد</span></div>
+      <span class="sep">·</span>
+      <span>2025-01-29</span>
+      <span class="sep">·</span>
+      <span>9 دقائق قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--beginner">مبتدئ</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">>_</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+        
+<p>سطر الأوامر ليس «شيئاً قديماً». هو أسرع واجهة موجودة، وتكلفته صفر. هذه قائمة أوامر
+مصنّفة حسب ما تفعله فعلاً في يوم العمل — لا حسب الترتيب الأبجدي.</p>
+
+<h2 id="find">البحث والاستكشاف</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># ابحث عن نص داخل كل ملفات المشروع
+grep -rn --exclude-dir=node_modules &quot;TODO&quot; .
+
+# البحث مع السياق: 3 أسطر قبل وبعد
+grep -rn -C 3 &quot;fetchUser&quot; src/
+
+# ملفات بكلمة في الاسم
+find . -type f -iname &quot;*config*&quot; -not -path &quot;*/node_modules/*&quot;
+
+# ملفات عُدّلت في آخر 24 ساعة
+find . -type f -mtime -1 -not -path &quot;./.git/*&quot;
+
+# حجم كل مجلد في المستوى الحالي مرتّباً
+du -sh */ | sort -rh | head -10
+
+# ما الذي يشغل هذه المساحة فعلاً؟
+ncdu .</code></pre></div>
+
+<h2 id="text">معالجة النصوص</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># أول 20 سطراً يحتوي &quot;ERROR&quot;
+grep &quot;ERROR&quot; app.log | head -20
+
+# كم مرة تكرّر كل رمز حالة؟
+awk &#x27;{print $9}&#x27; access.log | sort | uniq -c | sort -rn
+
+# استبدال دفعة في كل الملفات (مع نسخة احتياطية)
+sed -i.bak &#x27;s/old_domain/new_domain/g&#x27; $(grep -rl &quot;old_domain&quot; . --include=&quot;*.ts&quot;)
+
+# استخراج عمود معيّن من CSV
+cut -d&#x27;,&#x27; -f1,3 users.csv
+
+# تحويل JSON إلى جدول مقروء
+jq -r &#x27;.items[] | [.id, .name, .status] | @tsv&#x27; data.json | column -t</code></pre></div>
+<blockquote><code>awk</code> و <code>sed</code> يبدوان قديمين، لكنهما موجودان على كل سيرفر في العالم
+بلا تثبيت. هذه ميزة لا تقدّر بثمن وقت الأزمات.</blockquote>
+
+<h2 id="proc">العمليات والشبكة</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># من يشغل المنفذ 3000؟
+lsof -i :3000
+# أو
+ss -tulpn | grep 3000
+
+# راقب عمليات معيّنة كل ثانيتين
+watch -n2 &#x27;ps aux | grep node | grep -v grep&#x27;
+
+# استهلاك موارد مرتّب
+top -o %MEM
+
+# اختبر استجابة خدمة مع التوقيت
+curl -sS -w &quot;\n%{http_code} %{time_total}s\n&quot; https://api.example.com/health
+
+# نزّل ملفاً مع استكمال عند الانقطاع
+curl -C - -O https://example.com/big-file.zip</code></pre></div>
+
+<h2 id="combo">دمج الأوامر: القوة الحقيقية</h2>
+<p>الأمر الواحد محدود؛ التركيب هو ما يجعلك سريعاً. الأنبوب <code>|</code> يمرّر خرج أمر
+كمدخل للذي بعده:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code># أكثر 10 عناوين IP زيارةً
+awk &#x27;{print $1}&#x27; access.log | sort | uniq -c | sort -rn | head -10
+
+# أكثر 5 مسارات أبطأ استجابة (متوسط الزمن)
+awk &#x27;{sum[$7]+=$10; n[$7]++} END {for (p in sum) printf &quot;%.0f %s\n&quot;, sum[p]/n[p], p}&#x27; access.log \
+  | sort -rn | head -5
+
+# حجم كل نوع ملف في المشروع
+find . -type f -not -path &quot;./.git/*&quot; | sed &#x27;s/.*\.//&#x27; | sort | uniq -c | sort -rn
+
+# نسخة احتياطية مضغوطة بتاريخ اليوم
+tar -czf &quot;backup-$(date +%F).tar.gz&quot; ./data ./config</code></pre></div>
+
+<h2 id="aliases">الاختصارات التي أوفرها يومياً</h2>
+<p>ضعها في <code>~/.bashrc</code> أو <code>~/.zshrc</code>:</p>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>alias ll=&#x27;ls -lah&#x27;
+alias gs=&#x27;git status -sb&#x27;
+alias gd=&#x27;git diff&#x27;
+alias serve=&#x27;python3 -m http.server 8000&#x27;
+alias ports=&#x27;ss -tulpn&#x27;
+alias myip=&#x27;curl -s ifconfig.me&#x27;
+
+# دالة: أنشئ مجلداً وادخله بأمر واحد
+mkcd() { mkdir -p &quot;$1&quot; &amp;&amp; cd &quot;$1&quot;; }</code></pre></div>
+<p>ابدأ بثلاثة اختصارات فقط تستخدمها فعلاً هذا الأسبوع. الاختصارات التي لا تتذكّرها لا قيمة لها.</p>
+<blockquote><strong>الخطوة التالية:</strong> افتح آخر سجل أوامر لديك (<code>history | tail -40</code>)
+وابحث عن أمر كررته ثلاث مرات. حوّله إلى اختصار الآن.</blockquote>
+
+        <div class="tags-row">
+          <span class="chip">Linux</span>
+<span class="chip">CLI</span>
+<span class="chip">DevOps</span>
+        </div>
+
+        <div class="card" style="margin-top:44px; display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between; background:linear-gradient(135deg, rgba(109,94,252,.12), transparent)">
+          <div>
+            <h3 style="margin-bottom:6px; font-size:1.05rem">أعجبك الشرح؟</h3>
+            <p style="font-size:.87rem; color:var(--text-soft); margin:0">درس عملي واحد كل أسبوع على بريدك — بلا حشو.</p>
+          </div>
+          <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="toc">
+          <h5>محتويات المقال</h5>
+          <a href="#find">البحث والاستكشاف</a>
+<a href="#text">معالجة النصوص</a>
+<a href="#proc">العمليات والشبكة</a>
+<a href="#combo">دمج الأوامر</a>
+<a href="#aliases">الاختصارات</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</article>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal"><h2 style="font-size:1.6rem">اقرأ أيضاً</h2></div>
+    <div class="related">
+      <a href="../tutorials/python-async.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>درس</span><span class="sep"></span><span>14 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">فهم Async/Await في بايثون من الصفر حتى الإنتاج</h3></a>
+<a href="../posts/react-19.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>شرح</span><span class="sep"></span><span>11 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">React 19: ما الذي يتغير فعلياً في طريقة كتابة الكومبوننتس؟</h3></a>
+<a href="../ai/ai-agents.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>ذكاء اصطناعي</span><span class="sep"></span><span>18 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">بناء وكيل ذكاء اصطناعي (AI Agent) يفهم أدواتك ويستخدمها</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="../index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

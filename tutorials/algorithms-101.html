@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الخوارزميات للطلاب: من Big-O إلى الشجرة الثنائية بأمثلة بصرية — MyTechol</title>
+<meta name="description" content="مسار مبسّط لمن يبدأ من الصفر: كيف تقيس التعقيد الزمني وتختار البنية المناسبة قبل أن تكتب سطراً واحداً.">
+<meta property="og:title" content="الخوارزميات للطلاب: من Big-O إلى الشجرة الثنائية بأمثلة بصرية">
+<meta property="og:description" content="مسار مبسّط لمن يبدأ من الصفر: كيف تقيس التعقيد الزمني وتختار البنية المناسبة قبل أن تكتب سطراً واحداً.">
+<meta property="article:published_time" content="2024-12-27">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(109,94,252,.42), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(0,212,255,.3), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../tutorials.html">درس</a><span>/</span>
+      <span>الخوارزميات للطلاب: من Big-O إلى الشجر…</span>
+    </div>
+    <span class="eyebrow">درس</span>
+    <h1 class="reveal">الخوارزميات للطلاب: من Big-O إلى الشجرة الثنائية بأمثلة بصرية</h1>
+    <p class="lead" style="max-width:760px">مسار مبسّط لمن يبدأ من الصفر: كيف تقيس التعقيد الزمني وتختار البنية المناسبة قبل أن تكتب سطراً واحداً.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">أ</span><span>أحمد</span></div>
+      <span class="sep">·</span>
+      <span>2024-12-27</span>
+      <span class="sep">·</span>
+      <span>16 دقيقة قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--beginner">مبتدئ</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">O(n)</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+        
+<p>الخوارزميات ليست مادة للحفظ. هي طريقة للإجابة عن سؤال واحد:
+<strong>«هل سيبقى برنامجي سريعاً عندما تصبح البيانات كبيرة؟»</strong> هذا المقال يشرح
+الأساسيات بأمثلة وأرقام حقيقية.</p>
+
+<h2 id="bigo">Big-O بلغة بسيطة</h2>
+<p>Big-O لا يقيس الثواني — يقيس <strong>كيف ينمو الوقت مع نمو البيانات</strong>.</p>
+<table>
+  <thead><tr><th>التعقيد</th><th>الاسم</th><th>n = 10</th><th>n = 1,000</th><th>n = 1,000,000</th></tr></thead>
+  <tbody>
+    <tr><td>O(1)</td><td>ثابت</td><td>1</td><td>1</td><td>1</td></tr>
+    <tr><td>O(log n)</td><td>لوغاريتمي</td><td>3</td><td>10</td><td>20</td></tr>
+    <tr><td>O(n)</td><td>خطي</td><td>10</td><td>1,000</td><td>1,000,000</td></tr>
+    <tr><td>O(n log n)</td><td>شبه خطي</td><td>33</td><td>10,000</td><td>20,000,000</td></tr>
+    <tr><td>O(n²)</td><td>تربيعي</td><td>100</td><td>1,000,000</td><td>10¹²</td></tr>
+  </tbody>
+</table>
+<blockquote>الفرق بين O(n) و O(n²) عند مليون عنصر ليس «أبطأ قليلاً» — إنه فرق بين ثانية و11 يوماً.
+هذا سبب وجود الخوارزميات.</blockquote>
+
+<h2 id="structures">هياكل البيانات: متى تستخدم ماذا</h2>
+<table>
+  <thead><tr><th>الهيكل</th><th>وصول بالفهرس</th><th>بحث</th><th>إضافة في البداية</th><th>الاستخدام</th></tr></thead>
+  <tbody>
+    <tr><td>Array</td><td>O(1)</td><td>O(n)</td><td>O(n)</td><td>وصول سريع بالفهرس</td></tr>
+    <tr><td>Linked List</td><td>O(n)</td><td>O(n)</td><td>O(1)</td><td>إدخال/حذف متكرر</td></tr>
+    <tr><td>Hash Map</td><td>—</td><td>O(1)</td><td>O(1)</td><td>بحث بالمفتاح</td></tr>
+    <tr><td>Set</td><td>—</td><td>O(1)</td><td>O(1)</td><td>إزالة التكرار</td></tr>
+    <tr><td>Tree متوازن</td><td>O(log n)</td><td>O(log n)</td><td>O(log n)</td><td>بيانات مرتّبة + بحث</td></tr>
+  </tbody>
+</table>
+
+<h2 id="search">البحث: الخطي مقابل الثنائي</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>def linear_search(items: list, target) -&gt; int:
+    # O(n) — يعمل على أي قائمة، مرتّبة أو لا
+    for i, v in enumerate(items):
+        if v == target:
+            return i
+    return -1
+
+
+def binary_search(items: list, target) -&gt; int:
+    # O(log n) — يتطلب قائمة مرتّبة
+    lo, hi = 0, len(items) - 1
+    while lo &lt;= hi:
+        mid = (lo + hi) // 2
+        if items[mid] == target:
+            return mid
+        if items[mid] &lt; target:
+            lo = mid + 1
+        else:
+            hi = mid - 1
+    return -1</code></pre></div>
+<p>على مليون عنصر: البحث الخطي قد يحتاج مليون مقارنة، والثنائي 20 فقط. لكن الثنائي
+<strong>يشترط الترتيب</strong> — والترتيب نفسه يكلّف O(n log n). لذلك: إذا كنت ستبحث مرة
+واحدة فقط، الخطي أفضل؛ وإذا كنت ستبحث مراراً، رتّب أولاً.</p>
+
+<h2 id="tree">الشجرة الثنائية للبحث (BST)</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+def insert(root, value):
+    if root is None:
+        return Node(value)
+    if value &lt; root.value:
+        root.left = insert(root.left, value)
+    elif value &gt; root.value:
+        root.right = insert(root.right, value)
+    return root            # القيم المكررة تُتجاهل
+
+
+def inorder(node) -&gt; list:
+    # تعيد القيم مرتّبة تصاعدياً — هذا هو سرّ الشجرة
+    if node is None:
+        return []
+    return inorder(node.left) + [node.value] + inorder(node.right)
+
+
+root = None
+for v in [50, 30, 70, 20, 40, 60, 80]:
+    root = insert(root, v)
+
+print(inorder(root))
+# [20, 30, 40, 50, 60, 70, 80]</code></pre></div>
+<p>لاحظ الترتيب: كل قيمة يسرى أصغر، وكل يمنى أكبر. هذا يسمح بالبحث في O(log n) — طالما
+أن الشجرة <strong>متوازنة</strong>. لو أدخلت قيماً مرتّبة تصاعدياً، تصبح الشجرة خطاً مستقيماً
+وتتحوّل كل العمليات إلى O(n). لهذا تستخدم المكتبات أشجاراً متوازنة ذاتياً (AVL/Red-Black).</p>
+
+<h2 id="practice">تمارين (ابدأ بالأسهل)</h2>
+<ol>
+  <li><strong>O(n):</strong> اكتب دالة تعيد أكبر عنصرين في قائمة بمرور واحد فقط.</li>
+  <li><strong>Hash:</strong> اكتب دالة تكتشف أول عنصر مكرر في قائمة — فكّر في O(n).</li>
+  <li><strong>O(log n):</strong> عدّل البحث الثنائي ليعيد <em>موضع الإدراج</em> إن لم يجد القيمة.</li>
+  <li><strong>Tree:</strong> اكتب دالة تعيد ارتفاع الشجرة، ثم دالة تتحقق من توازنها.</li>
+  <li><strong>تحدٍّ:</strong> اوجد العنصر الوحيد غير المكرر في قائمة كل عناصرها مكررة مرتين.</li>
+</ol>
+<blockquote><strong>الخطوة التالية:</strong> خذ مليون رقم عشوائي، وقس زمن البحث الخطي مقابل
+الثنائي بعد الترتيب باستخدام <code>time.perf_counter()</code>. رؤية الأرقام بنفسك تثبّت الفهم
+أكثر من قراءة عشر مقالات.</blockquote>
+
+        <div class="tags-row">
+          <span class="chip">Algorithms</span>
+<span class="chip">Data Structures</span>
+<span class="chip">CS</span>
+        </div>
+
+        <div class="card" style="margin-top:44px; display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between; background:linear-gradient(135deg, rgba(109,94,252,.12), transparent)">
+          <div>
+            <h3 style="margin-bottom:6px; font-size:1.05rem">أعجبك الشرح؟</h3>
+            <p style="font-size:.87rem; color:var(--text-soft); margin:0">درس عملي واحد كل أسبوع على بريدك — بلا حشو.</p>
+          </div>
+          <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="toc">
+          <h5>محتويات المقال</h5>
+          <a href="#bigo">Big-O ببساطة</a>
+<a href="#structures">هياكل البيانات</a>
+<a href="#search">البحث الخطي والثنائي</a>
+<a href="#tree">الشجرة الثنائية</a>
+<a href="#practice">تمارين</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</article>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal"><h2 style="font-size:1.6rem">اقرأ أيضاً</h2></div>
+    <div class="related">
+      <a href="../tutorials/python-async.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>درس</span><span class="sep"></span><span>14 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">فهم Async/Await في بايثون من الصفر حتى الإنتاج</h3></a>
+<a href="../posts/react-19.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>شرح</span><span class="sep"></span><span>11 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">React 19: ما الذي يتغير فعلياً في طريقة كتابة الكومبوننتس؟</h3></a>
+<a href="../ai/ai-agents.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>ذكاء اصطناعي</span><span class="sep"></span><span>18 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">بناء وكيل ذكاء اصطناعي (AI Agent) يفهم أدواتك ويستخدمها</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="../index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تصميم واجهات عربية جميلة مع Tailwind CSS و RTL — MyTechol</title>
+<meta name="description" content="دليل شامل لضبط RTL، الخطوط العربية، والمسافات المنطقية (logical properties) لبناء واجهة متوازنة بصرياً.">
+<meta property="og:title" content="تصميم واجهات عربية جميلة مع Tailwind CSS و RTL">
+<meta property="og:description" content="دليل شامل لضبط RTL، الخطوط العربية، والمسافات المنطقية (logical properties) لبناء واجهة متوازنة بصرياً.">
+<meta property="article:published_time" content="2025-01-15">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(109,94,252,.42), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(0,212,255,.3), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../posts.html">شرح</a><span>/</span>
+      <span>تصميم واجهات عربية جميلة مع Tailwind C…</span>
+    </div>
+    <span class="eyebrow">شرح</span>
+    <h1 class="reveal">تصميم واجهات عربية جميلة مع Tailwind CSS و RTL</h1>
+    <p class="lead" style="max-width:760px">دليل شامل لضبط RTL، الخطوط العربية، والمسافات المنطقية (logical properties) لبناء واجهة متوازنة بصرياً.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">أ</span><span>أحمد</span></div>
+      <span class="sep">·</span>
+      <span>2025-01-15</span>
+      <span class="sep">·</span>
+      <span>10 دقائق قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--inter">متوسط</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">UI</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+        
+<p>بناء واجهة عربية لا يعني «قلب كل شيء». يعني استخدام <strong>خصائص منطقية</strong> تفهم الاتجاه
+بدلاً من قيم فيزيائية ثابتة. الفرق يظهر مباشرة في الصيانة.</p>
+
+<h2 id="setup">تهيئة RTL</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ar&quot; dir=&quot;rtl&quot;&gt;
+  &lt;head&gt;
+    &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;/head&gt;
+  &lt;body class=&quot;font-arabic&quot;&gt;</code></pre></div>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>// tailwind.config.js
+export default {
+  theme: {
+    extend: {
+      fontFamily: {
+        arabic: [&#x27;Cairo&#x27;, &#x27;system-ui&#x27;, &#x27;sans-serif&#x27;],
+        mono: [&#x27;JetBrains Mono&#x27;, &#x27;monospace&#x27;],
+      },
+    },
+  },
+};</code></pre></div>
+<p><code>dir="rtl"</code> وحده يجعل المتصفح يعكس النصوص والجداول والقوائم تلقائياً. لكنه
+<strong>لا يعكس</strong> <code>margin-left</code> أو <code>left</code>.</p>
+
+<h2 id="logical">الخصائص المنطقية</h2>
+<table>
+  <thead><tr><th>بدل (فيزيائي)</th><th>استخدم (منطقي)</th><th>Tailwind</th></tr></thead>
+  <tbody>
+    <tr><td><code>margin-left</code></td><td><code>margin-inline-start</code></td><td><code>ms-4</code></td></tr>
+    <tr><td><code>padding-right</code></td><td><code>padding-inline-end</code></td><td><code>pe-3</code></td></tr>
+    <tr><td><code>left: 0</code></td><td><code>inset-inline-start: 0</code></td><td><code>start-0</code></td></tr>
+    <tr><td><code>border-left</code></td><td><code>border-inline-start</code></td><td><code>border-s</code></td></tr>
+    <tr><td><code>text-align: left</code></td><td><code>text-align: start</code></td><td><code>text-start</code></td></tr>
+  </tbody>
+</table>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>&lt;!-- ❌ ينكسر عند تبديل الاتجاه --&gt;
+&lt;div class=&quot;ml-4 text-left&quot;&gt;&lt;span class=&quot;absolute left-2&quot;&gt;🔍&lt;/span&gt;&lt;/div&gt;
+
+&lt;!-- ✅ يعمل في العربية والإنجليزية --&gt;
+&lt;div class=&quot;ms-4 text-start&quot;&gt;&lt;span class=&quot;absolute start-2&quot;&gt;🔍&lt;/span&gt;&lt;/div&gt;</code></pre></div>
+
+<h2 id="fonts">الخطوط العربية: قواعد عملية</h2>
+<ul>
+  <li><strong>لا تستخدم خطاً لاتينياً للعربية</strong> — التشكيل والوصل يظهران مكسورين.</li>
+  <li><strong>حجم أكبر بـ 1–2px</strong>: الحروف العربية أقصر ارتفاعاً عند نفس الحجم.</li>
+  <li><strong>ارتفاع سطر 1.75–1.9</strong>: التشكيل يحتاج مساحة رأسية، وإلا يتداخل.</li>
+  <li><strong>وزنان فقط</strong> كافيان: 400 و 700. كل وزن إضافي = طلب شبكة.</li>
+</ul>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>@layer base {
+  html[lang=&quot;ar&quot;] body {
+    font-family: &#x27;Cairo&#x27;, system-ui, sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0;        /* لا تستخدم letter-spacing مع العربية */
+    font-size: 16px;
+  }
+
+  html[lang=&quot;ar&quot;] h1,
+  html[lang=&quot;ar&quot;] h2,
+  html[lang=&quot;ar&quot;] h3 {
+    line-height: 1.35;
+    font-weight: 800;
+  }
+}</code></pre></div>
+<blockquote><strong>تنبيه مهم:</strong> <code>letter-spacing</code> يفصل الحروف العربية عن وصلاتها
+ويجعل النص غير مقروء. تجنّبه تماماً في النصوص العربية.</blockquote>
+
+<h2 id="type">الإيقاع الطباعي</h2>
+<p>في العربية، السطر الطويل جداً متعب أكثر من الإنجليزية لأن العين تنتقل من اليمين بلا مرساة يسرى.
+استخدم <code>max-w-prose</code> لتحديد عرض مقروء مريح (حوالي 65 حرفاً).</p>
+
+<h2 id="components">مكوّنات جاهزة</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>&lt;!-- زر أساسي --&gt;
+&lt;button class=&quot;inline-flex items-center gap-2 rounded-full bg-violet-600
+               px-6 py-3 font-bold text-white transition
+               hover:bg-violet-500 active:scale-95&quot;&gt;
+  ابدأ الآن
+&lt;/button&gt;
+
+&lt;!-- حقل بحث --&gt;
+&lt;div class=&quot;relative&quot;&gt;
+  &lt;input class=&quot;w-full rounded-full border border-white/10 bg-white/5
+                py-3 ps-11 pe-4 text-sm outline-none
+                focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10&quot;
+         placeholder=&quot;ابحث…&quot;&gt;
+  &lt;span class=&quot;absolute start-4 top-1/2 -translate-y-1/2 text-slate-500&quot;&gt;🔍&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- بطاقة --&gt;
+&lt;article class=&quot;rounded-2xl border border-white/10 bg-white/5 p-6
+                transition hover:-translate-y-1 hover:border-white/25&quot;&gt;
+  &lt;h3 class=&quot;text-lg font-bold&quot;&gt;عنوان البطاقة&lt;/h3&gt;
+  &lt;p class=&quot;mt-2 text-sm leading-relaxed text-slate-400&quot;&gt;وصف قصير.&lt;/p&gt;
+&lt;/article&gt;</code></pre></div>
+<p>لاحظ <code>ps-11</code> و <code>start-4</code>: نفس المكوّن يعمل في العربية والإنجليزية
+دون أي شرط على الاتجاه.</p>
+
+<h2 id="pitfalls">أخطاء شائعة</h2>
+<ol>
+  <li><strong>قلب الأيقونات يدوياً</strong>: أسهم التنقّل تُقلب بـ <code>rtl:rotate-180</code>، أما الشعارات فلا تُقلب.</li>
+  <li><strong>الأرقام مختلطة</strong>: اضبط <code>font-variant-numeric</code> إن احتجت أرقاماً موحّدة.</li>
+  <li><strong>كود مضمّن</strong>: يحتاج <code>dir="ltr"</code> صريحاً وإلا يُقلب.</li>
+  <li><strong>النصوص اللاتينية داخل جملة عربية</strong>: ضعها في <code>&lt;bdi&gt;</code>.</li>
+  <li><strong>نسيان الاختبار</strong>: بدّل <code>dir</code> إلى <code>ltr</code> وتأكد أن كل شيء سليم.</li>
+</ol>
+<blockquote><strong>الخطوة التالية:</strong> في DevTools بدّل <code>dir="rtl"</code> إلى <code>ltr</code>.
+كل عنصر ينكسر هو عنصر يستخدم خصائص فيزيائية ويحتاج إصلاحاً.</blockquote>
+
+        <div class="tags-row">
+          <span class="chip">Tailwind</span>
+<span class="chip">CSS</span>
+<span class="chip">RTL</span>
+<span class="chip">UI</span>
+        </div>
+
+        <div class="card" style="margin-top:44px; display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between; background:linear-gradient(135deg, rgba(109,94,252,.12), transparent)">
+          <div>
+            <h3 style="margin-bottom:6px; font-size:1.05rem">أعجبك الشرح؟</h3>
+            <p style="font-size:.87rem; color:var(--text-soft); margin:0">درس عملي واحد كل أسبوع على بريدك — بلا حشو.</p>
+          </div>
+          <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="toc">
+          <h5>محتويات المقال</h5>
+          <a href="#setup">تهيئة RTL</a>
+<a href="#logical">الخصائص المنطقية</a>
+<a href="#fonts">الخطوط العربية</a>
+<a href="#type">الإيقاع الطباعي</a>
+<a href="#components">مكوّنات جاهزة</a>
+<a href="#pitfalls">أخطاء شائعة</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</article>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal"><h2 style="font-size:1.6rem">اقرأ أيضاً</h2></div>
+    <div class="related">
+      <a href="../tutorials/python-async.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>درس</span><span class="sep"></span><span>14 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">فهم Async/Await في بايثون من الصفر حتى الإنتاج</h3></a>
+<a href="../posts/react-19.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>شرح</span><span class="sep"></span><span>11 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">React 19: ما الذي يتغير فعلياً في طريقة كتابة الكومبوننتس؟</h3></a>
+<a href="../ai/ai-agents.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>ذكاء اصطناعي</span><span class="sep"></span><span>18 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">بناء وكيل ذكاء اصطناعي (AI Agent) يفهم أدواتك ويستخدمها</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="../index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

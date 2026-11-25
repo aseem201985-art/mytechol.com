@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الدروس والمسارات — MyTechol</title>
+<meta name="description" content="مسارات تعلّم متدرّجة في البرمجة والخوارزميات والأنظمة والذكاء الاصطناعي.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .track {
+    border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform .35s var(--ease), border-color .35s;
+  }
+  .track:hover { transform: translateY(-6px); border-color: var(--border-strong); }
+  .track__head { padding: 28px 26px 22px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .track__head::after {
+    content: ''; position: absolute; width: 200px; height: 200px; border-radius: 50%;
+    filter: blur(70px); opacity: .35; top: -80px; inset-inline-end: -60px;
+  }
+  .track--1 .track__head::after { background: #6d5efc; }
+  .track--2 .track__head::after { background: #00d4ff; }
+  .track--3 .track__head::after { background: #ff4d8d; }
+  .track__head .num {
+    font-family: var(--mono); font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+    color: var(--text-dim); margin-bottom: 10px;
+  }
+  .track__head h3 { font-size: 1.25rem; margin-bottom: 8px; position: relative; z-index: 1; }
+  .track__head p { font-size: .86rem; color: var(--text-soft); position: relative; z-index: 1; line-height: 1.7; }
+  .track__lessons { padding: 16px 26px 26px; display: flex; flex-direction: column; gap: 2px; flex: 1; }
+  .lesson {
+    display: flex; align-items: flex-start; gap: 12px; padding: 11px 0;
+    border-bottom: 1px dashed var(--border); font-size: .87rem; color: var(--text-soft);
+    transition: color .2s;
+  }
+  .lesson:last-child { border-bottom: 0; }
+  .lesson:hover { color: var(--brand-2); }
+  .lesson__n {
+    width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; margin-top: 2px;
+    display: grid; place-items: center; font-size: .7rem; font-weight: 800;
+    background: var(--surface-2); color: var(--text-dim); border: 1px solid var(--border);
+  }
+  .lesson--soon { opacity: .55; }
+  .lesson--soon .lesson__n { border-style: dashed; }
+  .track__foot { padding: 0 26px 26px; }
+
+  .timeline { position: relative; padding-inline-start: 34px; }
+  .timeline::before {
+    content: ''; position: absolute; inset-inline-start: 10px; top: 6px; bottom: 6px;
+    width: 2px; background: linear-gradient(var(--brand-1), var(--brand-2), transparent);
+  }
+  .tl-item { position: relative; padding-bottom: 34px; }
+  .tl-item::before {
+    content: ''; position: absolute; inset-inline-start: -30px; top: 8px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--brand-2);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand-2) 14%, transparent);
+  }
+  .tl-item h4 { font-size: 1rem; margin-bottom: 6px; }
+  .tl-item p { font-size: .87rem; color: var(--text-soft); line-height: 1.75; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="index.html">الرئيسية</a><a href="posts.html">المقالات</a><a href="programs.html">البرامج</a><a href="tutorials.html">الدروس</a><a href="ai.html">الذكاء الاصطناعي</a><a href="about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="index.html">الرئيسية</a><a href="posts.html">المقالات</a><a href="programs.html">البرامج</a><a href="tutorials.html">الدروس</a><a href="ai.html">الذكاء الاصطناعي</a><a href="about.html">عني</a>
+</div>
+
+<section class="page-hero">
+  <div class="grid-bg"></div>
+  <div class="hero__glow hero__glow--3" style="opacity:.3; width:400px; height:400px; top:-120px; inset-inline-start:30%"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb"><a href="index.html">الرئيسية</a><span>/</span><span>الدروس</span></div>
+    <span class="eyebrow reveal"><span class="dot"></span> مسارات التعلّم</span>
+    <h1 class="reveal">ثلاثة مسارات، وطريق واضح لكل مستوى</h1>
+    <p class="reveal">لا تقفز بين المواضيع. كل مسار مرتّب منطقياً: درس يبني على الذي قبله، ومشروع صغير في النهاية يثبّت ما تعلّمته.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="posts-grid" style="gap:26px">
+      <article class="track track--1 reveal">
+        <div class="track__head">
+          <div class="num">TRACK 01 · مبتدئ</div>
+          <h3>أساسيات البرمجة للطلاب</h3>
+          <p>من الصفر إلى أول مشروع كامل. لا تفترض أي خبرة سابقة.</p>
+        </div>
+        <div class="track__lessons">
+          <a class="lesson" href="#"><span class="lesson__n">1</span><span>ما هي البرمجة فعلاً؟ التفكير كالحاسوب</span></a>
+          <a class="lesson" href="#"><span class="lesson__n">2</span><span>المتغيرات، الشروط، والحلقات بمثال واحد متصل</span></a>
+          <a class="lesson" href="#"><span class="lesson__n">3</span><span>الدوال ولماذا هي أهم فكرة في البرمجة</span></a>
+          <a class="lesson" href="tutorials/algorithms-101.html"><span class="lesson__n">4</span><span>الخوارزميات و Big-O بأمثلة بصرية</span></a>
+          <a class="lesson" href="#"><span class="lesson__n">5</span><span>هياكل البيانات: المصفوفة، القائمة، الخريطة</span></a>
+          <a class="lesson lesson--soon" href="#"><span class="lesson__n">6</span><span>مشروع: تطبيق قائمة مهام في الطرفية</span></a>
+        </div>
+        <div class="track__foot"><a href="tutorials/algorithms-101.html" class="btn btn--ghost btn--block">ابدأ من الدرس الأول</a></div>
+      </article>
+
+      <article class="track track--2 reveal">
+        <div class="track__head">
+          <div class="num">TRACK 02 · متوسط</div>
+          <h3>بناء تطبيقات حقيقية</h3>
+          <p>من الكود الذي يعمل على جهازك إلى خدمة يعتمد عليها الناس.</p>
+        </div>
+        <div class="track__lessons">
+          <a class="lesson" href="posts/clean-code.html"><span class="lesson__n">1</span><span>الكود النظيف: قواعد المراجعة السريعة</span></a>
+          <a class="lesson" href="posts/tailwind-ui.html"><span class="lesson__n">2</span><span>واجهات عربية متجاوبة مع RTL</span></a>
+          <a class="lesson" href="tutorials/python-async.html"><span class="lesson__n">3</span><span>Async/Await وأداء الـ I/O</span></a>
+          <a class="lesson" href="programs/docker-basics.html"><span class="lesson__n">4</span><span>Docker: بيئة متطابقة والنشر</span></a>
+          <a class="lesson" href="tutorials/linux-cli.html"><span class="lesson__n">5</span><span>سطر الأوامر: مهارات لا تُستغنى عنها</span></a>
+          <a class="lesson lesson--soon" href="#"><span class="lesson__n">6</span><span>مشروع: واجهة API كاملة + قاعدة بيانات</span></a>
+        </div>
+        <div class="track__foot"><a href="posts/clean-code.html" class="btn btn--ghost btn--block">ابدأ المسار</a></div>
+      </article>
+
+      <article class="track track--3 reveal">
+        <div class="track__head">
+          <div class="num">TRACK 03 · متقدم</div>
+          <h3>الذكاء الاصطناعي التطبيقي</h3>
+          <p>من فهم النماذج إلى بناء وكيل يعمل على بياناتك الحقيقية.</p>
+        </div>
+        <div class="track__lessons">
+          <a class="lesson" href="ai/chatgpt-prompts.html"><span class="lesson__n">1</span><span>هندسة الأوامر: 20 قالباً مجرّباً</span></a>
+          <a class="lesson" href="ai/ai-agents.html"><span class="lesson__n">2</span><span>ما الذي يجعل النموذج «يعرف»؟ التضمين و RAG</span></a>
+          <a class="lesson" href="ai/ai-agents.html"><span class="lesson__n">3</span><span>Function Calling: ربط النموذج بأدواتك</span></a>
+          <a class="lesson" href="ai/ai-agents.html"><span class="lesson__n">4</span><span>تخطيط الوكيل وتقييم نتائجه</span></a>
+          <a class="lesson lesson--soon" href="#"><span class="lesson__n">5</span><span>الخصوصية: متى تشغّل نموذجاً محلياً</span></a>
+          <a class="lesson lesson--soon" href="#"><span class="lesson__n">6</span><span>مشروع: مساعد يجيب من مستنداتك</span></a>
+        </div>
+        <div class="track__foot"><a href="ai/chatgpt-prompts.html" class="btn btn--ghost btn--block">ابدأ المسار</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="grid-2" style="gap:60px; align-items:start">
+      <div class="reveal">
+        <span class="eyebrow"><span class="dot"></span> منهجية</span>
+        <h2>كيف أختار ما أشرحه؟</h2>
+        <p class="lead" style="margin:16px 0 0">كل درس يبدأ من سؤال حقيقي واجهته. لا أشرح تقنية لأنها «رائجة»، بل لأنها حلّت مشكلة أو وفّرت وقتاً.</p>
+      </div>
+      <div class="reveal">
+        <div class="timeline">
+          <div class="tl-item">
+            <h4>1 · المشكلة أولاً</h4>
+            <p>أبدأ بالسياق والألم الحقيقي، ثم أشرح الأداة — لا العكس.</p>
+          </div>
+          <div class="tl-item">
+            <h4>2 · كود يعمل فعلاً</h4>
+            <p>كل مثال مقتطع من مشروع حقيقي ومُختبَر، لا أمثلة أكاديمية معزولة.</p>
+          </div>
+          <div class="tl-item">
+            <h4>3 · الأخطاء الشائعة</h4>
+            <p>قسم ثابت في كل درس: ما الذي يفعله معظم الناس خطأً ولماذا.</p>
+          </div>
+          <div class="tl-item" style="padding-bottom:0">
+            <h4>4 · خطوة تالية واضحة</h4>
+            <p>تنتهي كل مقالة بخطوة عملية واحدة يمكن تطبيقها في خمس دقائق.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

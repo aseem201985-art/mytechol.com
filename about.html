@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عني — MyTechol</title>
+<meta name="description" content="نبذة عن الكاتب، فلسفة المحتوى، وطريقة التواصل.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .avatar {
+    width: 140px; height: 140px; border-radius: 34px;
+    background: var(--brand-grad); display: grid; place-items: center;
+    font-size: 3.4rem; font-weight: 900; color: #fff;
+    box-shadow: var(--shadow-brand); flex-shrink: 0;
+  }
+  .about-head { display: flex; gap: 34px; align-items: center; flex-wrap: wrap; }
+  .skill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill { font-size: .8rem; font-weight: 700; padding: 6px 14px; border-radius: 99px; border: 1px solid var(--border); background: var(--surface); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .contact-item {
+    padding: 20px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+    background: var(--surface); display: flex; gap: 14px; align-items: flex-start;
+    transition: border-color .3s;
+  }
+  .contact-item:hover { border-color: var(--brand-2); }
+  .contact-item .ic { font-size: 1.2rem; }
+  .contact-item b { display: block; font-size: .92rem; margin-bottom: 3px; }
+  .contact-item span { font-size: .82rem; color: var(--text-soft); direction: ltr; display: block; }
+  @media (max-width:860px){ .contact-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="index.html">الرئيسية</a><a href="posts.html">المقالات</a><a href="programs.html">البرامج</a><a href="tutorials.html">الدروس</a><a href="ai.html">الذكاء الاصطناعي</a><a href="about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="index.html">الرئيسية</a><a href="posts.html">المقالات</a><a href="programs.html">البرامج</a><a href="tutorials.html">الدروس</a><a href="ai.html">الذكاء الاصطناعي</a><a href="about.html">عني</a>
+</div>
+
+<section class="page-hero">
+  <div class="grid-bg"></div>
+  <div class="hero__glow hero__glow--1" style="opacity:.28; width:420px; height:420px; top:-140px; inset-inline-start:-80px"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb"><a href="index.html">الرئيسية</a><span>/</span><span>عني</span></div>
+
+    <div class="about-head reveal">
+      <div class="avatar">A</div>
+      <div>
+        <span class="eyebrow" style="margin-bottom:10px"><span class="dot"></span> المهندس خلف MyTechol</span>
+        <h1 style="font-size:clamp(1.8rem,3.6vw,2.6rem); margin-bottom:10px">مرحباً، أنا أحمد 👋</h1>
+        <p style="color:var(--text-soft); max-width:600px; font-size:1rem">
+          مهندس برمجيات أشارك ما أتعلّمه وأبنيه يومياً. بدأت MyTechol لأنني وجدت أن أغلب
+          المحتوى العربي إما مبسّط لدرجة السطحية أو معقّد لدرجة الإحباط — وأردت حلاً بينهما.
+        </p>
+        <div class="skill-row" style="margin-top:20px">
+          <span class="skill">TypeScript</span><span class="skill">Python</span><span class="skill">React / Next.js</span>
+          <span class="skill">Node.js</span><span class="skill">PostgreSQL</span><span class="skill">Docker</span>
+          <span class="skill">LLMs</span><span class="skill">System Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="grid-3">
+      <div class="card reveal">
+        <div style="font-size:1.6rem; margin-bottom:12px">🎯</div>
+        <h3 style="margin-bottom:8px">الرسالة</h3>
+        <p style="font-size:.89rem; color:var(--text-soft); line-height:1.8">تبسيط التقنية دون تسطيحها. كل مقال يجب أن يجعلك قادراً على فعل شيء لم تستطع فعله قبله.</p>
+      </div>
+      <div class="card reveal">
+        <div style="font-size:1.6rem; margin-bottom:12px">🛠️</div>
+        <h3 style="margin-bottom:8px">المنهج</h3>
+        <p style="font-size:.89rem; color:var(--text-soft); line-height:1.8">مشكلة حقيقية → حّل عملي → كود يعمل → تحذير من الأخطاء. لا حشو ولا مقدمات طويلة.</p>
+      </div>
+      <div class="card reveal">
+        <div style="font-size:1.6rem; margin-bottom:12px">🌍</div>
+        <h3 style="margin-bottom:8px">الجمهور</h3>
+        <p style="font-size:.89rem; color:var(--text-soft); line-height:1.8">أكتب لأربعة مستويات في نفس الوقت: الطالب، المبرمج، الشخص العادي، والخبير.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)" id="contact">
+  <div class="container">
+    <div class="grid-2" style="gap:56px; align-items:start">
+      <div class="reveal">
+        <span class="eyebrow"><span class="dot"></span> تواصل</span>
+        <h2>لنتحدّث عن تقنية</h2>
+        <p class="lead" style="margin:16px 0 24px">
+          أسئلة، اقتراحات مواضيع، تعاون على مشروع، أو مجرد سلام — كلها موضع ترحيب.
+          أردّ عادةً خلال 48 ساعة.
+        </p>
+        <div class="stack">
+          <div class="contact-item"><span class="ic">✉️</span><div><b>البريد الإلكتروني</b><span>hello@codehub.dev</span></div></div>
+          <div class="contact-item"><span class="ic">🐙</span><div><b>GitHub</b><span>github.com/codehub</span></div></div>
+          <div class="contact-item"><span class="ic">💼</span><div><b>LinkedIn</b><span>linkedin.com/in/codehub</span></div></div>
+          <div class="contact-item"><span class="ic">✍️</span><div><b>اقترح موضوعاً</b><span>ما الذي تحتاج أن أشرحه تالياً؟</span></div></div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form class="card" data-contact-form style="display:flex; flex-direction:column; gap:14px">
+          <h3 style="margin-bottom:4px">أرسل رسالة مباشرة</h3>
+          <p style="font-size:.85rem; color:var(--text-dim); margin-bottom:6px">نموذج تجريبي — اربطه بخدمة بريدك لاحقاً.</p>
+          <input required placeholder="اسمك" style="padding:13px 16px; border-radius:12px; border:1px solid var(--border-strong); background:var(--bg); color:var(--text); outline:none">
+          <input required type="email" placeholder="بريدك الإلكتروني" style="padding:13px 16px; border-radius:12px; border:1px solid var(--border-strong); background:var(--bg); color:var(--text); outline:none">
+          <textarea required rows="5" placeholder="رسالتك..." style="padding:13px 16px; border-radius:12px; border:1px solid var(--border-strong); background:var(--bg); color:var(--text); outline:none; resize:vertical; font-family:inherit"></textarea>
+          <button type="submit" class="btn btn--primary btn--block">إرسال الرسالة</button>
+          <p data-form-msg style="font-size:.82rem; color:var(--brand-2); display:none">تم إرسال رسالتك ✓ سأرد قريباً.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+document.querySelector('[data-contact-form]').addEventListener('submit', function (e) {
+  e.preventDefault();
+  this.querySelector('[data-form-msg]').style.display = 'block';
+  this.reset();
+});
+</script>
+</body>
+</html>

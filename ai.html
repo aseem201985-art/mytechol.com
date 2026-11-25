@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الذكاء الاصطناعي — MyTechol</title>
+<meta name="description" content="دروس ومقالات في الذكاء الاصطناعي: هندسة الأوامر، RAG، الوكلاء، والنماذج المحلية — للشخص العادي والمبرمج.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .level-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 34px; }
+  .ai-hero-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 36px; }
+  .ai-hc {
+    padding: 22px; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface);
+    transition: border-color .3s, transform .3s;
+  }
+  .ai-hc:hover { border-color: var(--brand-2); transform: translateY(-4px); }
+  .ai-hc b { display: block; font-size: 1.5rem; font-weight: 900; margin-bottom: 4px; }
+  .ai-hc span { font-size: .8rem; color: var(--text-dim); font-weight: 600; }
+  @media (max-width:860px){ .ai-hero-cards { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="index.html">الرئيسية</a><a href="posts.html">المقالات</a><a href="programs.html">البرامج</a><a href="tutorials.html">الدروس</a><a href="ai.html">الذكاء الاصطناعي</a><a href="about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="index.html">الرئيسية</a><a href="posts.html">المقالات</a><a href="programs.html">البرامج</a><a href="tutorials.html">الدروس</a><a href="ai.html">الذكاء الاصطناعي</a><a href="about.html">عني</a>
+</div>
+
+<section class="page-hero" style="padding-bottom:70px">
+  <div class="grid-bg"></div>
+  <div class="hero__glow hero__glow--1" style="opacity:.36; width:520px; height:520px; top:-180px; inset-inline-end:-120px"></div>
+  <div class="hero__glow hero__glow--2" style="opacity:.22; width:380px; height:380px; top:60px; inset-inline-start:-100px"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb"><a href="index.html">الرئيسية</a><span>/</span><span>الذكاء الاصطناعي</span></div>
+    <span class="eyebrow reveal"><span class="dot"></span> قسم الذكاء الاصطناعي</span>
+    <h1 class="reveal">افهم الذكاء الاصطناعي، <span class="grad-text">ثم استخدمه بذكاء</span></h1>
+    <p class="reveal" style="max-width:620px">
+      لا تحتاج شهادة في الرياضيات لتفهم كيف تعمل هذه النماذج. هنا أشرحها بثلاث طبقات:
+      ما تحتاجه للاستخدام اليومي، ما تحتاجه للبناء، وما تحتاجه للتحسين والتحكم في التكلفة.
+    </p>
+
+    <div class="ai-hero-cards">
+      <div class="ai-hc reveal"><b>للاستخدام</b><span>أوامر أفضل، نتائج أدقّ — بلا كود</span></div>
+      <div class="ai-hc reveal"><b>للبناء</b><span>ربط النماذج بتطبيقاتك وأدواتك</span></div>
+      <div class="ai-hc reveal"><b>للتحكّم</b><span>الخصوصية، التكلفة، وتقييم الجودة</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>مقالات ودروس الذكاء الاصطناعي</h2>
+      <p class="lead" style="margin-top:12px">ابدأ من الأعلى — كل مقالة مستقلة، لكن الترتيب يبني الفهم تدريجياً.</p>
+    </div>
+
+    <div class="posts-grid">
+      <article class="post-card reveal">
+        <a href="ai/chatgpt-prompts.html" class="post-card__thumb"><span class="post-card__tagline">Prompts</span><span class="glyph">✧</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta"><span>هندسة الأوامر</span><span class="sep"></span><span>8 دقائق</span></div>
+          <h3><a href="ai/chatgpt-prompts.html">20 قالب أمر جاهز للمبرمجين</a></h3>
+          <p>قوالب لمراجعة الكود، توليد الاختبارات، كتابة التوثيق، وتحليل الأخطاء — مع شرح لماذا يعمل كل قالب.</p>
+          <div class="post-card__foot"><span class="lvl lvl--beginner">مبتدئ</span><span class="post-card__read">اقرأ ←</span></div>
+        </div>
+      </article>
+
+      <article class="post-card reveal">
+        <a href="ai/ai-agents.html" class="post-card__thumb"><span class="post-card__tagline">Agents</span><span class="glyph">AI</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta"><span>وكلاء</span><span class="sep"></span><span>18 دقيقة</span></div>
+          <h3><a href="ai/ai-agents.html">بناء وكيل يفهم أدواتك ويستخدمها</a></h3>
+          <p>من Function Calling إلى RAG إلى التخطيط الذاتي: خريطة طريق لوكيل عملي على بياناتك.</p>
+          <div class="post-card__foot"><span class="lvl lvl--advanced">متقدم</span><span class="post-card__read">اقرأ ←</span></div>
+        </div>
+      </article>
+
+      <article class="post-card reveal">
+        <a href="ai/ai-agents.html" class="post-card__thumb"><span class="post-card__tagline">RAG</span><span class="glyph">⌘</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta"><span>RAG</span><span class="sep"></span><span>12 دقيقة</span></div>
+          <h3><a href="ai/ai-agents.html">اجعل النموذج يجيب من مستنداتك</a></h3>
+          <p>كيف يعمل التضمين (Embedding) والاسترجاع، ومتى يكون RAG أفضل من تدريب نموذج.</p>
+          <div class="post-card__foot"><span class="lvl lvl--inter">متوسط</span><span class="post-card__read">اقرأ ←</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="ai-panel reveal">
+      <div style="position:relative; z-index:1">
+        <span class="eyebrow"><span class="dot"></span> للشخص العادي</span>
+        <h2 style="margin-bottom:14px">ابدأ بالأساسيات — بلا مصطلحات</h2>
+        <p class="lead" style="max-width:600px; margin-bottom:28px">إذا لم تكتب كوداً في حياتك، هذه نقطة البداية الصحيحة لك.</p>
+      </div>
+
+      <div class="ai-grid">
+        <div class="ai-tool"><span class="ico">1️⃣</span><h4>ما هو النموذج اللغوي؟</h4><p>ببساطة: نظام يتوقّع الكلمة التالية — لكنه بجودة تجعله يبدو مفهوماً.</p></div>
+        <div class="ai-tool"><span class="ico">2️⃣</span><h4>لماذا يخطئ أحياناً؟</h4><p>لأنه يولّد الاحتمال الأكثر منطقية، لا الحقيقة المؤكدة. تحقّق دائماً.</p></div>
+        <div class="ai-tool"><span class="ico">3️⃣</span><h4>كيف أكتب أمراً جيداً؟</h4><p>أعطِه السياق، والهدف، والشكل المطلوب — وسيتحسّن الناتج فوراً.</p></div>
+        <div class="ai-tool"><span class="ico">4️⃣</span><h4>ماذا عن بياناتي؟</h4><p>لا تشارك معلومات حسّاسة. اعرف سياسة كل خدمة قبل أن تكتب فيها.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="dot"></span> نماذج وأدوات</span>
+      <h2>أدوات يستحقّها وقتك</h2>
+    </div>
+    <div class="grid-4">
+      <div class="card reveal"><h3 style="font-size:1rem; margin-bottom:8px">ChatGPT</h3><p style="font-size:.85rem; color:var(--text-soft)">الأكثر شيوعاً للمهام العامة والتعلّم.</p></div>
+      <div class="card reveal"><h3 style="font-size:1rem; margin-bottom:8px">Claude</h3><p style="font-size:.85rem; color:var(--text-soft)">قوي في تحليل النصوص الطويلة والكود.</p></div>
+      <div class="card reveal"><h3 style="font-size:1rem; margin-bottom:8px">Ollama</h3><p style="font-size:.85rem; color:var(--text-soft)">نماذج محلية بخصوصية كاملة.</p></div>
+      <div class="card reveal"><h3 style="font-size:1rem; margin-bottom:8px">LangChain</h3><p style="font-size:.85rem; color:var(--text-soft)">إطار لبناء تطبيقات LLM ووكلاء.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

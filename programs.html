@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>البرامج والأدوات — MyTechol</title>
+<meta name="description" content="أدوات وبرامج مختارة للمبرمجين مع بدائل مجانية وإعدادات وأخطاء شائعة.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .tool-card {
+    display: flex; flex-direction: column; gap: 14px;
+    padding: 26px; border-radius: var(--radius);
+    border: 1px solid var(--border); background: var(--surface);
+    transition: transform .35s var(--ease), border-color .35s, background .35s;
+    position: relative; overflow: hidden;
+  }
+  .tool-card:hover { transform: translateY(-6px); border-color: var(--border-strong); background: var(--surface-2); }
+  .tool-card__top { display: flex; align-items: flex-start; gap: 14px; }
+  .tool-card__ico {
+    width: 54px; height: 54px; border-radius: 15px; flex-shrink: 0; display: grid; place-items: center;
+    font-size: 1.5rem; background: var(--surface-2); border: 1px solid var(--border);
+  }
+  .tool-card h3 { font-size: 1.05rem; margin-bottom: 2px; }
+  .tool-card__sub { font-size: .78rem; color: var(--text-dim); font-family: var(--mono); direction: ltr; }
+  .tool-card p { font-size: .87rem; color: var(--text-soft); line-height: 1.75; flex: 1; }
+  .tool-card__meta { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid var(--border); }
+  .pill { font-size: .72rem; font-weight: 700; padding: 3px 10px; border-radius: 99px; background: var(--surface-2); color: var(--text-dim); }
+  .pill--free { background: rgba(40,200,64,.12); color: #34d058; }
+  .pill--paid { background: rgba(255,184,0,.12); color: #ffb800; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="index.html">الرئيسية</a><a href="posts.html">المقالات</a><a href="programs.html">البرامج</a><a href="tutorials.html">الدروس</a><a href="ai.html">الذكاء الاصطناعي</a><a href="about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="index.html">الرئيسية</a><a href="posts.html">المقالات</a><a href="programs.html">البرامج</a><a href="tutorials.html">الدروس</a><a href="ai.html">الذكاء الاصطناعي</a><a href="about.html">عني</a>
+</div>
+
+<section class="page-hero">
+  <div class="grid-bg"></div>
+  <div class="hero__glow hero__glow--2" style="opacity:.3; width:400px; height:400px; top:-100px; inset-inline-start:-100px"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb"><a href="index.html">الرئيسية</a><span>/</span><span>البرامج</span></div>
+    <span class="eyebrow reveal"><span class="dot"></span> برامج وأدوات</span>
+    <h1 class="reveal">الأدوات التي تصنع فرقاً حقيقياً</h1>
+    <p class="reveal">كل أداة هنا استخدمتها فعلياً في مشاريع حقيقية. مع كل واحدة: لماذا هي مفيدة، بديلها المجاني، وأهم إعداداتها.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="filters reveal" data-filter-group data-filter-target="#tools">
+      <button class="filter-btn active" data-cat="all">الكل</button>
+      <button class="filter-btn" data-cat="تحرير">محرّرات</button>
+      <button class="filter-btn" data-cat="devops">DevOps</button>
+      <button class="filter-btn" data-cat="db">قواعد بيانات</button>
+      <button class="filter-btn" data-cat="ai">ذكاء اصطناعي</button>
+      <button class="filter-btn" data-cat="إنتاجية">إنتاجية</button>
+    </div>
+
+    <div class="posts-grid" id="tools">
+      <article class="tool-card reveal" data-cat="تحرير إنتاجية">
+        <div class="tool-card__top"><div class="tool-card__ico">⚡</div><div><h3>VS Code</h3><div class="tool-card__sub">code.visualstudio.com</div></div></div>
+        <p>المحرّر الأكثر انتشاراً. دليل إعداد كامل: الإضافات الأساسية، اختصارات تسرّع التنقّل، وحفظ الإعدادات في Git.</p>
+        <div class="tool-card__meta"><span class="pill pill--free">مجاني</span><span class="pill">Editor</span><span class="pill">DX</span></div>
+      </article>
+
+      <article class="tool-card reveal" data-cat="devops">
+        <div class="tool-card__top"><div class="tool-card__ico">🐳</div><div><h3>Docker</h3><div class="tool-card__sub">docker.com</div></div></div>
+        <p>بيئة تطوير مطابقة للإنتاج. نتعلّم Dockerfile نظيف، تعدد الطبقات، و docker compose لبيئة كاملة بأمر واحد.</p>
+        <div class="tool-card__meta"><span class="pill pill--free">طبعة مجانية</span><span class="pill">Containers</span><span class="pill">Deploy</span></div>
+      </article>
+
+      <article class="tool-card reveal" data-cat="db">
+        <div class="tool-card__top"><div class="tool-card__ico">🗄️</div><div><h3>DBeaver</h3><div class="tool-card__sub">dbeaver.io</div></div></div>
+        <p>عميل SQL عالمي يدعم PostgreSQL و MySQL و SQLite وأكثر. مجاني ومفتوح المصدر مع محرّر ERD.</p>
+        <div class="tool-card__meta"><span class="pill pill--free">مفتوح المصدر</span><span class="pill">SQL</span><span class="pill">Database</span></div>
+      </article>
+
+      <article class="tool-card reveal" data-cat="ai">
+        <div class="tool-card__top"><div class="tool-card__ico">🧠</div><div><h3>Ollama</h3><div class="tool-card__sub">ollama.com</div></div></div>
+        <p>تشغيل نماذج LLM محلياً على جهازك. خصوصية كاملة، بلا تكلفة API، ومناسب للتجربة والتعلّم.</p>
+        <div class="tool-card__meta"><span class="pill pill--free">مجاني</span><span class="pill">LLM</span><span class="pill">Local</span></div>
+      </article>
+
+      <article class="tool-card reveal" data-cat="إنتاجية devops">
+        <div class="tool-card__top"><div class="tool-card__ico">🖥️</div><div><h3>tmux</h3><div class="tool-card__sub">github.com/tmux</div></div></div>
+        <p>جلسات طرفية لا تنقطع عند إغلاق الاتصال. أساسي للعمل على السيرفرات وتقسيم الشاشة بسرعة.</p>
+        <div class="tool-card__meta"><span class="pill pill--free">مفتوح المصدر</span><span class="pill">Terminal</span><span class="pill">CLI</span></div>
+      </article>
+
+      <article class="tool-card reveal" data-cat="تحرير إنتاجية">
+        <div class="tool-card__top"><div class="tool-card__ico">🎨</div><div><h3>Figma</h3><div class="tool-card__sub">figma.com</div></div></div>
+        <p>تصميم الواجهات والتعاون عليها قبل كتابة الكود. يدعم RTL والخطوط العربية بشكل جيد.</p>
+        <div class="tool-card__meta"><span class="pill pill--free">طبعة مجانية</span><span class="pill">UI</span><span class="pill">Design</span></div>
+      </article>
+
+      <article class="tool-card reveal" data-cat="devops">
+        <div class="tool-card__top"><div class="tool-card__ico">🔀</div><div><h3>Git + GitHub CLI</h3><div class="tool-card__sub">cli.github.com</div></div></div>
+        <p>إدارة الفروع والـ PRs من الطرفية. سكربتات تنشئ فرعاً وتفتح Pull Request بأمر واحد.</p>
+        <div class="tool-card__meta"><span class="pill pill--free">مجاني</span><span class="pill">Git</span><span class="pill">Workflow</span></div>
+      </article>
+
+      <article class="tool-card reveal" data-cat="ai إنتاجية">
+        <div class="tool-card__top"><div class="tool-card__ico">✧</div><div><h3>ChatGPT / Claude</h3><div class="tool-card__sub">chat.openai.com · claude.ai</div></div></div>
+        <p>مساعدان يوميان للمراجعة والتوليد. القيمة الحقيقية في صياغة الأمر، لا في الأداة نفسها.</p>
+        <div class="tool-card__meta"><span class="pill pill--paid">مدفوع جزئياً</span><span class="pill">Assistant</span><span class="pill">AI</span></div>
+      </article>
+
+      <article class="tool-card reveal" data-cat="devops">
+        <div class="tool-card__top"><div class="tool-card__ico">🛡️</div><div><h3>Uptime Kuma</h3><div class="tool-card__sub">github.com/louislam/uptime-kuma</div></div></div>
+        <p>مراقبة المواقع والخدمات بديلاً مجانياً عن SaaS. تنبيهات على تيليجرام وتقارير حالة.</p>
+        <div class="tool-card__meta"><span class="pill pill--free">مفتوح المصدر</span><span class="pill">Monitoring</span></div>
+      </article>
+    </div>
+
+    <div style="margin-top:52px" class="reveal">
+      <div class="card" style="display:flex; gap:22px; align-items:center; flex-wrap:wrap; justify-content:space-between">
+        <div>
+          <h3 style="margin-bottom:6px">تريد أداة معيّنة مشروحة؟</h3>
+          <p style="font-size:.9rem; color:var(--text-soft)">أرسل اسمها وسأضيف دليلاً كاملاً لها في قسم البرامج.</p>
+        </div>
+        <a href="about.html#contact" class="btn btn--primary btn--sm">اقترح أداة</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

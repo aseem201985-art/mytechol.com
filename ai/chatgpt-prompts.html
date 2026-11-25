@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هندسة الأوامر (Prompt Engineering) للمبرمجين: 20 قالباً جاهزاً — MyTechol</title>
+<meta name="description" content="قوالب أوامر مجرّبة لمراجعة الكود، توليد الاختبارات، كتابة التوثيق، وتحليل الأخطاء — مع شرح لماذا يعمل كل قالب.">
+<meta property="og:title" content="هندسة الأوامر (Prompt Engineering) للمبرمجين: 20 قالباً جاهزاً">
+<meta property="og:description" content="قوالب أوامر مجرّبة لمراجعة الكود، توليد الاختبارات، كتابة التوثيق، وتحليل الأخطاء — مع شرح لماذا يعمل كل قالب.">
+<meta property="article:published_time" content="2025-01-09">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .article-hero { padding: calc(var(--nav-h) + 56px) 0 34px; }
+  .article-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 14px 0 18px; max-width: 900px; }
+  .article-meta { display:flex; gap:16px; flex-wrap:wrap; align-items:center; font-size:.84rem; color:var(--text-dim); font-weight:600; }
+  .author-box { display:flex; align-items:center; gap:10px; }
+  .author-av { width:34px; height:34px; border-radius:11px; background:var(--brand-grad); display:grid; place-items:center; font-weight:900; color:#fff; font-size:.85rem; }
+  .article-cover {
+    height: 240px; border-radius: var(--radius); margin: 34px 0 10px;
+    background: linear-gradient(135deg,#171c34,#0b0e1c);
+    display:grid; place-items:center; position:relative; overflow:hidden;
+    border:1px solid var(--border-strong);
+  }
+  .article-cover::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 75% 25%, rgba(109,94,252,.42), transparent 58%),
+                radial-gradient(circle at 20% 78%, rgba(0,212,255,.3), transparent 55%);
+  }
+  .article-cover .glyph { font-family:var(--mono); font-size:4rem; font-weight:700; color:rgba(255,255,255,.92); position:relative; z-index:1; direction:ltr; }
+  .tags-row { display:flex; gap:8px; flex-wrap:wrap; margin: 26px 0 0; }
+  .related { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  @media (max-width:860px){ .related { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="../index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="../index.html">الرئيسية</a><a href="../posts.html">المقالات</a><a href="../programs.html">البرامج</a><a href="../tutorials.html">الدروس</a><a href="../ai.html">الذكاء الاصطناعي</a><a href="../about.html">عني</a>
+</div>
+
+<article>
+<section class="article-hero">
+  <div class="grid-bg" style="opacity:.3"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb">
+      <a href="../index.html">الرئيسية</a><span>/</span>
+      <a href="../ai.html">ذكاء اصطناعي</a><span>/</span>
+      <span>هندسة الأوامر (Prompt Engineering) للم…</span>
+    </div>
+    <span class="eyebrow">ذكاء اصطناعي</span>
+    <h1 class="reveal">هندسة الأوامر (Prompt Engineering) للمبرمجين: 20 قالباً جاهزاً</h1>
+    <p class="lead" style="max-width:760px">قوالب أوامر مجرّبة لمراجعة الكود، توليد الاختبارات، كتابة التوثيق، وتحليل الأخطاء — مع شرح لماذا يعمل كل قالب.</p>
+
+    <div class="article-meta" style="margin-top:26px">
+      <div class="author-box"><span class="author-av">أ</span><span>أحمد</span></div>
+      <span class="sep">·</span>
+      <span>2025-01-09</span>
+      <span class="sep">·</span>
+      <span>8 دقائق قراءة</span>
+      <span class="sep">·</span>
+      <span class="lvl lvl--beginner">مبتدئ</span>
+    </div>
+
+    <div class="article-cover"><span class="glyph">✧</span></div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:20px">
+  <div class="container">
+    <div class="article-wrap">
+      <div class="prose">
+        
+<p>النموذج اللغوي لا يقرأ نيّتك — يقرأ نصك فقط. كل تحسين في الأمر يعود بتحسين مباشر في
+الناتج. هذه قوالب استخدمتها فعلياً، ومع كل واحد شرح لماذا هو مكتوب بهذا الشكل.</p>
+
+<h2 id="rules">لماذا تعمل القوالب؟</h2>
+<ul>
+  <li><strong>الدور</strong>: «أنت مراجع كود صارم» يغيّر النبرة والعمق.</li>
+  <li><strong>السياق</strong>: اللغة، الإصدار، القيود — يمنع اقتراحات غير قابلة للتطبيق.</li>
+  <li><strong>الشكل</strong>: جدول أو JSON يمنع الفقرات الطويلة.</li>
+  <li><strong>معيار الرفض</strong>: «قل لا أعرف» يقلّل الهلوسة بشكل حقيقي.</li>
+</ul>
+
+<h2 id="code">1. مراجعة الكود</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>أنت مراجع كود أول (Senior) متخصص في [TypeScript/React].
+راجع الكود التالي وأجب بصيغة جدول فقط بأربعة أعمدة:
+[الخطورة (عالية/متوسطة/منخفضة) | السطر | المشكلة | الإصلاح المقترح]
+
+قواعد:
+- لا تعلّق على التنسيق أو المسافات.
+- ركّز على: صحة المنطق، الحالات الحدّية، تسريب الموارد، الثغرات الأمنية.
+- إن لم تجد مشكلة حقيقية، اكتب &quot;لا مشاكل جوهرية&quot; — لا تخترع مشاكل.
+
+الكود:
+```[اللغة]
+[الصق الكود]
+```</code></pre></div>
+<p><strong>لماذا:</strong> الجدول يمنع الحشو، و«لا تخترع مشاكل» يعالج ميل النموذج للمجاملة.</p>
+
+<h2 id="tests">2. توليد الاختبارات</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>اكتب اختبارات [Vitest/Pytest] للدالة التالية.
+
+المتطلبات:
+1. غطِّ: الحالة الطبيعية، القيم الحدّية، المدخلات غير الصالحة.
+2. اسم كل اختبار يصف السلوك المتوقّع بالعربية.
+3. لا تختبر تفاصيل التنفيذ — اختبر الناتج فقط.
+4. أضف تعليقاً بسطر واحد يشرح لماذا هذا الاختبار مهم.
+5. اذكر في النهاية أي حالة لم تستطع تغطيتها ولماذا.
+
+الدالة:
+```[اللغة]
+[الصق الكود]
+```</code></pre></div>
+
+<h2 id="docs">3. التوثيق</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>اكتب توثيقاً للدالة التالية موجّهاً لمطوّر جديد في الفريق.
+
+الشكل المطلوب:
+- جملة واحدة: ماذا تفعل.
+- المعاملات: جدول (الاسم | النوع | إجباري؟ | الوصف).
+- القيمة المرجعة.
+- مثال استدعاء واقعي.
+- 2-3 تحذيرات عملية (متى لا تستخدمها).
+
+قيود: لا تكرر اسم الدالة في الوصف، ولا تشرح ما هو واضح من التوقيع.
+
+الكود:
+```[اللغة]
+[الصق الكود]
+```</code></pre></div>
+
+<h2 id="debug">4. تحليل الأخطاء</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>لديّ خطأ لا أفهمه. حلّل خطوة بخطوة قبل أن تقترح حلاً.
+
+البيئة: [Node 20 / Python 3.11 / ...]
+ما توقّعته: [...]
+ما حدث فعلاً: [...]
+
+رسالة الخطأ:
+```
+[الصق الخطأ]
+```
+
+الكود ذو الصلة:
+```[اللغة]
+[الصق الكود]
+```
+
+أجب بهذا الترتيب:
+1. ثلاث فرضيات مرتّبة من الأكثر احتمالاً (واشرح كيف تفرّق بينها).
+2. الاستنتاج الأرجح ولماذا.
+3. الإصلاح المحدّد (كود).
+4. كيف أتأكد أنه لن يتكرّر.</code></pre></div>
+<blockquote><strong>مهم:</strong> «حلّل قبل أن تحلّ» يمنع النموذج من القفز إلى أول إصلاح مقنع —
+وهو غالباً ليس الصحيح.</blockquote>
+
+<h2 id="plain">5. للشخص العادي (بلا مصطلحات)</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>اشرح لي [الموضوع] كما تشرح لشخص لا يعمل في التقنية.
+
+قواعد صارمة:
+- لا تستخدم أي مصطلح تقني دون شرحه بجملة.
+- استخدم تشبيهاً واحداً من الحياة اليومية والتزم به حتى النهاية.
+- لا تزيد على 150 كلمة.
+- اختم بجملة واحدة: ماذا يمكنني أن أفعل بهذا عملياً؟</code></pre></div>
+<p>هذا القالب تحديداً هو الأكثر طلباً من القرّاء غير التقنيين، وأكثره فائدة في الاجتماعات
+مع فريق غير تقني.</p>
+
+<h2>قالب عام يمكنك تكييفه دائماً</h2>
+<div class="code-wrap"><button class="copy-btn">نسخ</button><pre><code>الدور: [من أنت]
+المهمة: [ماذا أريد بدقة]
+السياق: [خلفية، قيود، جمهور]
+الشكل: [جدول/JSON/نقاط/كود]
+المعايير: [كيف أعرف أن الناتج جيد؟]
+ما يجب تجنّبه: [ممنوعات صريحة]</code></pre></div>
+<blockquote><strong>الخطوة التالية:</strong> خذ أطول أمر كتبته هذا الأسبوع، وأضف إليه سطر «الشكل»
+وسطر «ما يجب تجنّبه». الفرق في الناتج يظهر من أول محاولة.</blockquote>
+
+        <div class="tags-row">
+          <span class="chip">AI</span>
+<span class="chip">Prompts</span>
+<span class="chip">Productivity</span>
+        </div>
+
+        <div class="card" style="margin-top:44px; display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between; background:linear-gradient(135deg, rgba(109,94,252,.12), transparent)">
+          <div>
+            <h3 style="margin-bottom:6px; font-size:1.05rem">أعجبك الشرح؟</h3>
+            <p style="font-size:.87rem; color:var(--text-soft); margin:0">درس عملي واحد كل أسبوع على بريدك — بلا حشو.</p>
+          </div>
+          <a href="../index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+        </div>
+      </div>
+
+      <aside>
+        <div class="toc">
+          <h5>محتويات المقال</h5>
+          <a href="#rules">لماذا تعمل القوالب؟</a>
+<a href="#code">مراجعة الكود</a>
+<a href="#tests">توليد الاختبارات</a>
+<a href="#docs">التوثيق</a>
+<a href="#debug">تحليل الأخطاء</a>
+<a href="#plain">للشخص العادي</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</article>
+
+<section class="section" style="background:var(--bg-soft); border-block:1px solid var(--border)">
+  <div class="container">
+    <div class="section-head reveal"><h2 style="font-size:1.6rem">اقرأ أيضاً</h2></div>
+    <div class="related">
+      <a href="../tutorials/python-async.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>درس</span><span class="sep"></span><span>14 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">فهم Async/Await في بايثون من الصفر حتى الإنتاج</h3></a>
+<a href="../posts/react-19.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>شرح</span><span class="sep"></span><span>11 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">React 19: ما الذي يتغير فعلياً في طريقة كتابة الكومبوننتس؟</h3></a>
+<a href="../ai/ai-agents.html" class="post-card" style="padding:20px"><div class="post-card__meta" style="margin-bottom:8px"><span>ذكاء اصطناعي</span><span class="sep"></span><span>18 دقيقة</span></div><h3 style="font-size:.98rem; line-height:1.5">بناء وكيل ذكاء اصطناعي (AI Agent) يفهم أدواتك ويستخدمها</h3></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="../index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

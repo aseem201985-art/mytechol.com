@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كل المقالات — MyTechol</title>
+<meta name="description" content="أرشيف كامل للمقالات والشروحات والدروس في البرمجة والذكاء الاصطناعي.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236d5efc'/><path d='M34 32L20 50l14 18M66 32l14 18-14 18' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+  .search-box { position: relative; max-width: 520px; margin-bottom: 28px; }
+  .search-box input {
+    width: 100%; padding: 15px 50px 15px 20px; border-radius: 99px;
+    border: 1px solid var(--border-strong); background: var(--surface);
+    color: var(--text); font-size: .95rem; outline: none; transition: border-color .3s, box-shadow .3s;
+  }
+  .search-box input:focus { border-color: var(--brand-2); box-shadow: 0 0 0 4px rgba(0,212,255,.1); }
+  .search-box .ico { position: absolute; inset-inline-start: 18px; top: 50%; transform: translateY(-50%); color: var(--text-dim); }
+  .search-box svg { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 2; }
+  [data-search-results] {
+    position: absolute; z-index: 30; inset-inline: 0; top: calc(100% + 8px);
+    background: var(--bg-soft); border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow);
+  }
+  .search-hit { display: flex; justify-content: space-between; gap: 14px; padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: .87rem; }
+  .search-hit:last-child { border-bottom: 0; }
+  .search-hit:hover { background: var(--surface-2); color: var(--brand-2); }
+  .search-hit__c { font-size: .74rem; color: var(--text-dim); flex-shrink: 0; }
+  .search-hit--empty { color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span><span>My<span class="grad-text">Techol</span></span></a>
+    <nav class="nav__links">
+      <a href="index.html">الرئيسية</a><a href="posts.html">المقالات</a><a href="programs.html">البرامج</a><a href="tutorials.html">الدروس</a><a href="ai.html">الذكاء الاصطناعي</a><a href="about.html">عني</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="تبديل المظهر"><span data-theme-icon></span></button>
+      <button class="icon-btn burger" data-burger aria-label="القائمة"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a href="index.html#newsletter" class="btn btn--primary btn--sm">اشترك مجاناً</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" data-drawer>
+  <button class="icon-btn close" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="index.html">الرئيسية</a><a href="posts.html">المقالات</a><a href="programs.html">البرامج</a><a href="tutorials.html">الدروس</a><a href="ai.html">الذكاء الاصطناعي</a><a href="about.html">عني</a>
+</div>
+
+<section class="page-hero">
+  <div class="grid-bg"></div>
+  <div class="hero__glow hero__glow--1" style="opacity:.28; width:420px; height:420px; top:-120px; inset-inline-end:-80px"></div>
+  <div class="container" style="position:relative; z-index:1">
+    <div class="breadcrumb"><a href="index.html">الرئيسية</a><span>/</span><span>المقالات</span></div>
+    <span class="eyebrow reveal"><span class="dot"></span> الأرشيف</span>
+    <h1 class="reveal">كل ما نُشر على MyTechol</h1>
+    <p class="reveal">شروحات، دروس، أكواد ومقالات في الذكاء الاصطناعي — مرتّبة ووسومها للبحث السريع.</p>
+
+    <div class="search-box reveal" style="margin-top:30px">
+      <span class="ico"><svg viewBox="0 0 24 24" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
+      <input type="search" placeholder="ابحث عن موضوع، تقنية، أو كلمة مفتاحية..." data-search="assets/data/posts.json" aria-label="بحث">
+      <div data-search-results class="hidden"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="filters reveal" data-filter-group data-filter-target="#archive">
+      <button class="filter-btn active" data-cat="all">الكل</button>
+      <button class="filter-btn" data-cat="درس">دروس</button>
+      <button class="filter-btn" data-cat="شرح">شروحات</button>
+      <button class="filter-btn" data-cat="برمجة">برمجة</button>
+      <button class="filter-btn" data-cat="ذكاء اصطناعي">ذكاء اصطناعي</button>
+      <button class="filter-btn" data-cat="أدوات">أدوات</button>
+      <button class="filter-btn" data-cat="برامج">برامج</button>
+    </div>
+
+    <div class="posts-grid" id="archive"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0; padding-top:0">
+      <span>© <span data-year></span> MyTechol — جميع الحقوق محفوظة.</span>
+      <span><a href="index.html">العودة للرئيسية</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script>
+fetch('assets/data/posts.json').then(r => r.json()).then(posts => {
+  document.getElementById('archive').innerHTML = posts.map(p => `
+    <article class="post-card reveal" data-cat="${p.category} ${p.tags.join(' ')}">
+      <a href="${p.url}" class="post-card__thumb">
+        <span class="post-card__tagline">${p.tagline}</span>
+        <span class="glyph">${p.glyph}</span>
+      </a>
+      <div class="post-card__body">
+        <div class="post-card__meta"><span>${p.category}</span><span class="sep"></span><span>${p.read}</span><span class="sep"></span><span>${p.date}</span></div>
+        <h3><a href="${p.url}">${p.title}</a></h3>
+        <p>${p.excerpt}</p>
+        <div class="post-card__foot">
+          <span class="lvl lvl--${p.level === 'مبتدئ' ? 'beginner' : p.level === 'متقدم' ? 'advanced' : 'inter'}">${p.level}</span>
+          <span class="post-card__read">اقرأ ←</span>
+        </div>
+      </div>
+    </article>`).join('');
+  window.MyTechol.observeReveals();
+}).catch(() => {
+  document.getElementById('archive').innerHTML = '<p style="color:var(--text-dim)">تعذّر تحميل المقالات — افتح الموقع عبر خادم محلي.</p>';
+});
+</script>
+</body>
+</html>
