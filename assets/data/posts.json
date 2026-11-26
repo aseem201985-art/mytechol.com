@@ -457,7 +457,7 @@
     "glyph": "async",
     "tagline": "Python",
     "date": "2025-02-18",
-    "author": "أحمد"
+    "author": "عاصم محمد"
   },
   {
     "id": "react-19",
@@ -475,7 +475,7 @@
     "glyph": "</>",
     "tagline": "React",
     "date": "2025-02-11",
-    "author": "أحمد"
+    "author": "عاصم محمد"
   },
   {
     "id": "ai-agents",
@@ -494,7 +494,7 @@
     "glyph": "AI",
     "tagline": "AI",
     "date": "2025-02-06",
-    "author": "أحمد"
+    "author": "عاصم محمد"
   },
   {
     "id": "linux-cli",
@@ -512,7 +512,7 @@
     "glyph": ">_",
     "tagline": "CLI",
     "date": "2025-01-29",
-    "author": "أحمد"
+    "author": "عاصم محمد"
   },
   {
     "id": "clean-code",
@@ -530,7 +530,7 @@
     "glyph": "{ }",
     "tagline": "Quality",
     "date": "2025-01-22",
-    "author": "أحمد"
+    "author": "عاصم محمد"
   },
   {
     "id": "tailwind-ui",
@@ -549,7 +549,7 @@
     "glyph": "UI",
     "tagline": "CSS",
     "date": "2025-01-15",
-    "author": "أحمد"
+    "author": "عاصم محمد"
   },
   {
     "id": "chatgpt-prompts",
@@ -567,7 +567,7 @@
     "glyph": "✧",
     "tagline": "AI",
     "date": "2025-01-09",
-    "author": "أحمد"
+    "author": "عاصم محمد"
   },
   {
     "id": "docker-basics",
@@ -585,7 +585,7 @@
     "glyph": "🐳",
     "tagline": "DevOps",
     "date": "2025-01-03",
-    "author": "أحمد"
+    "author": "عاصم محمد"
   },
   {
     "id": "algorithms-101",
@@ -603,6 +603,6 @@
     "glyph": "O(n)",
     "tagline": "CS",
     "date": "2024-12-27",
-    "author": "أحمد"
+    "author": "عاصم محمد"
   }
 ]
