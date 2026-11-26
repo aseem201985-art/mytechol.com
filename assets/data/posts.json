@@ -1,5 +1,101 @@
 [
   {
+    "id": "testing-strategy",
+    "title": "استراتيجية الاختبارات: ماذا تختبر وماذا تتجاهل؟",
+    "excerpt": "الهرم العملي للاختبارات، ولماذا اختبارات الوحدة وحدها لا تكفي، وكيف تكتب اختباراً لا يتعطّل عند كل تعديل.",
+    "category": "برمجة",
+    "tags": [
+      "الاختبارات"
+    ],
+    "level": "متوسط",
+    "read": "10 دقيقة",
+    "url": "posts/testing-strategy.html",
+    "glyph": "TST",
+    "tagline": "الاختبارات",
+    "date": "2026-02-10",
+    "author": "عاصم محمد"
+  },
+  {
+    "id": "web-security-headers",
+    "title": "رؤوس الأمان في HTTP: حماية موقعك في 5 أسطر",
+    "excerpt": "CSP وHSTS وX-Frame-Options وReferrer-Policy — شرح مبسّط لكل رأس، والخطأ الشائع الذي يعطّل الحماية.",
+    "category": "برمجة",
+    "tags": [
+      "الأمان"
+    ],
+    "level": "متوسط",
+    "read": "9 دقيقة",
+    "url": "posts/web-security-headers.html",
+    "glyph": "SEC",
+    "tagline": "الأمان",
+    "date": "2026-02-10",
+    "author": "عاصم محمد"
+  },
+  {
+    "id": "prompt-engineering-arabic",
+    "title": "هندسة الأوامر بالعربية: 6 أنماط ترفع جودة ردود النموذج",
+    "excerpt": "لماذا تفشل أوامرك العربية، وكيف تصوغ سياقاً ودوراً وقيوداً واضحة — مع قالب جاهز يمكن نسخه لأي مهمة.",
+    "category": "ذكاء اصطناعي",
+    "tags": [
+      "الذكاء الاصطناعي"
+    ],
+    "level": "مبتدئ",
+    "read": "9 دقيقة",
+    "url": "posts/prompt-engineering-arabic.html",
+    "glyph": "AI",
+    "tagline": "الذكاء الاصطناعي",
+    "date": "2026-02-10",
+    "author": "عاصم محمد"
+  },
+  {
+    "id": "docker-compose-stack",
+    "title": "Docker Compose: بيئة تطوير كاملة بأمر واحد",
+    "excerpt": "ملف compose عملي يجمع التطبيق وقاعدة البيانات وRedis — مع healthchecks وvolumes، وأخطاء تمنع \"يعمل عندي فقط\".",
+    "category": "برامج",
+    "tags": [
+      "Docker"
+    ],
+    "level": "متوسط",
+    "read": "10 دقيقة",
+    "url": "posts/docker-compose-stack.html",
+    "glyph": "DC",
+    "tagline": "Docker",
+    "date": "2026-02-10",
+    "author": "عاصم محمد"
+  },
+  {
+    "id": "database-indexing",
+    "title": "فهارس قواعد البيانات: كيف تجعل الاستعلام أسرع 100 مرة؟",
+    "excerpt": "ما هو الفهرس داخلياً، متى ينسى محسّن الاستعلام استخدامه، وتكلفة الفهارس على عمليات الكتابة — بأمثلة SQL قابلة للتطبيق.",
+    "category": "برمجة",
+    "tags": [
+      "قواعد البيانات"
+    ],
+    "level": "متوسط",
+    "read": "11 دقيقة",
+    "url": "posts/database-indexing.html",
+    "glyph": "IDX",
+    "tagline": "قواعد البيانات",
+    "date": "2026-02-10",
+    "author": "عاصم محمد"
+  },
+  {
+    "id": "react-server-components",
+    "title": "React Server Components: متى تستخدمها فعلاً؟",
+    "excerpt": "شرح عملي للفرق بين Server و Client Components، ومتى تُقلّل الـ JavaScript المرسل للمتصفح، ومتى تصبح عبئاً بلا فائدة.",
+    "category": "برمجة",
+    "tags": [
+      "React"
+    ],
+    "level": "متوسط",
+    "read": "10 دقيقة",
+    "url": "posts/react-server-components.html",
+    "glyph": "RSC",
+    "tagline": "React",
+    "date": "2026-02-10",
+    "author": "عاصم محمد"
+  },
+  {
     "id": "api-design",
     "title": "تصميم APIs RESTful بشكل احترافي",
     "excerpt": "أسماء الموارد، رموز الحالة، الإصدار، التوثيق، والأخطاء. كيف تبني API يُحبّه المطورون الذين يستخدمونه؟",

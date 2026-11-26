@@ -5,8 +5,56 @@
   <link>https://mytechol.com</link>
   <description>أكواد، برامج، دروس وذكاء اصطناعي للمبرمج العربي.</description>
   <language>ar</language>
-  <lastBuildDate>Wed, 25 Nov 2026 08:57:16 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 26 Nov 2026 07:06:29 +0000</lastBuildDate>
   <atom:link href="https://mytechol.com/feed.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>استراتيجية الاختبارات: ماذا تختبر وماذا تتجاهل؟</title>
+    <link>https://mytechol.com/posts/testing-strategy.html</link>
+    <guid>https://mytechol.com/posts/testing-strategy.html</guid>
+    <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+    <description>الهرم العملي للاختبارات، ولماذا اختبارات الوحدة وحدها لا تكفي، وكيف تكتب اختباراً لا يتعطّل عند كل تعديل.</description>
+    <category>برمجة</category>
+  </item>
+  <item>
+    <title>رؤوس الأمان في HTTP: حماية موقعك في 5 أسطر</title>
+    <link>https://mytechol.com/posts/web-security-headers.html</link>
+    <guid>https://mytechol.com/posts/web-security-headers.html</guid>
+    <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+    <description>CSP وHSTS وX-Frame-Options وReferrer-Policy — شرح مبسّط لكل رأس، والخطأ الشائع الذي يعطّل الحماية.</description>
+    <category>برمجة</category>
+  </item>
+  <item>
+    <title>هندسة الأوامر بالعربية: 6 أنماط ترفع جودة ردود النموذج</title>
+    <link>https://mytechol.com/posts/prompt-engineering-arabic.html</link>
+    <guid>https://mytechol.com/posts/prompt-engineering-arabic.html</guid>
+    <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+    <description>لماذا تفشل أوامرك العربية، وكيف تصوغ سياقاً ودوراً وقيوداً واضحة — مع قالب جاهز يمكن نسخه لأي مهمة.</description>
+    <category>ذكاء اصطناعي</category>
+  </item>
+  <item>
+    <title>Docker Compose: بيئة تطوير كاملة بأمر واحد</title>
+    <link>https://mytechol.com/posts/docker-compose-stack.html</link>
+    <guid>https://mytechol.com/posts/docker-compose-stack.html</guid>
+    <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+    <description>ملف compose عملي يجمع التطبيق وقاعدة البيانات وRedis — مع healthchecks وvolumes، وأخطاء تمنع "يعمل عندي فقط".</description>
+    <category>برامج</category>
+  </item>
+  <item>
+    <title>فهارس قواعد البيانات: كيف تجعل الاستعلام أسرع 100 مرة؟</title>
+    <link>https://mytechol.com/posts/database-indexing.html</link>
+    <guid>https://mytechol.com/posts/database-indexing.html</guid>
+    <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+    <description>ما هو الفهرس داخلياً، متى ينسى محسّن الاستعلام استخدامه، وتكلفة الفهارس على عمليات الكتابة — بأمثلة SQL قابلة للتطبيق.</description>
+    <category>برمجة</category>
+  </item>
+  <item>
+    <title>React Server Components: متى تستخدمها فعلاً؟</title>
+    <link>https://mytechol.com/posts/react-server-components.html</link>
+    <guid>https://mytechol.com/posts/react-server-components.html</guid>
+    <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+    <description>شرح عملي للفرق بين Server و Client Components، ومتى تُقلّل الـ JavaScript المرسل للمتصفح، ومتى تصبح عبئاً بلا فائدة.</description>
+    <category>برمجة</category>
+  </item>
   <item>
     <title>HTML و CSS من الصفر: ابنِ صفحتك الأولى في ساعة</title>
     <link>https://mytechol.com/tutorials/html-css-basics.html</link>
