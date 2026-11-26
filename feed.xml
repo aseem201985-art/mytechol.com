@@ -5,8 +5,56 @@
   <link>https://mytechol.com</link>
   <description>أكواد، برامج، دروس وذكاء اصطناعي للمبرمج العربي.</description>
   <language>ar</language>
-  <lastBuildDate>Thu, 26 Nov 2026 07:06:29 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 26 Nov 2026 08:20:43 +0000</lastBuildDate>
   <atom:link href="https://mytechol.com/feed.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>تشغيل الذكاء الاصطناعي على جهازك: متى يستحق العناء؟</title>
+    <link>https://mytechol.com/posts/local-ai-models.html</link>
+    <guid>https://mytechol.com/posts/local-ai-models.html</guid>
+    <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+    <description>متى يكون النموذج المحلي أفضل من السحابة، ما حجم الذاكرة المطلوب فعلياً، وأي النماذج تُشغّل على حاسوب عادي بلا كسر.</description>
+    <category>ذكاء اصطناعي</category>
+  </item>
+  <item>
+    <title>أدوات الصور والفيديو بالذكاء الاصطناعي: ما الفرق ومن يصلح لماذا؟</title>
+    <link>https://mytechol.com/posts/ai-image-video-tools.html</link>
+    <guid>https://mytechol.com/posts/ai-image-video-tools.html</guid>
+    <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+    <description>توليد الصور، تحريرها، وإنشاء الفيديو: مقارنة بين الأدوات على جودة النص داخل الصورة، دقة الاتساق، سرعة التوليد، والترخيص التجاري.</description>
+    <category>أدوات</category>
+  </item>
+  <item>
+    <title>أسئلة شائعة عن الذكاء الاصطناعي: 20 سؤالاً بإجابات صريحة</title>
+    <link>https://mytechol.com/posts/ai-faq.html</link>
+    <guid>https://mytechol.com/posts/ai-faq.html</guid>
+    <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+    <description>من «هل سيسرق وظيفتي؟» إلى «لماذا يهذي بثقة؟» ومن «أستخدم أي نموذج مجاناً؟» إلى «هل بياناتي تُستخدم للتدريب؟» — إجابات قصيرة ومباشرة.</description>
+    <category>ذكاء اصطناعي</category>
+  </item>
+  <item>
+    <title>أدوات البرمجة بالذكاء الاصطناعي: Cursor أم Copilot أم Claude Code؟</title>
+    <link>https://mytechol.com/posts/ai-coding-tools-compared.html</link>
+    <guid>https://mytechol.com/posts/ai-coding-tools-compared.html</guid>
+    <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+    <description>مقارنة على الممارسة: إكمال الأسطر، تعديل مشروع كامل، فهم المستودع، التكلفة، والخصوصية — مع توصية حسب حجم العمل.</description>
+    <category>أدوات</category>
+  </item>
+  <item>
+    <title>كيف يعمل النموذج اللغوي؟ ولماذا يتفوق نموذج على آخر؟</title>
+    <link>https://mytechol.com/posts/how-llms-work-tradeoffs.html</link>
+    <guid>https://mytechol.com/posts/how-llms-work-tradeoffs.html</guid>
+    <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+    <description>ما يحدث داخل النموذج من Tokenizer إلى Attention إلى التدريب، ثم المعايير الحقيقية للتفوّق: البيانات، التوجيه، طول السياق، والاستدلال.</description>
+    <category>ذكاء اصطناعي</category>
+  </item>
+  <item>
+    <title>مقارنة نماذج الذكاء الاصطناعي 2026: أيهم يصلح لماذا؟</title>
+    <link>https://mytechol.com/posts/ai-models-compared-2026.html</link>
+    <guid>https://mytechol.com/posts/ai-models-compared-2026.html</guid>
+    <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+    <description>ChatGPT وClaude وGemini وDeepSeek وLlama — مقارنة عملية على الكتابة، البرمجة، تحليل الملفات، السياق الطويل، والاستخدام العربي، مع توصية واضحة لكل حالة.</description>
+    <category>ذكاء اصطناعي</category>
+  </item>
   <item>
     <title>استراتيجية الاختبارات: ماذا تختبر وماذا تتجاهل؟</title>
     <link>https://mytechol.com/posts/testing-strategy.html</link>
